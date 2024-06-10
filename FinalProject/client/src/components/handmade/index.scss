@@ -1,0 +1,56 @@
+#handmade {
+    padding-top: 110px;
+
+    .handmade-title {
+        .handmade_content {
+            padding-top: 50px;
+            font-family: "Montserrat", sans-serif;
+            background-color: red;
+
+            h1 {
+                max-width: 460px;
+                font-size: 60px;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                font-size: 20px;
+                color: rgb(135, 135, 135);
+                margin-bottom: 3rem;
+            }
+
+            button {
+                max-width: 300px;
+                padding: 1.2rem 2rem;
+                border-radius: 40px;
+                background-color: rgb(251, 178, 0);
+                color: white;
+                font-family: "Montserrat", sans-serif;
+                font-size: 1.3rem;
+                font-weight: 600;
+                border: none;
+                padding-bottom: 10px;
+
+                .shophome {
+
+                    font-size: 1.5rem;
+                    margin-right: 15px;
+                }
+            }
+
+        }
+
+    }
+
+    .handmade-image {
+        width: 400px;
+        height: 300px;
+
+        .circle {
+            background-color: red;
+            border-radius: 100%;
+            width: 100%;
+        }
+    }
+
+}

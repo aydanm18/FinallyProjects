@@ -1,0 +1,32 @@
+header {
+    background-color: white;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px;
+
+        ul {
+            
+            display: flex;
+            align-items: center;
+            gap: 40px;
+           
+
+            li {
+                font-family: "Montserrat", sans-serif;
+                .links {
+                    color: black;
+                    font-weight: 600;
+                    font-size: 18px;
+                    display: block;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -5,18 +5,17 @@
         .handmade_content {
             padding-top: 50px;
             font-family: "Montserrat", sans-serif;
-            background-color: red;
 
             h1 {
                 max-width: 460px;
-                font-size: 60px;
-                margin-bottom: 1rem;
+                font-size: 63px;
+                margin: 2rem 0;
             }
 
             p {
                 font-size: 20px;
                 color: rgb(135, 135, 135);
-                margin-bottom: 3rem;
+                margin-bottom: 3.5rem;
             }
 
             button {
@@ -29,28 +28,154 @@
                 font-size: 1.3rem;
                 font-weight: 600;
                 border: none;
-                padding-bottom: 10px;
+                padding-bottom: 25px;
+                transition: all 0.3s linear;
+
+            &:hover{
+                background-color: #f22e3e ;
+            }
 
                 .shophome {
-
                     font-size: 1.5rem;
                     margin-right: 15px;
+
                 }
+            }
+        }
+    }
+
+    .himage {
+        position: relative;
+
+        .img1 {
+            position: absolute;
+            width: 435px;
+            top: 4rem;
+            left: 50%;
+            transform: translateX(50%);
+            z-index: 2;
+            animation: rotateImage 10s linear infinite;
+
+            img {
+                width: 100%;
             }
 
         }
 
-    }
+        .img2 {
+            position: absolute;
+            width: 195px;
+            left: 50%;
+            transform: translateX(250%);
+            top: 6rem;
 
-    .handmade-image {
-        width: 400px;
-        height: 300px;
+            img {
+                width: 100%;
+            }
+        }
 
-        .circle {
-            background-color: red;
-            border-radius: 100%;
-            width: 100%;
+        .img3 {
+            position: absolute;
+            transform: translate(250%, 200%);
+            width: 220px;
+            display: block;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .img4 {
+            position: absolute;
+            transform: translate(50%, 380%);
+            z-index: 2;
+            display: block;
         }
     }
 
+    @media (max-width: 988px) {
+        .row {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .handmade-title {
+            text-align: center;
+
+            .handmade_content {
+                h1 {
+                    font-size: 48px;
+                }
+
+                p {
+                    font-size: 18px;
+                }
+
+                button {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+
+        .himage {
+            .img1 {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                margin: 2rem auto;
+            }
+
+            .img1 {
+                margin-bottom: 2rem;
+            }
+
+            .img2 {
+                position: absolute;
+                left: 50%;
+                transform: translateX(30%);
+
+            }
+
+            .img4,
+            .img3 {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: 446px) {
+        .handmade-title {
+            .handmade_content {
+                align-items: center;
+
+                h1 {
+                    font-size: 36px;
+                }
+
+                p {
+                    font-size: 16px;
+                }
+
+                button {
+                    font-size: 1rem;
+                    padding: 1rem 1.5rem;
+                }
+            }
+        }
+
+        .himage {
+            .img1 {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .img2 {
+                width: 50%;
+                top: 4rem;
+                left: 50%;
+                transform: translateX(15%);
+            }
+        }
+    }
 }

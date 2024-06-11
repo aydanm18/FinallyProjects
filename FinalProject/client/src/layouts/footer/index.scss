@@ -1,0 +1,112 @@
+footer {
+    background-color: rgb(255, 250, 237);
+    padding-top: 70px;
+
+    .footer-top {
+        h6 {
+            font-size: 18px;
+            line-height: 30px;
+            font-weight: 600;
+            color: #111111;
+            padding-bottom: 30px;
+        }
+
+        ul {
+            li {
+                font-size: 16px;
+                color: #777777;
+                padding-bottom: 20px;
+            }
+        }
+
+        .icons {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 10px;
+
+            li {
+                a {
+                    font-size: 43px;
+                }
+            }
+        }
+
+        button {
+
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            background-color: rgb(251, 178, 0);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s linear;
+            margin-top: 0.4rem;
+
+            &:hover {
+                background-color: #f22e3e;
+            }
+
+        }
+
+        p {
+            color: #777777;
+            font-size: 16px;
+            line-height: 25px;
+            font-weight: 500;
+        }
+
+    }
+
+    .footer-middle {
+        padding-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+
+        ul {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+
+            li {
+
+                a {
+                    color: #777777;
+                }
+            }
+        }
+    }
+
+    .footer-end {
+        padding: 50px 0;
+        text-align: center;
+
+        p {
+            color: #111111;
+            font-size: 18px;
+            line-height: 32px;
+            font-weight: 500;
+
+            a {
+                color: rgb(242, 46, 62);
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    .footer-middle {
+      flex-direction: column;
+
+      .middle1, .middle2 {
+        margin-bottom: 20px;
+      }
+
+      img {
+        max-width: 100px;
+        margin: 10px 0;
+      }
+    }
+  }

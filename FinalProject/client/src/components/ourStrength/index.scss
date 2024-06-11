@@ -1,0 +1,172 @@
+#ourStrength {
+    background-color: rgb(255, 250, 237);
+    padding-top: 100px;
+    padding-bottom: 80px;
+
+    .strength {
+        display: flex;
+        justify-content: space-between;
+
+        .strengthTitle {
+            padding-left: 3.5rem;
+
+            .xet {
+                display: flex;
+                align-items: center;
+
+
+                h5 {
+                    color: rgb(242, 46, 62);
+                    margin-bottom: 10px;
+                    font-size: 22px;
+                    line-height: 38px;
+                    font-weight: 600;
+
+                    @media (max-width: 992px) {
+                        font-size: 18px;
+                        line-height: 33px;
+
+
+                    }
+
+                    @media (max-width: 768px) {
+                        font-size: 13px;
+                        line-height: 25px;
+
+                    }
+
+                    @media (max-width: 576px) {
+                        font-size: 10px;
+                        line-height: 15px;
+
+                    }
+                }
+
+                div {
+                    border-bottom: 2px solid rgb(242, 46, 62);
+                    width: 80px;
+                    margin-bottom: 8px;
+                    margin-left: 10px;
+
+                    @media (max-width: 768px) {
+
+                        width: 50px;
+                    }
+
+                    @media (max-width: 576px) {
+
+                        width: 30px;
+                    }
+                }
+            }
+
+            h2 {
+                font-size: 40px;
+                line-height: 55px;
+                font-weight: 700;
+                color: #111111;
+
+
+                @media (max-width: 992px) {
+                    font-size: 36px;
+                    line-height: 48px;
+
+                }
+
+                @media (max-width: 768px) {
+                    font-size: 30px;
+                    line-height: 40px;
+
+                }
+
+                @media (max-width: 576px) {
+                    font-size: 20px;
+                    line-height: 20px;
+
+                }
+            }
+
+        }
+
+        .strengthImage {
+
+            width: 354px;
+
+            img {
+                width: 100%;
+            }
+
+            @media (max-width: 992px) {
+                width: 200px;
+
+            }
+
+            @media (max-width: 768px) {
+                width: 150px;
+
+            }
+
+            @media (max-width: 576px) {
+                width: 100px;
+
+            }
+        }
+    }
+
+    .box {
+        margin-top: -8%;
+
+        img {
+            max-width: 100%;
+            padding-bottom: 1rem;
+
+            @media (max-width: 992px) {
+
+                padding-top: 3rem;
+            }
+
+            @media (max-width: 768px) {
+                padding-top: 3rem;
+
+            }
+
+            @media (max-width: 576px) {
+                padding-top: 3rem;
+
+            }
+        }
+
+        h4 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #111111;
+            padding-bottom: 1rem;
+
+            @media (max-width: 768px) {
+                font-size: 22px;
+            }
+
+            @media (max-width: 576px) {
+                font-size: 20px;
+            }
+        }
+
+        p {
+            color: #777777;
+            font-size: 18px;
+            line-height: 32px;
+            font-weight: 500;
+
+            @media (max-width: 768px) {
+                font-size: 16px;
+                line-height: 28px;
+            }
+
+            @media (max-width: 576px) {
+                font-size: 14px;
+                line-height: 24px;
+            }
+        }
+    }
+
+}

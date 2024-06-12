@@ -1,0 +1,112 @@
+#notfound {
+    padding-top: 15%;
+    padding-bottom: 50px;
+
+    .notfound {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .notfoundImg {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+            .leaf {
+                width: 60px;
+                animation: growShrink 6s infinite;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            @media (max-width: 992px) {
+                padding-top: 15%;
+            }
+
+            @media (max-width: 576px) {
+                padding-top: 40%;
+            }
+        }
+
+        .notfoundTitle {
+            h1 {
+                font-size: 50px;
+                line-height: 60px;
+                margin-bottom: 20px;
+                font-weight: 700;
+                color: #111111;
+
+                @media (max-width: 992px) {
+                    font-size: 40px;
+                    line-height: 50px;
+                }
+
+                @media (max-width: 576px) {
+                    font-size: 30px;
+                    line-height: 40px;
+                }
+            }
+
+            p {
+                font-size: 24px;
+                line-height: 42px;
+                margin-bottom: 30px;
+                color: #777777;
+                font-weight: 500;
+
+                @media (max-width: 992px) {
+                    font-size: 20px;
+                    line-height: 36px;
+                }
+
+                @media (max-width: 576px) {
+                    font-size: 16px;
+                    line-height: 30px;
+                }
+            }
+        }
+
+        button {
+            max-width: 300px;
+            padding: 1rem 1.4rem;
+            border-radius: 40px;
+            background-color: rgb(251, 178, 0);
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s linear;
+
+            &:hover {
+                background-color: #f22e3e;
+            }
+
+            @media (max-width: 992px) {
+                padding: 0.8rem 2rem;
+                font-size: 1.2rem;
+            }
+
+            @media (max-width: 576px) {
+                padding: 0.7rem 1.8rem;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    @keyframes growShrink {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.3);
+        }
+    }
+}

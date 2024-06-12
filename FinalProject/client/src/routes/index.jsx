@@ -1,3 +1,12 @@
+import NotFound from "../components/404Page";
+import OurTeam from "../components/OurTeam";
+import AboutUs from "../components/aboutUs";
+import BookNow from "../components/bookNow";
+import Card from "../components/card";
+import Checkout from "../components/chectout";
+import OurMenues from "../components/ourMenues";
+import ShopDetail from "../components/shopDetail";
+import ShopList from "../components/shopList";
 import MainRoot from "../pages";
 import Basket from "../pages/basket";
 import Blog from "../pages/blog";
@@ -35,6 +44,42 @@ export const ROUTES = [{
             path: 'basket',
             element: <Basket/>,
         },
+        {
+            path: 'shoplist',
+            element: <ShopList/>,
+        },
+        {
+            path: 'products/:id',
+            element: <ShopDetail/>,
+        },
+        {
+            path: 'card',
+            element: <Card/>,
+        },
+        {
+            path: 'checkout',
+            element: <Checkout/>,
+        },
+        {
+            path: 'aboutus',
+            element: <AboutUs/>,
+        },
+        {
+            path: 'ourmenues',
+            element: <OurMenues/>,
+        },
+        {
+            path: 'ourteam',
+            element: <OurTeam/>,
+        },
+        {
+            path: 'booknow',
+            element: <BookNow/>,
+        },
+        {
+            path: '*',
+            element: <NotFound />,
+        }
     ]
 
 }]

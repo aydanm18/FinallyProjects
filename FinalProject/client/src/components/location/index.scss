@@ -1,0 +1,33 @@
+#location {
+    padding: 90px 0;
+
+    .box {
+        display: flex;
+        gap: 35px;
+
+        
+
+        .box-title {
+            h4 {
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+
+            ul {
+                li {
+                    color: #777777;
+                    font-size: 18px;
+                    line-height: 32px;
+                    font-weight: 500;
+                    a {
+                        color: #777777;
+                        font-size: 18px;
+                        line-height: 32px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}

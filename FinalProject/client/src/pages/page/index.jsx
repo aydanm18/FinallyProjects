@@ -1,8 +1,9 @@
 import React from 'react'
+import NotFound from '../../components/404Page'
 
 const Pagees = () => {
   return (
-    <div>Pagees</div>
+   <NotFound/>
   )
 }
 

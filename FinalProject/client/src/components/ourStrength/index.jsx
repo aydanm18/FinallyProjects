@@ -20,7 +20,7 @@ const OurStrength = () => {
                         </div>
                         <h2>Why We Are The Best?</h2>
                     </div>
-                    <div data-aos="fade-left" className="strengthImage">
+                    <div data-aos="fade-up" className="strengthImage">
                         <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/strength-vacter.png" alt="" />
                     </div>
                 </div>

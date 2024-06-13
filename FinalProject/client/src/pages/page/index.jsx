@@ -3,7 +3,10 @@ import NotFound from '../../components/404Page'
 
 const Pagees = () => {
   return (
+    
+  <>
    <NotFound/>
+  </>
   )
 }
 

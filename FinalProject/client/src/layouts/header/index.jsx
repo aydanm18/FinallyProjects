@@ -24,25 +24,32 @@ const Header = () => {
                 <nav>
                     <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/logo.png" width={60} alt="Logo" />
                     <ul>
-                        <li><Link className='links' to={"/"}>HOME</Link></li>
-                        <li className='dropdown-content'>SHOP
+                        <li><Link className='links' to={"/"}>Home</Link></li>
+                        <li className='dropdown-content'>Shop
                             <ul className='dropdown'>
-                                <li><Link className='link' to={'shoplist'}>SHOP LIST</Link></li>
-                                <li><Link className='link' to={'card'}>CARD LIST</Link></li>
-                                <li><Link className='link' to={'checkout'}>CHECKOUT</Link></li>
+                                <li><Link className='link' to={'shoplist'}>Shop List</Link></li>
+                                <li><Link className='link' to={'card'}>Card List</Link></li>
+                                <li><Link className='link' to={'checkout'}>Checkout</Link></li>
                             </ul>
                         </li>
-                        <li className='dropdown-content'>PAGES
+                        <li className='dropdown-content'>Pages
                             <ul className='dropdown'>
-                                <li><Link className='link' to={'aboutus'}>ABOUT US</Link></li>
-                                <li><Link className='link' to={'ourmenues'}>OUR MENU</Link></li>
-                                <li><Link className='link' to={'ourteam'}>OUR TEAM</Link></li>
-                                <li><Link className='link' to={'booknow'}>BOOKNOW</Link></li>
-                                <li><Link className='link' to={'notfound'}>404 PAGE</Link></li>
+                                <li><Link className='link' to={'aboutus'}>AboutUs</Link></li>
+                                <li><Link className='link' to={'ourmenues'}>OurMenu</Link></li>
+                                <li><Link className='link' to={'ourteam'}>OurTeam</Link></li>
+                                <li><Link className='link' to={'booknow'}>BookNow</Link></li>
+                                <li><Link className='link' to={'notfound'}>404Page</Link></li>
                             </ul>
                         </li>
-                        <li><Link className='links' to={"blog"}>BLOG</Link></li>
-                        <li><Link className='links' to={"contact"}>CONTACT</Link></li>
+                        <li><Link className='links' to={"blog"}>Blog</Link></li>
+                        <li><Link className='links' to={"contact"}>Contact</Link></li>
+                        <li className='dropdown-content'>Registration
+                            <ul className='dropdown'>
+                                <li><Link className='link' to={'login'}>Login</Link></li>
+                                <li><Link className='link' to={'register'}>Register</Link></li>
+
+                            </ul>
+                        </li>
                         <li>< IoSearchOutline fontSize={25} /></li>
                         <li><Link className='links' to={"basket"}><FiShoppingCart fontSize={25} /></Link></li>
                     </ul>

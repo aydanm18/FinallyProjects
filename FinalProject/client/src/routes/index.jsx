@@ -4,7 +4,9 @@ import AboutUs from "../components/aboutUs";
 import BookNow from "../components/bookNow";
 import Card from "../components/card";
 import Checkout from "../components/chectout";
+
 import OurMenues from "../components/ourMenues";
+
 import ShopDetail from "../components/shopDetail";
 import ShopList from "../components/shopList";
 import MainRoot from "../pages";
@@ -12,7 +14,9 @@ import Basket from "../pages/basket";
 import Blog from "../pages/blog";
 import Contact from "../pages/contact";
 import Home from "../pages/home";
+import Login from "../pages/login";
 import Pagees from "../pages/page";
+import Register from "../pages/register";
 import Shop from "../pages/shop";
 
 export const ROUTES = [{
@@ -75,6 +79,14 @@ export const ROUTES = [{
         {
             path: 'booknow',
             element: <BookNow/>,
+        },
+        {
+            path: 'login',
+            element: <Login />,
+        },
+        {
+            path: 'register',
+            element: <Register />,
         },
         {
             path: '*',

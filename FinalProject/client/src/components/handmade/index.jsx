@@ -10,7 +10,7 @@ const HandMade = () => {
         <div id='handmade'>
             <div className="container">
                 <div className="row">
-                    <div className="col-xl-5 col-lg-12 col-md-6 handmade-title">
+                    <div data-aos="fade-right" className="col-xl-5 col-lg-12 col-md-6 handmade-title">
                         <div className="handmade_content">
                             <h1>Handmade, With an Extra Pinch of <span style={{ color: 'rgb(242,46,62)' }}>Love</span></h1>
                             <p>Lorem Ipsum is simply dummy text of the <br /> printing and typesetting industry.</p>
@@ -20,7 +20,7 @@ const HandMade = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="col-xl-7 col-lg-12 col-md-6 himage">
+                    <div data-aos="zoom-in-left" className="col-xl-7 col-lg-12 col-md-6 himage">
                         <div className="img1">
                             <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/banner-img.png" alt="Banner" />
                         </div>

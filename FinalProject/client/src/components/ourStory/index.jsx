@@ -32,7 +32,7 @@ const OurStory = () => {
 
                     </div>
                 </div>
-                <div className="col-6 col-md-12 col-sm-12 col-xs-12 ourStory-title" data-aos="fade-left">
+                <div className="col-6 col-md-12 col-sm-12 col-xs-12 ourStory-title" data-aos="zoom-in-left">
                     <div className="xet">
                         <h5>Our Story</h5>
                         <div></div>

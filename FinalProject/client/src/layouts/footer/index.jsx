@@ -71,14 +71,14 @@ const Footer = () => {
             <li><a href="#">Terms & Conditions</a></li>
           </ul>
         </div>
-        <div data-aos="fade-down-left" className="middle2">
+        <div  className="middle2">
           <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/google-play.png" alt="" />
           <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/app-stor.png" alt="" />
         </div>
       </div>
       
      </div>
-     <div  data-aos="fade-up" className="footer-end">
+     <div  data-aos="fade-down" className="footer-end">
         <p>© 2023 Pizzon. All Rights Reserved by <a href="#">Templatescoder</a></p>
       </div>
     </footer>

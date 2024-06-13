@@ -19,6 +19,7 @@ import Pagees from "../pages/page";
 import Register from "../pages/register";
 import Shop from "../pages/shop";
 
+
 export const ROUTES = [{
     path: '/',
     element: <MainRoot />,

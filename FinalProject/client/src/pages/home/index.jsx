@@ -6,6 +6,7 @@ import OurStrength from '../../components/ourStrength'
 import Reservation from '../../components/reservation'
 
 const Home = () => {
+
   return (
    <>
    <HandMade/>

@@ -27,26 +27,26 @@ const Header = () => {
                         <li><Link className='links' to={"/"}>Home</Link></li>
                         <li className='dropdown-content'>Shop
                             <ul className='dropdown'>
-                                <li><Link className='link' to={'shoplist'}>Shop List</Link></li>
-                                <li><Link className='link' to={'card'}>Card List</Link></li>
-                                <li><Link className='link' to={'checkout'}>Checkout</Link></li>
+                                <li><Link className='link' to={'/shoplist'}>Shop List</Link></li>
+                                <li><Link className='link' to={'/card'}>Card List</Link></li>
+                                <li><Link className='link' to={'/checkout'}>Checkout</Link></li>
                             </ul>
                         </li>
                         <li className='dropdown-content'>Pages
                             <ul className='dropdown'>
-                                <li><Link className='link' to={'aboutus'}>AboutUs</Link></li>
-                                <li><Link className='link' to={'ourmenues'}>OurMenu</Link></li>
-                                <li><Link className='link' to={'ourteam'}>OurTeam</Link></li>
-                                <li><Link className='link' to={'booknow'}>BookNow</Link></li>
-                                <li><Link className='link' to={'notfound'}>404Page</Link></li>
+                                <li><Link className='link' to={'/aboutus'}>AboutUs</Link></li>
+                                <li><Link className='link' to={'/ourmenues'}>OurMenu</Link></li>
+                                <li><Link className='link' to={'/ourteam'}>OurTeam</Link></li>
+                                <li><Link className='link' to={'/booknow'}>BookNow</Link></li>
+                                <li><Link className='link' to={'/notfound'}>404Page</Link></li>
                             </ul>
                         </li>
-                        <li><Link className='links' to={"blog"}>Blog</Link></li>
-                        <li><Link className='links' to={"contact"}>Contact</Link></li>
+                        <li><Link className='links' to={"/blog"}>Blog</Link></li>
+                        <li><Link className='links' to={"/contact"}>Contact</Link></li>
                         <li className='dropdown-content'>Registration
                             <ul className='dropdown'>
-                                <li><Link className='link' to={'login'}>Login</Link></li>
-                                <li><Link className='link' to={'register'}>Register</Link></li>
+                                <li><Link className='link' to={'/login'}>Login</Link></li>
+                                <li><Link className='link' to={'/register'}>Register</Link></li>
 
                             </ul>
                         </li>

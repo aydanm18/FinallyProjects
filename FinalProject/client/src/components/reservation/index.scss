@@ -1,5 +1,6 @@
 #reservation {
-    padding-top: 100px;
+    padding-top: 50px;
+
    
 
     .forms {
@@ -35,7 +36,6 @@
                     font-weight: 700;
                     color: #111111;
                     max-width: 509px;
-                    margin-bottom: 20px;
 
                     @media (max-width: 992px) {
                         font-size: 36px;
@@ -62,7 +62,7 @@
                     font-size: 16px;
                     border-radius: 7px;
                     border: 1px solid rgb(217, 217, 217);
-                    width: 100%;
+                    width: 90%;
                     height: 50px;
                     outline: none;
                     padding-left: 20px;
@@ -106,9 +106,9 @@
         text-align: center;
         
         .leaf {
-            margin-left: 20%;
-            transform: rotate(240deg);
-            width: 80px;
+            // margin-left: 20%;
+            // transform: rotate(240deg);
+            // width: 80px;
             img{
                 max-width: 100%;
             }
@@ -126,7 +126,7 @@
         }
 
         .imageres {
-            margin-top: -15%;
+            margin-top: -10%;
             width: 500px;
 
             img {

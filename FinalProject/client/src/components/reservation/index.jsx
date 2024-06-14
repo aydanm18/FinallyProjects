@@ -28,7 +28,7 @@ const Reservation = () => {
                             </div>
                             <div className="row">
 
-                                <div className="col-6 col-md-6 col-sm-12 col-xs-12">
+                                <div style={{padding:0}} className="col-6 col-md-6 col-sm-12 col-xs-12">
 
                                     <div className="input">
                                         <input
@@ -56,7 +56,7 @@ const Reservation = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="col-6 col-md-6 col-sm-12 col-xs-12">
+                                <div style={{padding:0}} className="col-6 col-md-6 col-sm-12 col-xs-12">
                                     <div className="input">
                                         <input
                                             type="email"
@@ -83,9 +83,9 @@ const Reservation = () => {
                                 </div>
                             </div>
 
-                            <div className="col-12 col-md-12 col-sm-12 col-xs-12">
+                            <div style={{padding:0}} className="col-12 col-md-12 col-sm-12 col-xs-12">
                                 <div className="res_button">
-                                    <button type="submit">BOOK TABLE</button>
+                                    <button type="submit">BOOK NOW</button>
                                 </div>
                             </div>
 

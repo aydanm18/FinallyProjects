@@ -54,43 +54,43 @@
                 }
             }
 
-            // .input {
-            //     margin: 20px 0;
+            input {
+                margin: 15px 0;
+                font-weight: 400;
+                font-size: 16px;
+                border-radius: 7px;
+                border: 1px solid rgb(217, 217, 217);
+                width: 90%;
+                padding: 10px 20px;
+                outline: none;
+                resize: vertical;
 
-                input,textarea {
-                    margin: 15px 0;
-                    font-weight: 400;
-                    font-size: 16px;
-                    border-radius: 7px;
-                    border: 1px solid rgb(217, 217, 217);
-                    width: 100%;
-                    padding: 10px 20px;
-                    outline: none;
-                    resize: vertical;
 
-                    &:focus {
-                        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-                    }
+                &:focus {
+                    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
                 }
+            }
+
+            textarea {
+                margin: 15px 0;
+                font-weight: 400;
+                font-size: 16px;
+                border-radius: 7px;
+                border: 1px solid rgb(217, 217, 217);
+                width: 95%;
+                padding: 10px 20px;
+                outline: none;
+                resize: vertical;
 
 
-            
+                &:focus {
+                    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                }
+            }
+
+
         }
 
-        // textarea {
-        //     padding: 10px 20px;
-        //     outline: none;
-        //     resize: vertical;
-        //     font-weight: 400;
-        //     font-size: 16px;
-        //     border-radius: 7px;
-        //     border: 1px solid rgb(217, 217, 217);
-        //     width: 100%;
-
-        //     &:focus {
-        //         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        //     }
-        // }
 
         button {
             max-width: 300px;
@@ -124,25 +124,23 @@
         text-align: center;
 
         .imageres {
-            margin-top: -15%;
-            width: 500px;
 
             img {
                 max-width: 100%;
                 height: auto;
             }
 
-            @media (max-width: 992px) {
-                width: 350px;
-            }
+            // @media (max-width: 992px) {
+            //     width: 350px;
+            // }
 
-            @media (max-width: 768px) {
-                width: 250px;
-            }
+            // @media (max-width: 768px) {
+            //     width: 250px;
+            // }
 
-            @media (max-width: 576px) {
-                width: 180px;
-            }
+            // @media (max-width: 576px) {
+            //     width: 180px;
+            // }
         }
     }
 

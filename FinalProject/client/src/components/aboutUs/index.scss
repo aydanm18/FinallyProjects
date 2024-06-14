@@ -1,0 +1,142 @@
+#ourStory {
+    padding-bottom: 100px;
+
+    .ourStory_title {
+        h2 {
+            font-size: 40px;
+            line-height: 55px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #777777;
+            font-size: 18px;
+            line-height: 32px;
+            font-weight: 500;
+        }
+
+        .xet {
+            display: flex;
+            align-items: center;
+
+            h5 {
+                color: rgb(242, 46, 62);
+                margin-bottom: 10px;
+                position: relative;
+                font-size: 22px;
+                line-height: 38px;
+                font-weight: 600;
+            }
+
+            div {
+                border-bottom: 2px solid rgb(242, 46, 62);
+                width: 80px;
+                margin-bottom: 8px;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .ourStory-content {
+        padding: 0;
+        padding-right: 3rem;
+        padding-top: 2.5rem;
+
+        h4 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        img {
+            border-radius: 40px;
+            height: auto;
+            max-width: 100%;
+            border: none;
+        }
+    }
+
+    .img-rigth {
+        padding-top: 2rem;
+        display: block;
+
+        img {
+            border-radius: 40px;
+            height: auto;
+            max-width: 100%;
+            border: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        padding-bottom: 50px;
+
+        .ourStory_title {
+            h2 {
+                font-size: 32px;
+                line-height: 45px;
+            }
+
+            p {
+                font-size: 16px;
+                line-height: 28px;
+            }
+
+        }
+
+        .ourStory-content {
+            padding-right: 1.5rem;
+            padding-top: 2rem;
+
+            h4 {
+                font-size: 20px;
+            }
+        }
+
+        .img-rigth {
+            padding-top: 1rem;
+
+            img {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        padding-bottom: 30px;
+
+        .ourStory_title {
+            h2 {
+                font-size: 28px;
+                line-height: 40px;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 24px;
+            }
+
+            .xet {
+                h5 {
+                    font-size: 18px;
+                    line-height: 28px;
+                }
+
+                div {
+                    width: 50px;
+                }
+            }
+        }
+
+        .ourStory-content {
+            padding-right: 1rem;
+            padding-top: 1.5rem;
+
+            h4 {
+                font-size: 18px;
+            }
+        }
+    }
+}

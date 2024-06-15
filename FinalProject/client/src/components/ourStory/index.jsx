@@ -4,6 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './index.scss'
 import { HiChevronRight } from "react-icons/hi2";
+import { Link } from 'react-router-dom';
 
 const OurStory = () => {
     useEffect(() => {
@@ -39,7 +40,8 @@ const OurStory = () => {
                     </div>
                     <h2>The Pizzon Has Excellent Of Quality Foods</h2>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                    <button>READ MORE <HiChevronRight style={{ marginTop: '3px' }} className='storyicon' /></button>
+                    <button><Link to={'/aboutus'} className='links'>
+                    READ MORE <HiChevronRight style={{ marginTop: '3px' }} className='storyicon' /></Link></button>
                 </div>
 
             </div>

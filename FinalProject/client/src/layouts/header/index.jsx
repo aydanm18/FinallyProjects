@@ -3,9 +3,12 @@ import './index.scss';
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
 import { IoSearchOutline } from "react-icons/io5";
+import { RxHamburgerMenu } from "react-icons/rx";
+import HamburgerMenu from './HamburgerMenu';
 
 const Header = () => {
     const [scrollBg, setScrollBg] = useState(false);
+    const [toggle, setToggle] = useState(false);
 
     const listenScrollEvent = () => {
         window.scrollY > 30 ? setScrollBg(true) : setScrollBg(false);
@@ -50,10 +53,13 @@ const Header = () => {
 
                             </ul>
                         </li>
-                        <li>< IoSearchOutline fontSize={25} /></li>
                         <li><Link className='links' to={"basket"}><FiShoppingCart fontSize={25} /></Link></li>
                     </ul>
                 </nav>
+                <div className="nav-hamburger" onClick={() => setToggle(!toggle)}>
+                    <RxHamburgerMenu />
+                </div>
+                <HamburgerMenu setToggle={setToggle} toggle={toggle} />
             </div>
         </header>
     );

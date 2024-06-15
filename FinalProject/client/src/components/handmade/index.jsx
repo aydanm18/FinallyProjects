@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './index.scss';
 import { FiShoppingCart } from "react-icons/fi";
+import { Link } from 'react-router-dom';
 
 
 const HandMade = () => {
@@ -15,8 +16,8 @@ const HandMade = () => {
                             <h1>Handmade, With an Extra Pinch of <span style={{ color: 'rgb(242,46,62)' }}>Love</span></h1>
                             <p>Lorem Ipsum is simply dummy text of the <br /> printing and typesetting industry.</p>
                             <button>
-                                <FiShoppingCart fontSize={25} className='shophome' />
-                                ORDER NOW
+                               <Link to={'/shoplist'} className='links'> <FiShoppingCart fontSize={25} className='shophome' />
+                               ORDER NOW</Link>
                             </button>
                         </div>
                     </div>

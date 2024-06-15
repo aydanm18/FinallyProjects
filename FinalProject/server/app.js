@@ -41,7 +41,19 @@ const TeamSchema = new mongoose.Schema({
     description: String,
 }, { timestamps: true });
 
+
 const TeamModel = mongoose.model('Team', TeamSchema);
+
+const ReservationSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    phone: { type: String, required: true },
+    email: { type: String, required: true },
+    date: { type: String, required: true },
+    time: { type: String, required: true },
+    guest: { type: Number, required: true }
+}, { timestamps: true });
+
+const ReservationModel = mongoose.model('Reservation', ReservationSchema);
 
 //orders
 app.get('/orders', async (req, res) => {
@@ -321,6 +333,66 @@ app.patch('/bloks/:id', async (req, res) => {
         })
     }
 })
+
+//reservation
+app.get('/reservations', async (req, res) => {
+    try {
+        const reservations = await ReservationModel.find();
+        if (reservations.length > 0) {
+            res.status(200).send({ message: 'success', data: reservations });
+        } else {
+            res.send({ message: 'data is empty', data: null });
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message, error: true });
+    }
+});
+
+app.get('/reservations/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const reservation = await ReservationModel.findById(id);
+        if (reservation) {
+            res.status(200).send({ message: 'success', data: reservation });
+        } else {
+            res.send({ message: 'data is empty', data: null });
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message, error: true });
+    }
+});
+
+app.delete('/reservations/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const response = await ReservationModel.findByIdAndDelete(id);
+        const allReservations = await ReservationModel.find();
+        res.send({ message: 'deleted', response, allReservations });
+    } catch (error) {
+        res.status(500).send({ message: error.message, error: true });
+    }
+});
+
+app.post('/reservations', async (req, res) => {
+    try {
+        const newReservation = new ReservationModel(req.body);
+        await newReservation.save();
+        res.send({ message: 'posted', response: newReservation });
+    } catch (error) {
+        res.status(500).send({ message: error.message, error: true });
+    }
+});
+
+app.patch('/reservations/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        await ReservationModel.findByIdAndUpdate(id, req.body);
+        const updatedReservation = await ReservationModel.findById(id);
+        res.send({ message: 'updated', response: updatedReservation });
+    } catch (error) {
+        res.status(500).send({ message: error.message, error: true });
+    }
+});
 
 mongoose.connect('mongodb+srv://aydanbabayeva:aydan1809@products.3f7najz.mongodb.net/products?retryWrites=true&w=majority&appName=Products')
     .then(() => console.log('Connected!'));

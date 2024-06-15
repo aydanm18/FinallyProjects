@@ -1,4 +1,3 @@
-
 #handmade {
     padding-top: 110px;
 
@@ -32,14 +31,18 @@
                 padding-bottom: 25px;
                 transition: all 0.3s linear;
 
-            &:hover{
-                background-color: #f22e3e ;
-            }
+                &:hover {
+                    background-color: #f22e3e;
+                }
 
-                .shophome {
-                    font-size: 1.5rem;
-                    margin-right: 15px;
+                .links {
+                    color: white;
 
+                    .shophome {
+                        font-size: 1.5rem;
+                        margin-right: 15px;
+
+                    }
                 }
             }
         }
@@ -55,10 +58,10 @@
             left: 50%;
             transform: translateX(50%);
             z-index: 2;
-          
+
 
             img {
-                width: 100%;
+                max-width:100%;
             }
 
         }
@@ -71,7 +74,7 @@
             top: 6rem;
 
             img {
-                width: 100%;
+                max-width: 100%;
             }
         }
 
@@ -82,7 +85,7 @@
             display: block;
 
             img {
-                width: 100%;
+                max-width:100%;
             }
         }
 
@@ -176,6 +179,7 @@
                 top: 4rem;
                 left: 50%;
                 transform: translateX(15%);
+                display: none;
             }
         }
     }

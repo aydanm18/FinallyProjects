@@ -10,7 +10,7 @@ const userValidation = Yup.object().shape({
     "Passwords must match"
   ),
   email: Yup.string().email().required(),
-  src:Yup.string().required(),
+  src:Yup.string().url().required(),
 //   src: Yup.mixed()
 //     .test({
 //       message: "Please provide a supported file type",

@@ -8,6 +8,7 @@ import { login } from '../../services/redux/slices/userSlice';
 import controller from '../../services/api/requests';
 import { endpoints } from '../../services/api/constants';
 import Swal from 'sweetalert2'
+import Cookies from "js-cookie";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -25,15 +26,16 @@ const Login = () => {
     },
     validationSchema: loginValidation,
     onSubmit: async ({ email, password }, actions) => {
-      const users = await controller.getAll(endpoints.users);
-      console.log('users:', users.data);
-      const valisUser = users.data.find((x) => x.email == email && x.password == password && x.role == 'client')
-      if (valisUser) {
-        dispatch(login(valisUser))
+      const response = await controller.post(endpoints.login, { email, password });
+
+      if (response.auth) {
+        dispatch(login(response.user))
+        //token
+        Cookies.set('token', response.token, { expires: 1, secure: true });
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Sign In successfully",
+          title: response.message,
           showConfirmButton: false,
           timer: 1000
         }).then(() => {
@@ -45,7 +47,7 @@ const Login = () => {
         Swal.fire({
           position: "top-end",
           icon: "error",
-          title: "email or password is incorrect",
+          title: response.message,
           showConfirmButton: false,
           timer: 1000
         })

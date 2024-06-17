@@ -10,23 +10,22 @@ const userValidation = Yup.object().shape({
     "Passwords must match"
   ),
   email: Yup.string().email().required(),
-  src:Yup.string().url().required(),
-//   src: Yup.mixed()
-//     .test({
-//       message: "Please provide a supported file type",
-//       test: (file, context) => {
-//         const isValid = file?.type.includes('image/');
-//         if (!isValid) context?.createError();
-//         return isValid;
-//       },
-//     })
-//     .test({
-//       message: `File too big, can't exceed ${2_000_000}`,
-//       test: (file) => {
-//         const isValid = file?.size < 2_000_000;
-//         return isValid;
-//       },
-//     }),
+  src: Yup.mixed()
+    .test({
+      message: "Please provide a supported file type",
+      test: (file, context) => {
+        const isValid = file?.type.includes('image/');
+        if (!isValid) context?.createError();
+        return isValid;
+      },
+    })
+    .test({
+      message: `File too big, can't exceed ${2_000_000}`,
+      test: (file) => {
+        const isValid = file?.size < 2_000_000;
+        return isValid;
+      },
+    }),
 });
 
 export default userValidation;

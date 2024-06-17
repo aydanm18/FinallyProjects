@@ -6,4 +6,5 @@ export const endpoints = {
     reservations: '/reservations',
     orders: '/orders',
     teams:'/teams',
+    login:'/login'
 };

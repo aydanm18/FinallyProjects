@@ -18,18 +18,31 @@ const Register = () => {
       navigate("/");
     }
   }, [navigate, user]);
+
+  function handleImageChange(event, setFieldValue) {
+    setFieldValue('src', event.target.files[0]);
+  }
+
+
   const formik = useFormik({
     initialValues: {
       username: '',
+      email: '',
       password: '',
       repeat_password: '',
-      email: '',
       src: ''
     },
     validationSchema: userValidation,
-    onSubmit: async (values, actions) => {
-      const newUser = new User(values.username, values.email, values.password, values.src)
-      const response = await controller.post(endpoints.users, newUser);
+    onSubmit: async ({ username, email, password, src }, actions) => {
+      const formData = new FormData();
+      const newUser = new User(username, email, password, src);
+      formData.append('username', newUser.username);
+      formData.append('email', newUser.email);
+      formData.append('password', newUser.password);
+      formData.append('src', newUser.src);
+
+      const response = await controller.post(endpoints.users, formData);
+      console.log(response);
       if (response.error) {
         Swal.fire({
           position: "top-end",
@@ -39,7 +52,7 @@ const Register = () => {
           timer: 1000
         })
       }
-      else{
+      else {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -51,19 +64,20 @@ const Register = () => {
         });
         actions.resetForm();
       }
-      
+
     },
 
   });
   return (
     <div id='register'>
       <div className="container">
-        <div  className="register"
-    >
+        <div className="register"
+        >
           <div className="registerTitle">
             <h1>Get in touch</h1>
           </div>
-          <form onSubmit={formik.handleSubmit}>
+          <form encType="multipart/form-data"
+            onSubmit={formik.handleSubmit}>
             <input
               id="username"
               name="username"
@@ -74,6 +88,16 @@ const Register = () => {
               placeholder='User Name'
             />
             {formik.errors.username && formik.touched.username && <div style={{ color: 'white' }} id="feedback">{formik.errors.username}</div>}
+            <input
+              id="email"
+              name="email"
+              type="email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              onBlur={formik.handleBlur}
+              placeholder='Email'
+            />
+            {formik.errors.email && formik.touched.email && <div style={{ color: 'white' }} id="feedback">{formik.errors.email}</div>}
             <input
               id="password"
               name="password"
@@ -95,22 +119,12 @@ const Register = () => {
               placeholder='Confirm Password'
             />
             {formik.errors.repeat_password && formik.touched.repeat_password && <div style={{ color: 'white' }} id="feedback">{formik.errors.repeat_password}</div>}
-            <input
-              id="email"
-              name="email"
-              type="email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              onBlur={formik.handleBlur}
-              placeholder='Email'
-            />
-            {formik.errors.email && formik.touched.email && <div style={{ color: 'white' }} id="feedback">{formik.errors.email}</div>}
+
             <input
               id="src"
               name="src"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.src}
+              type="file"
+              onChange={(event) => handleImageChange(event, formik.setFieldValue)}
               onBlur={formik.handleBlur}
               placeholder='Profile Image'
             />

@@ -5,6 +5,9 @@ const endpoints={
     delete:'/users/:id',
     update:'/users/:id',
     post:'/users',
+    login:'/login',
+    verify:'/verify/:token',
+
 
   },
   bloks:{

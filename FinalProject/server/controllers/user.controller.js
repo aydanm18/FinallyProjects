@@ -132,6 +132,7 @@ const user_controller = {
         const { email, password } = req.body;
         const user = await UserModel.findOne({ email: email, role: 'client' });
         if (user) {
+            console.log(user);
             const decryptedPass = await bcrypt.compare(password, user.password);
             if (decryptedPass) {
                 if (user.isVerified) {

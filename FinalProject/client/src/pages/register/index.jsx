@@ -5,10 +5,10 @@ import userValidation from '../../validation/userValidation';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import controller from '../../services/api/requests';
-import { endpoints } from '../../services/api/constants';
-import User from '../../classes/userClass';
+import User from '../../classes/userClass'
 import Swal from 'sweetalert2'
 import { useSelector } from 'react-redux';
+import { endpoints } from '../../services/api/constants';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -30,16 +30,18 @@ const Register = () => {
       email: '',
       password: '',
       repeat_password: '',
-      src: ''
+      src: '',
+      role: 'client'
     },
     validationSchema: userValidation,
-    onSubmit: async ({ username, email, password, src }, actions) => {
+    onSubmit: async ({ username, email, password, src, role }, actions) => {
       const formData = new FormData();
-      const newUser = new User(username, email, password, src);
+      const newUser = new User(username, email, password, src, role);
       formData.append('username', newUser.username);
       formData.append('email', newUser.email);
       formData.append('password', newUser.password);
       formData.append('src', newUser.src);
+      formData.append('role', newUser.role);
 
       const response = await controller.post(endpoints.users, formData);
       console.log(response);

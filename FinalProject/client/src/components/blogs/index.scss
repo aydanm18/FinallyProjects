@@ -1,0 +1,208 @@
+#blogsection {
+    padding-top: 100px;
+
+    .blogsection-title {
+        padding-bottom: 50px;
+
+        .xet {
+            display: flex;
+            align-items: center;
+
+            h5 {
+                color: rgb(242, 46, 62);
+                margin-bottom: 10px;
+                position: relative;
+                font-size: 22px;
+                line-height: 38px;
+                font-weight: 600;
+            }
+
+            div {
+                border-bottom: 2px solid rgb(242, 46, 62);
+                width: 80px;
+                margin-bottom: 8px;
+                margin-left: 10px;
+            }
+        }
+
+        h2 {
+            font-size: 40px;
+            line-height: 55px;
+            font-weight: 700;
+            color: #111111;
+            max-width: 509px;
+
+            @media (max-width: 992px) {
+                font-size: 36px;
+                line-height: 48px;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 32px;
+                line-height: 44px;
+            }
+
+            @media (max-width: 576px) {
+                font-size: 28px;
+                line-height: 40px;
+            }
+        }
+    }
+
+    .featured-blog {
+        .blogimg {
+            object-fit: cover;
+            overflow: hidden;
+            border-radius: 40px;
+            img {
+               
+                height: auto;
+                max-width: 100%;
+                transition: transform 0.5s ease;
+                &:hover {
+                    
+                        transform: scale(1.1);
+                  
+                }
+            }
+        }
+
+        .blogsectiontitle {
+            padding-top: 0.5rem;
+
+            .xets {
+                padding-top: 1.3rem;
+                display: flex;
+
+                h5 {
+                    color: #777777;
+                    font-weight: 500;
+                }
+
+                div {
+                    border-bottom: 2px solid #777777;
+                    width: 80px;
+                    margin-bottom: 8px;
+                    margin-left: 10px;
+                }
+            }
+
+            p {
+                padding-top: 1.3rem;
+
+                .links {
+                    max-width: 270px;
+                    cursor: pointer;
+                    font-size: 1.3rem;
+                    line-height: 1.5rem;
+                    font-weight: 600;
+                    color: #111111;
+                    transition:  0.4s ease;
+                    &:hover{
+                        color: #f22e3e;
+                    }
+                }
+            }
+
+            h4 {
+                padding-top: 0.5rem;
+
+                .links {
+                    color: #f22e3e;
+                    cursor: pointer;
+                    line-height: 32px;
+                    font-weight: 600;
+
+                    .arrow {
+                        padding-top: 5px;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+
+       
+    }
+
+    .card {
+        display: flex;
+        gap: 20px;
+
+        .blogimg1 {
+            width: 285px;
+            border-radius: 20px;
+overflow: hidden;
+            img {
+                height: auto;
+                max-width: 100%;
+                transition: transform 0.5s ease;
+                &:hover {
+                    
+                        transform: scale(1.1);
+                  
+                }
+            }
+        }
+
+        .blogsectiontitle {
+            padding-top: 0.5rem;
+
+            .xets {
+                display: flex;
+
+                h5 {
+                    color: #777777;
+                    font-weight: 500;
+                }
+
+                div {
+                    border-bottom: 2px solid #777777;
+                    width: 80px;
+                    margin-bottom: 8px;
+                    margin-left: 10px;
+                }
+            }
+
+            p {
+                padding-top: 1.3rem;
+
+                .links {
+                    max-width: 270px;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    line-height: 1.5rem;
+                    font-weight: 600;
+                    color: #111111;
+                    transition:  0.4s ease;
+                    &:hover{
+                        color: #f22e3e;
+                    }
+                }
+            }
+
+            h4 {
+                padding-top: 0.5rem;
+
+                .links {
+                    color: #f22e3e;
+                    cursor: pointer;
+                    line-height: 32px;
+                    font-weight: 600;
+
+                    .arrow {
+                        padding-top: 5px;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+
+        @media (min-width: 768px) {
+            margin-top: 20px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}

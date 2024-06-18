@@ -1,0 +1,56 @@
+#postsection {
+    padding-top: 80px;
+    padding-bottom: 70px;
+    background-color: rgb(255, 250, 237);
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            @media (min-width: 768px) {
+                flex-direction: row;
+                gap: 10%;
+            }
+
+            .box {
+                text-align: center;
+
+                @media (min-width: 768px) {
+                    text-align: left;
+
+                    &.right {
+                        text-align: right;
+                    }
+                }
+
+                h4 {
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #111111;
+                }
+
+                p {
+                    color: #777777;
+                    padding-top: 10px;
+                    font-size: 18px;
+                    line-height: 32px;
+                    font-weight: 500;
+                    transition:  0.7s ease;
+                    &:hover{
+                        color:rgb(251,178,0);
+                    }
+                }
+                .rigth {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

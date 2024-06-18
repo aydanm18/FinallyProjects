@@ -5,8 +5,8 @@ const upload = require('../middlewares/user.fileupload');
 const authenticate = require("../middlewares/authenticate.middleware");
 const user_router = express.Router();
 
-user_router.get(endpoints.users.getAll, user_controller.getAll);
-user_router.get(endpoints.users.getOne, user_controller.getOne);
+user_router.get(endpoints.users.getAll,authenticate, user_controller.getAll);
+user_router.get(endpoints.users.getOne,authenticate, user_controller.getOne);
 user_router.delete(endpoints.users.delete, user_controller.delete);
 user_router.patch(endpoints.users.update, user_controller.update);
 user_router.post(endpoints.users.post,upload.single('src'), user_controller.register);

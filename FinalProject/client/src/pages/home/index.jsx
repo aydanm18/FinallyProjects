@@ -4,6 +4,7 @@ import Banner from '../../components/banner'
 import OurStory from '../../components/ourStory'
 import OurStrength from '../../components/ourStrength'
 import Reservation from '../../components/reservation'
+import BlogsSection from '../../components/blogs'
 
 const Home = () => {
 
@@ -14,6 +15,7 @@ const Home = () => {
    <OurStory/>
    <OurStrength/>
    <Reservation/>
+   <BlogsSection/>
    </>
   )
 }

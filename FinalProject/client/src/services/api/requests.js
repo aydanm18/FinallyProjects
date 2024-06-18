@@ -1,27 +1,39 @@
 import axios from "axios";
 import { BASE_URL } from "./constants";
 
-async function getAll(endpoint) {
+async function getAll(endpoint, token) {
   try {
-    const response = await axios.get(BASE_URL + endpoint);
+    const response = await axios.get(BASE_URL + endpoint, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
     return response.data;
   } catch (error) {
     return error;
   }
 }
 
-async function getOne(endpoint, id) {
+async function getOne(endpoint, id, token) {
   try {
-    const response = await axios.get(BASE_URL + endpoint + `/${id}`);
-    return response;
+    const response = await axios.get(BASE_URL + endpoint + `/${id}`,{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    return response.data;
   } catch (error) {
     return error;
   }
 }
 
-async function deleteOne(endpoint, id) {
+async function deleteOne(endpoint, id,token) {
   try {
-    const response = await axios.delete(BASE_URL + endpoint + `/${id}`);
+    const response = await axios.delete(BASE_URL + endpoint + `/${id}`,{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
     return response;
   } catch (error) {
     return error;

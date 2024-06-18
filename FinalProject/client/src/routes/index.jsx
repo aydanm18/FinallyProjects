@@ -1,12 +1,12 @@
 import NotFound from "../components/404Page";
 import OurTeam from "../components/OurTeam";
 import AboutUs from "../components/aboutUs";
+import BlogDetail from "../components/blogDetail";
+import BlogsSection from "../components/blogs";
 import BookNow from "../components/bookNow";
 import Card from "../components/card";
 import Checkout from "../components/chectout";
-
 import OurMenues from "../components/ourMenues";
-
 import ShopDetail from "../components/shopDetail";
 import ShopList from "../components/shopList";
 import MainRoot from "../pages";
@@ -40,6 +40,10 @@ export const ROUTES = [{
         {
             path: 'contact',
             element: <Contact />,
+        },
+        {
+            path: 'blog/:id',
+            element: <BlogDetail />,
         },
         {
             path: 'blog',
@@ -80,6 +84,10 @@ export const ROUTES = [{
         {
             path: 'booknow',
             element: <BookNow/>,
+        },
+        {
+            path: 'blokssection',
+            element: <BlogsSection/>,
         },
         {
             path: 'login',

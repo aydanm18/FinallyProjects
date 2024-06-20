@@ -1,7 +1,8 @@
 const Joi = require("joi");
 
 const BlogValidation = Joi.object({
-    description: Joi.string().required(),
+    title: Joi.string().required(),
+    description: Joi.string().min(10).required(),
     comments: Joi.array().default([]),
     src: Joi.string().uri().required(),
 });

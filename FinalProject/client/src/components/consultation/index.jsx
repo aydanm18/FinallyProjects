@@ -27,7 +27,7 @@ const Consultation = () => {
                             </div>
                             <div className="row">
 
-                                <div style={{padding:0}} className="col-6 col-md-6 col-sm-12 col-xs-12">
+                                <div style={{ padding: 0 }} className="col-6 col-md-6 col-sm-12 col-xs-12">
 
                                     <div className="input">
                                         <input
@@ -47,7 +47,7 @@ const Consultation = () => {
                                     </div>
 
                                 </div>
-                                <div style={{padding:0}} className="col-6 col-md-6 col-sm-12 col-xs-12">
+                                <div style={{ padding: 0 }} className="col-6 col-md-6 col-sm-12 col-xs-12">
                                     <div className="input">
                                         <input
                                             type="email"
@@ -64,16 +64,16 @@ const Consultation = () => {
                                         />
                                     </div>
                                 </div>
-                                <div style={{padding:0}} className="col-12 col-md-12 col-sm-12">
-                               
-                               <div >
-                                   <textarea name="" id=""  rows="5" placeholder="Write Message"></textarea>
-                               </div>
-                           </div>
+                                <div style={{ padding: 0 }} className="col-12 col-md-12 col-sm-12">
+
+                                    <div >
+                                        <textarea name="" id="" rows="5" placeholder="Write Message"></textarea>
+                                    </div>
+                                </div>
 
                             </div>
-                           
-                            <div style={{padding:0}} className="col-12 col-md-12 col-sm-12 col-xs-12">
+
+                            <div style={{ padding: 0 }} className="col-12 col-md-12 col-sm-12 col-xs-12">
                                 <div className="res_button">
                                     <button type="submit">Send Message</button>
                                 </div>

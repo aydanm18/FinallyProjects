@@ -13,7 +13,7 @@ const BlogComment = () => {
 
   useEffect(() => {
     if (!user.id) {
-      navigate("/sign-in");
+      navigate("/login");
     }
   }, [user, navigate]);
 

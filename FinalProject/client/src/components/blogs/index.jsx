@@ -30,14 +30,14 @@ const BlogsSection = () => {
                     {blogs.length > 0 && (
                         <div className="col-6 col-md-6 col-sm-12 col-xs-12 featured-blog" style={{padding:0}}>
                             <div className="blogimg">
-                                <img src={blogs[0].src} alt={blogs[0].title} />
+                                <img src={blogs[0].src}  />
                             </div>
                             <div className="blogsectiontitle">
                                 <div className="xets">
                                     <h5>07Mar2022</h5>
                                     <div></div>
                                 </div>
-                               <p> <Link to={`/blog/${blogs[0]._id}`} className='links'>{blogs[0].description}</Link></p>
+                               <p> <Link to={`/blog/${blogs[0]._id}`} className='links'>{blogs[0].title}</Link></p>
                                <h4><Link to={`/blog/${blogs[0]._id}`} className='links'>Read More<FaArrowRightLong className='arrow' /></Link></h4>
                             </div>
                         </div>
@@ -54,7 +54,7 @@ const BlogsSection = () => {
                                             <h5>07 Mar 2022</h5>
                                             <div></div>
                                         </div>
-                                      <p><Link to={`/blog/${blog._id}`} className='links'>{blog.description}</Link></p>
+                                      <p><Link to={`/blog/${blog._id}`} className='links'>{blog.title}</Link></p>
                                       <h4><Link to={`/blog/${blog._id}`} className='links'>Read More<FaArrowRightLong className='arrow' /></Link></h4>
                                     </div>
                                 </div>

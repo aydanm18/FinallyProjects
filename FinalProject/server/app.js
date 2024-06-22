@@ -13,6 +13,8 @@ app.use(route.reservations)
 app.use(route.users)
 app.use(route.orders)
 app.use(route.teams)
+app.use(route.pizzas)
+app.use(route.menues)
 
 
  

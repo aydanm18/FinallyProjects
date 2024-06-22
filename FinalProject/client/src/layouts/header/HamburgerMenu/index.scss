@@ -71,6 +71,60 @@
                 }
             }
         }
+        #registration {
+            font-weight: 500;
+            cursor: pointer;
+
+            .hamburger-regis {
+               background-color: white;
+                display: flex;
+                display: none;
+                flex-direction: column;
+                padding: 10px 30px;
+
+
+                li {
+                    list-style: none;
+                    margin-bottom: 10px;
+
+                    .dropdown_content {
+
+
+                        font-weight: 500;
+                        font-size: 14px;
+                        color: black;
+
+                    }
+                }
+            }
+        }
+        #account {
+            font-weight: 500;
+            cursor: pointer;
+
+            .hamburger-account {
+               background-color: white;
+                display: flex;
+                display: none;
+                flex-direction: column;
+                padding: 10px 30px;
+
+
+                li {
+                    list-style: none;
+                    margin-bottom: 10px;
+
+                    .dropdown_content {
+
+
+                        font-weight: 500;
+                        font-size: 14px;
+                        color: black;
+
+                    }
+                }
+            }
+        }
 
         .hamburger_shop-dropdown {
 

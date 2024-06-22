@@ -1,34 +1,72 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./index.scss";
+import { useDispatch, useSelector } from "react-redux";
+import Cookies from "js-cookie";
+import { logout } from "../../../services/redux/slices/userSlice";
+import Swal from "sweetalert2"; 
+
 const HamburgerMenu = ({ setToggle, toggle }) => {
     const [click, setClick] = useState(false);
     const [shopClick, setShopClick] = useState(false);
-    let activeHamburger = {
-        display: "block",
+    const [resClick, setResClick] = useState(false);
+    const [accountClick, setAccountClick] = useState(false);
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+
+
+    const handlePagesClick = () => {
+        setClick(!click);
     };
-    let activeShop = {
-        display: "block",
+
+    const handleShopClick = () => {
+        setShopClick(!shopClick);
     };
-    let hamburgerMenu = {
-        display: "block",
+
+    const handleRegistrationClick = () => {
+        setResClick(!resClick);
     };
+
+    const handleAccountClick = () => {
+        setAccountClick(!accountClick);
+    };
+
+ 
+    const handleLogout = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, log out!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(logout());
+                Cookies.remove("token");
+                Swal.fire({
+                    title: "Logged Out!",
+                    icon: "success"
+                });
+            }
+        });
+    };
+
     return (
-        <div className="hamburger-menu" style={toggle ? hamburgerMenu : undefined}>
+        <div className="hamburger-menu" style={toggle ? { display: "block" } : { display: "none" }}>
             <div className="hamburger-content">
-                <Link style={{color:'black',fontWeight:500}}
+                <Link
+                    style={{ color: 'black', fontWeight: 500 }}
                     className="dropdown_content"
                     to="/"
                     onClick={() => setToggle(!toggle)}
                 >
                     Home
                 </Link>
-                <span id="pages" onClick={() => setClick(!click)}>
+                <span id="pages" onClick={handlePagesClick}>
                     Pages
-                    <ul
-                        className="hamburger-pages"
-                        style={click ? activeHamburger : undefined}
-                    >
+                    <ul className="hamburger-pages" style={click ? { display: "block" } : { display: "none" }}>
                         <li>
                             <Link
                                 className="dropdown_content"
@@ -76,17 +114,9 @@ const HamburgerMenu = ({ setToggle, toggle }) => {
                         </li>
                     </ul>
                 </span>
-                <span
-                    className="hamburger_link shop"
-                    onClick={() => {
-                        setShopClick(!shopClick);
-                    }}
-                >
+                <span className="hamburger_link shop" onClick={handleShopClick}>
                     Shop
-                    <ul
-                        className="hamburger_shop-dropdown"
-                        style={shopClick ? activeShop : undefined}
-                    >
+                    <ul className="hamburger_shop-dropdown" style={shopClick ? { display: "block" } : { display: "none" }}>
                         <li>
                             <Link
                                 className="dropdown_content"
@@ -117,20 +147,66 @@ const HamburgerMenu = ({ setToggle, toggle }) => {
                     </ul>
                 </span>
 
-                <Link style={{color:'black',fontWeight:500}}
+                <Link
+                    style={{ color: 'black', fontWeight: 500 }}
                     className="dropdown_content"
                     to="/blog"
                     onClick={() => setToggle(!toggle)}
                 >
-                   Blog
+                    Blog
                 </Link>
-                <Link style={{color:'black',fontWeight:500}}
+                <Link
+                    style={{ color: 'black', fontWeight: 500 }}
                     className="dropdown_content"
                     to="/contact"
                     onClick={() => setToggle(!toggle)}
                 >
-                   Contact
+                    Contact
                 </Link>
+                {!user.id && (
+                    <span id="registration" onClick={handleRegistrationClick}>
+                        Registration
+                        <ul className="hamburger-regis" style={resClick ? { display: "block" } : { display: "none" }}>
+                            <li>
+                                <Link
+                                    className="dropdown_content"
+                                    to="/login"
+                                    onClick={() => setToggle(!toggle)}
+                                >
+                                    Login
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    className="dropdown_content"
+                                    to="/register"
+                                    onClick={() => setToggle(!toggle)}
+                                >
+                                    Register
+                                </Link>
+                            </li>
+                        </ul>
+                    </span>
+                )}
+                {user.id && (
+                    <span id="account" onClick={handleAccountClick}>
+                        Account
+                        <ul className="hamburger-account" style={accountClick ? { display: "block" } : { display: "none" }}>
+                            <li>
+                                <Link
+                                    className="dropdown_content"
+                                    to="/user"
+                                    onClick={() => setToggle(!toggle)}
+                                >
+                                    User
+                                </Link>
+                            </li>
+                            <li className="dropdown_content" onClick={handleLogout}>
+                            LogOut
+                            </li>
+                        </ul>
+                    </span>
+                )}
             </div>
         </div>
     );

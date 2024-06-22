@@ -17,8 +17,8 @@ const BlogsSection = () => {
     }, [token]);
 
     return (
-        <div id='blogsection'>
-            <div className="container">
+        <div data-aos="fade-up" id='blogsection'>
+            <div  className="container">
                 <div className="blogsection-title">
                     <div className="xet">
                         <h5>From Our Blog</h5>

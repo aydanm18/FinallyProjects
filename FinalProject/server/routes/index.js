@@ -3,13 +3,17 @@ const order_router=require('./order.router');
 const user_router=require('./user.router');
 const reservation_router=require('./reservation.router');
 const team_router = require('./team.router');
+const pizza_router=require('./pizza.router')
+const menu_router=require('./menu.router')
 
 const router={
     bloks:blok_router,
     users:user_router,
     reservations:reservation_router,
     orders:order_router,
-    teams:team_router
+    teams:team_router,
+    pizzas:pizza_router,
+    menues:menu_router
 }
 
 module.exports=router;

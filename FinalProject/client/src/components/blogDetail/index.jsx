@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './index.scss'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import 'aos/dist/aos.css';
 import { useSelector } from 'react-redux';
 import Cookies from "js-cookie";
@@ -22,6 +22,13 @@ const BlogDetail = () => {
     const [blog, setBlog] = useState({});
     const [commit, setCommit] = useState('');
     const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user.id) {
+          navigate("/login");
+        }
+      }, [user, navigate]);
 
     useEffect(() => {
         controller.getOne(endpoints.bloks, id, token).then((resp) => {

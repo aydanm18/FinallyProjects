@@ -58,7 +58,7 @@ export const ROUTES = [{
             element: <ShopList/>,
         },
         {
-            path: 'products/:id',
+            path: 'shopdetail/:id',
             element: <ShopDetail/>,
         },
         {

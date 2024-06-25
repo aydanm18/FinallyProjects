@@ -81,7 +81,7 @@ const pizza_controller={
     },
     post: async (req, res) => {
 
-        const newPizza = new BlokModel(req.body)
+        const newPizza = new PizzaModel(req.body)
         await newPizza.save();
         res.send({
             message: 'posted',

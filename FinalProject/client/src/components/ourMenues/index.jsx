@@ -4,8 +4,11 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './index.scss';
 import OurStrength from '../ourStrength';
+import MenuCategories from '../ourMenu';
+
 
 const OurMenues = () => {
+
   useEffect(() => {
     AOS.init({
       duration: 1500,
@@ -36,7 +39,7 @@ const OurMenues = () => {
         </div>
       </div>
     </div>
-
+<MenuCategories/>
     <OurStrength/>
    </>
   );

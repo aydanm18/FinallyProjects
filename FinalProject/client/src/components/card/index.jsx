@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './index.scss';
+import Basket from '../../pages/basket';
 
 const Card = () => {
     useEffect(() => {
@@ -13,6 +14,7 @@ const Card = () => {
     }, []);
 
     return (
+    <>
         <div id='contactus'>
             <div className="container">
                 <div data-aos="fade-down" style={{paddingLeft:'50%',width:'100px'}} className="contactImg">
@@ -34,6 +36,9 @@ const Card = () => {
                 </div>
             </div>
         </div>
+
+        <Basket/>
+    </>
     );
 };
 

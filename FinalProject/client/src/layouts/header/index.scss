@@ -93,6 +93,21 @@ header {
                     }
                 }
             }
+
+
+        }
+    }
+
+    .basket {
+        .links {
+        
+            sub {
+                background-color: red;
+                padding: 0px 3px;
+                border-radius: 50%;
+                font-size: 11px;
+                color: white;
+            }
         }
     }
 
@@ -106,7 +121,8 @@ header {
             display: block;
             margin-right: 1.5rem;
         }
-        .basket{
+
+        .basket {
             display: block;
             margin-right: 1.5rem;
         }
@@ -115,5 +131,5 @@ header {
             display: none;
         }
     }
-   
+
 }

@@ -5,6 +5,7 @@ import OurStory from '../../components/ourStory'
 import OurStrength from '../../components/ourStrength'
 import Reservation from '../../components/reservation'
 import BlogsSection from '../../components/blogs'
+import PizzaSection from '../../components/pizza'
 
 const Home = () => {
 
@@ -12,6 +13,7 @@ const Home = () => {
    <>
    <HandMade/>
    <Banner/>
+   <PizzaSection/>
    <OurStory/>
    <OurStrength/>
    <Reservation/>

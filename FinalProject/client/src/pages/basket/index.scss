@@ -1,0 +1,147 @@
+.basket {
+  
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px;
+        }
+
+        .arrow-icon {
+            cursor: pointer;
+            font-size: 25px;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.4s linear;
+
+            &:hover {
+                color: rgb(251, 178, 0);
+            }
+        }
+    }
+
+    .button {
+        border: none;
+        background-color: white;
+        font-size: 20px;
+        transition: all 0.4s linear;
+
+        &:hover {
+            color: rgb(251, 178, 0);
+        }
+    }
+
+    .box {
+        max-height: 270px;
+        border: 1px solid rgba(128, 128, 128, 0.2);
+        padding: 20px;
+        margin-top: 20px;
+
+        h3 {
+            font-size: 24px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            font-size: 16px;
+            color: #777777;
+
+            tr {
+                margin-top: 1rem;
+
+                th,
+                td {
+                    padding-top: 10px;
+                }
+            }
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 40px;
+            background-color: rgb(251, 178, 0);
+            color: white;
+            font-weight: 500;
+            border: 1px solid rgb(251, 178, 0);
+            font-size: 13px;
+            padding: 0.5rem;
+            margin: 1rem 0;
+            transition: all 0.3s linear;
+
+            .links {
+                color: white;
+                text-decoration: none;
+            }
+
+            &:hover {
+                background-color: rgb(255, 190, 50);
+            }
+        }
+    }
+
+    @media (max-width: 535px) {
+        .container {
+            padding: 0 10px;
+        }
+
+        .row {
+            flex-direction: column;
+
+            .col-8,
+            .col-4 {
+                width: 100%;
+            }
+
+            .col-4 {
+                margin-top: 20px;
+            }
+        }
+
+        .quantity-control p {
+            font-size: 14px;
+            padding: 5px;
+        }
+
+        .arrow-icon {
+            font-size: 20px;
+            padding: 3px;
+        }
+
+        .box {
+            padding: 10px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .box {
+            padding: 15px;
+
+            h3 {
+                font-size: 20px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 12px;
+                padding: 0.4rem;
+            }
+        }
+    }
+}

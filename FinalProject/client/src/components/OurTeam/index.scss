@@ -127,3 +127,90 @@
         }
     }
 }
+
+#team {
+  padding-top: 100px;
+
+  .box {
+    padding: 15px;
+    position: relative;
+    overflow: hidden;
+    object-fit: cover;
+
+    .image {
+      position: relative;
+      border-radius: 40px;
+      overflow: hidden; 
+      
+      img {
+        border-radius: 40px;
+        max-width: 100%;
+        transition: transform 0.5s ease;
+      }
+      
+      &:hover img {
+        transform: scale(1.1); 
+      }
+
+      ul {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+
+        li {
+          padding: 8px 10px;
+          background-color: rgb(251, 178, 0);
+          border-radius: 50%;
+
+          a {
+            color: white;
+            font-size: 1.2rem; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+
+      &:hover ul {
+        opacity: 1;
+      }
+    }
+
+    .teamTitle {
+      text-align: center;
+      margin-top: 15px;
+
+      h4 {
+        .links {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #111111;
+          transition: color 0.5s;
+
+          &:hover {
+            color: rgb(241, 13, 13);
+          }
+        }
+      }
+
+      p {
+        padding-top: 0.7rem;
+        color: #777777;
+        font-size: 18px;
+        line-height: 32px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+  
+  

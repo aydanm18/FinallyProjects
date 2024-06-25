@@ -82,7 +82,7 @@ const menu_controller={
     post: async (req, res) => {
 
         const newMenu = new MenuModel(req.body)
-        await newBloks.save();
+        await newMenu.save();
         res.send({
             message: 'posted',
             response: newMenu,

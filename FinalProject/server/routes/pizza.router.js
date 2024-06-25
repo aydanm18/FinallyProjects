@@ -5,8 +5,8 @@ const pizza_post_middleware=require('../middlewares/pizza.middleware')
 const authenticate = require("../middlewares/authenticate.middleware");
 const pizza_router = express.Router();
 
-pizza_router.get(endpoints.pizzas.getAll,authenticate,pizza_controller.getAll);
-pizza_router.get(endpoints.pizzas.getOne,authenticate,pizza_controller.getOne);
+pizza_router.get(endpoints.pizzas.getAll,pizza_controller.getAll);
+pizza_router.get(endpoints.pizzas.getOne,pizza_controller.getOne);
 pizza_router.delete(endpoints.pizzas.delete,pizza_controller.delete);
 pizza_router.patch(endpoints.pizzas.update,pizza_controller.update);
 pizza_router.post(endpoints.pizzas.post,pizza_post_middleware,pizza_controller.post);

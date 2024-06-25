@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
@@ -6,15 +6,17 @@ import { IoSearchOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import HamburgerMenu from './HamburgerMenu';
 import { useDispatch, useSelector } from 'react-redux';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import { logout } from '../../services/redux/slices/userSlice';
 import Cookies from "js-cookie";
+import { BasketContext } from '../../context/basketContext';
 
 const Header = () => {
     const [scrollBg, setScrollBg] = useState(false);
     const [toggle, setToggle] = useState(false);
     const user = useSelector((state) => state.user);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const { basket, clearBasket } = useContext(BasketContext);
 
     const listenScrollEvent = () => {
         window.scrollY > 30 ? setScrollBg(true) : setScrollBg(false);
@@ -27,12 +29,34 @@ const Header = () => {
         };
     }, []);
 
+    const handleLogout = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, log out!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(logout());
+                Cookies.remove('token');
+                clearBasket(); // Clear the basket
+                Swal.fire({
+                    title: "Logged Out!",
+                    icon: "success"
+                });
+            }
+        });
+    };
+
     return (
         <header className={scrollBg ? 'scrolled' : ''}>
             <div className="container">
                 <nav>
                     <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/logo.png" width={60} alt="Logo" />
-                    <div style={{ display: 'flex ', alignItems: 'center', justifyContent: "center", gap: '15px' }} className="div">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: "center", gap: '15px' }} className="div">
                         <ul>
                             <li><Link className='links' to={"/"}>Home</Link></li>
                             <li className='dropdown-content'>Shop
@@ -58,7 +82,6 @@ const Header = () => {
                                     <ul className='dropdown'>
                                         <li><Link className='link' to={'/login'}>Login</Link></li>
                                         <li><Link className='link' to={'/register'}>Register</Link></li>
-
                                     </ul>
                                 </li>
                             )}
@@ -66,40 +89,22 @@ const Header = () => {
                                 <li className='dropdown-content'>Account
                                     <ul className='dropdown'>
                                         <li><Link className='link' to={'/user'}>User</Link></li>
-                                        <li onClick={() => {
-                                            Swal.fire({
-                                                title: "Are you sure?",
-                                                text: "You won't be able to revert this!",
-                                                icon: "warning",
-                                                showCancelButton: true,
-                                                confirmButtonColor: "#3085d6",
-                                                cancelButtonColor: "#d33",
-                                                confirmButtonText: "Yes, log out!"
-                                            }).then((result) => {
-                                                if (result.isConfirmed) {
-                                                    dispatch(logout());
-                                                    Cookies.remove('token');
-                                                    Swal.fire({
-                                                        title: "Logged Out!",
-                                                        icon: "success"
-                                                    });
-                                                }
-                                            });
-                                        }}>LogOut</li>
-
+                                        <li onClick={handleLogout}>LogOut</li>
                                     </ul>
                                 </li>
-
                             )}
                         </ul>
-                      <div style={{ display: 'flex ', justifyContent: "center", gap: '10px' }} className="responsiv">
-                      <div className="basket">
-                            <Link className='links' to={"basket"}><FiShoppingCart style={{ fontSize: '1.7em',color:'black' }} /></Link>
+                        <div style={{ display: 'flex', justifyContent: "center", gap: '10px' }} className="responsiv">
+                            <div className="basket">
+                                <Link className='links' to={"basket"}>
+                                    <FiShoppingCart style={{ fontSize: '20px', color: 'black' }} />
+                                    <sub>{user.id ? basket.length : 0}</sub>
+                                </Link>
+                            </div>
+                            <div className="nav-hamburger" onClick={() => setToggle(!toggle)}>
+                                <RxHamburgerMenu />
+                            </div>
                         </div>
-                        <div className="nav-hamburger" onClick={() => setToggle(!toggle)}>
-                            <RxHamburgerMenu />
-                        </div>
-                      </div>
                     </div>
                 </nav>
                 <HamburgerMenu setToggle={setToggle} toggle={toggle} />

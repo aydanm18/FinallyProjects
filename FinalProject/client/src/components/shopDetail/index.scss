@@ -1,0 +1,106 @@
+#detailSection {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    .box1 {
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        @media (max-width: 380px) {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+    }
+
+    .box2 {
+        padding-top: 4rem;
+
+        h1 {
+            padding-top: 2rem;
+            font-size: 40px;
+            font-weight: 600;
+            line-height: 45px;
+            margin-bottom: 26px;
+        }
+
+        h3 {
+            padding-bottom: 1rem;
+            font-size: 28px;
+            color: #f22e3e;
+            font-weight: 600;
+        }
+
+        p {
+            color: #777777;
+            font-size: 18px;
+            line-height: 35px;
+            font-weight: 500;
+            padding-bottom: 2rem;
+        }
+
+        .detail-down {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+
+            .buttons {
+
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 30px;
+                margin: 1.5rem 0;
+
+                input {
+                    padding: 1.4rem;
+                    border-radius: 50px;
+                    outline: none;
+                    border: 1px solid rgba(128, 128, 128, 0.349);
+
+
+                }
+
+                button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 45px;
+                    background-color: rgb(251, 178, 0);
+                    color: white;
+                    font-weight: 600;
+                    border: 1px solid rgb(251, 178, 0);
+                    font-size: 18px;
+
+                    padding: 1.2rem;
+                    transition: all 0.3s linear;
+
+                    &:hover {
+                        background-color: #f22e3e;
+                        border: none;
+                    }
+
+                    .links {
+                        color: white;
+                    }
+                }
+            }
+
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                font-weight: 600;
+                padding: 1.1rem;
+                border: 1px solid rgba(128, 128, 128, 0.487);
+                background-color: white;
+
+
+            }
+        }
+    }
+}

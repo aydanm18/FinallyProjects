@@ -1,10 +1,24 @@
 import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { FaFacebookF } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa6";
+import Cookies from 'js-cookie';
+import controller from '../../services/api/requests';
+import { endpoints } from '../../services/api/constants';
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './index.scss';
 
 const OurTeam = () => {
+  const token = Cookies.get('token');
+  const [teams, setTeams] = useState([]);
+  useEffect(() => {
+    controller.getAll(endpoints.teams, token).then((resp) => {
+      setTeams([...resp.data]);
+    });
+  }, [token]);
   useEffect(() => {
     AOS.init({
       duration: 1500,
@@ -35,7 +49,32 @@ const OurTeam = () => {
           </div>
         </div>
       </div>
-
+      <div data-aos="fade-right" id='team'>
+        <div className="container">
+          <div className="row">
+            {teams && teams.map((team)=>{
+              return(
+                <div key={team._id} className="col-4 col-md-6 col-sm-12 col-xs-12 box">
+                <div className="image">
+                  <img src={team.image} alt={team.title} />
+                  <ul>
+                    <li><a href="#"><FaFacebookF /></a></li>
+                    <li><a href="#"><FaTwitter /></a></li>
+                    <li><a href="#"><FaInstagram /></a></li>
+                  </ul>
+                </div>
+                <div className="teamTitle">
+                  <h4><Link className='links' to={'/team'}>{team.title}</Link></h4>
+                  <p>{team.description}</p>
+                </div>
+              </div>
+              )
+            }) 
+             
+            }
+          </div>
+        </div>
+      </div>
       <div id='skills'>
         <div className="container">
           <div className="skills">

@@ -1,0 +1,104 @@
+#categories {
+    padding-bottom: 100px;
+    .categories-up {
+        margin: 70px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        justify-content: center;
+        width: 100%;
+
+        button {
+            padding: 1rem 2rem;
+            background-color: white;
+            color: rgba(128, 128, 128, 0.693);
+            border: 1px solid rgba(128, 128, 128, 0.363);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 35px;
+            transition: all 0.3s linear;
+            margin-top: 0.4rem;
+
+            &:hover,
+            &.active {
+                background-color: rgb(251, 178, 0);
+                color: white;
+                border: none;
+            }
+
+            &:focus {
+                outline: none;
+               
+            }
+        }
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .box {
+            flex: 1 1 calc(33.333% - 20px);
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border: 1px solid rgb(228, 222, 217);
+            border-radius: 30px;
+            margin-bottom: 20px;
+            padding: 1.7rem;
+
+            img {
+                max-width: 100%;
+                border-radius: 10px;
+            }
+
+            .cardTitle {
+                padding: 1.5rem 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                h3 {
+                    font-weight: 600;
+                    color: black;
+                }
+            }
+
+            p {
+                text-align: left;
+                color: #777777;
+                font-size: 18px;
+                line-height: 32px;
+                font-weight: 500;
+            }
+        }
+
+        button {
+            display: flex;
+            margin: 1.5rem 0;
+            border-radius: 40px;
+            background-color: rgb(251, 178, 0);
+            color: white;
+            font-weight: 600;
+            border: 1px solid rgb(251, 178, 0);
+            font-size: 14px;
+            padding: 5px 17px;
+            transition: all 0.3s linear;
+            padding-bottom: 0.8rem;
+
+            &:hover {
+                background-color: #f22e3e;
+            }
+
+            border: none;
+
+            .links {
+                color: white;
+
+                .shophome {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

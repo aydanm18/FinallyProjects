@@ -26,9 +26,9 @@ const BlogDetail = () => {
 
     useEffect(() => {
         if (!user.id) {
-          navigate("/login");
+            navigate("/login");
         }
-      }, [user, navigate]);
+    }, [user, navigate]);
 
     useEffect(() => {
         controller.getOne(endpoints.bloks, id, token).then((resp) => {
@@ -137,7 +137,7 @@ const BlogDetail = () => {
                         {blog.comments && users && blog.comments.toReversed().map((commet, idx) => {
                             const currentUser = users.find((x) => x._id === commet.userId);
                             return (
-                                <div key={idx} className="comment-card" style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                <div key={idx} className="comment-card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <div>
                                         <div className="card-header">
                                             <img
@@ -154,47 +154,47 @@ const BlogDetail = () => {
                                             <p>{commet.content}</p>
                                         </div>
                                     </div>
-                                   <div>
-                                   {commet.userId === user.id && (
-                                        <Button
-                                            onClick={() => {
-                                                Swal.fire({
-                                                    title: "Are you sure?",
-                                                    text: "You won't be able to revert this!",
-                                                    icon: "warning",
-                                                    showCancelButton: true,
-                                                    confirmButtonColor: "#3085d6",
-                                                    cancelButtonColor: "#d33",
-                                                    confirmButtonText: "Yes, delete it!",
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
-                                                        const updatedComments = blog.comments.filter(
-                                                            (x) => x.createdAt !== commet.createdAt
-                                                        );
-                                                        controller.patch(endpoints.bloks, blog._id, {
-                                                            comments: [...updatedComments],
-                                                        });
-                                                        setBlog((currentBlog) => {
-                                                            return {
-                                                                ...currentBlog,
-                                                                comments: updatedComments,
-                                                            };
-                                                        });
-                                                        Swal.fire({
-                                                            title: "Deleted!",
-                                                            text: "Your file has been deleted.",
-                                                            icon: "success",
-                                                        });
-                                                    }
-                                                });
-                                            }}
-                                            color="error"
-                                            variant="contained"
-                                        >
-                                            <MdDelete style={{fontSize:20}} />
-                                        </Button>
-                                    )}
-                                   </div>
+                                    <div>
+                                        {commet.userId === user.id && (
+                                            <Button
+                                                onClick={() => {
+                                                    Swal.fire({
+                                                        title: "Are you sure?",
+                                                        text: "You won't be able to revert this!",
+                                                        icon: "warning",
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: "#3085d6",
+                                                        cancelButtonColor: "#d33",
+                                                        confirmButtonText: "Yes, delete it!",
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            const updatedComments = blog.comments.filter(
+                                                                (x) => x.createdAt !== commet.createdAt
+                                                            );
+                                                            controller.patch(endpoints.bloks, blog._id, {
+                                                                comments: [...updatedComments],
+                                                            });
+                                                            setBlog((currentBlog) => {
+                                                                return {
+                                                                    ...currentBlog,
+                                                                    comments: updatedComments,
+                                                                };
+                                                            });
+                                                            Swal.fire({
+                                                                title: "Deleted!",
+                                                                text: "Your file has been deleted.",
+                                                                icon: "success",
+                                                            });
+                                                        }
+                                                    });
+                                                }}
+                                                color="error"
+                                                variant="contained"
+                                            >
+                                                <MdDelete style={{ fontSize: 20 }} />
+                                            </Button>
+                                        )}
+                                    </div>
                                 </div>
                             );
                         })}
@@ -234,7 +234,8 @@ const BlogDetail = () => {
 
                                 <div >
                                     <textarea onChange={(e) => {
-                                        setCommit(e.target.value)
+                                        setCommit(e.target.value);
+
                                     }} required name="" id="" rows="6" placeholder="Your Message"></textarea>
                                 </div>
                             </div>

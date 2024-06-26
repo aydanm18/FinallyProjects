@@ -56,16 +56,16 @@ const PizzaSection = () => {
           {pizzas && pizzas.data.map((pizza) => (
             <SwiperSlide key={pizza._id} className='slider'>
               <div className="box">
-                <Link to={`shopdetail/${pizza._id}`}><img src={pizza.image} alt={pizza.title} /></Link>
+                <Link to={`/shopdetail/${pizza._id}`}><img src={pizza.image} alt={pizza.title} /></Link>
 
                 <div className="cardTitle">
-                <Link to={`shopdetail/${pizza._id}`}> <h3 style={{ fontWeight: 600,color:'black' }}>{pizza.title}</h3></Link>
+                <Link to={`/shopdetail/${pizza._id}`}> <h3 style={{ fontWeight: 600,color:'black' }}>{pizza.title}</h3></Link>
                  
                   <h3 style={{ color: 'rgb(242,46,62)' }}>${pizza.price}.00</h3>
                 </div>
                 <p>{pizza.description.substring(0, 63)}...</p>
                 <button>
-                  <Link to={`shopdetail/${pizza._id}`} className='links'> <FiShoppingCart style={{ paddingTop: '7px' }} fontSize={25} className='shophome' />
+                  <Link to={`/shopdetail/${pizza._id}`} className='links'> <FiShoppingCart style={{ paddingTop: '7px' }} fontSize={25} className='shophome' />
                     ORDER NOW</Link>
                 </button>
 

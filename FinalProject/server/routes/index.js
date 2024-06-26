@@ -12,7 +12,7 @@ const router={
     reservations:reservation_router,
     orders:order_router,
     teams:team_router,
-    pizzas:pizza_router,
+    // pizzas:pizza_router,
     menues:menu_router
 }
 

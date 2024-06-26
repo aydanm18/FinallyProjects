@@ -45,7 +45,10 @@ const Basket = () => {
     {
       title: 'Price',
       dataIndex: 'price',
-      render: (price) => `${price.toFixed(2)}`,
+      render: (price) => {
+        const parsedPrice = parseFloat(price);
+        return isNaN(parsedPrice) ? 'N/A' : `$${parsedPrice.toFixed(2)}`;
+      },
     },
     {
       title: 'Quantity',
@@ -61,7 +64,10 @@ const Basket = () => {
     },
     {
       title: 'Total',
-      render: (record) => `$${(record.price * record.count).toFixed(2)}`,
+      render: (record) => {
+        const total = parseFloat(record.price) * record.count;
+        return isNaN(total) ? 'N/A' : `$${total.toFixed(2)}`;
+      },
     },
     {
       render: (record) => (
@@ -73,12 +79,14 @@ const Basket = () => {
   ];
 
   const calculateSubtotal = () => {
-    return basket.reduce((total, item) => total + item.price * item.count, 0);
+    return basket.reduce((total, item) => {
+      const itemTotal = parseFloat(item.price) * item.count;
+      return total + (isNaN(itemTotal) ? 0 : itemTotal);
+    }, 0);
   };
 
   const calculateOrderTotal = () => {
-    const subtotal = calculateSubtotal();
-    return subtotal;
+    return calculateSubtotal();
   };
 
   return (
@@ -94,7 +102,7 @@ const Basket = () => {
               pagination={false}
             />
           </div>
-          <div style={{ marginTop: '120px',marginBottom:'50px' }} className="col-4 col-md-12 col-sm-12 col-xs-12 box">
+          <div style={{ marginTop: '120px', marginBottom: '50px' }} className="col-4 col-md-12 col-sm-12 col-xs-12 box">
             <h3>Cart Total</h3>
             <table>
               <tbody>

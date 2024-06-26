@@ -1,6 +1,6 @@
-const mongoose=require('mongoose')
-const PizzaSchema=require('../schemas/pizza.schema')
+// const mongoose=require('mongoose')
+// const PizzaSchema=require('../schemas/pizza.schema')
 
-const PizzaModel = mongoose.model('Pizzas', PizzaSchema);
+// const PizzaModel = mongoose.model('Pizzas', PizzaSchema);
 
-module.exports=PizzaModel;
+// module.exports=PizzaModel;

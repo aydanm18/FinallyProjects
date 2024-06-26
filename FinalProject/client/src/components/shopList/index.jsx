@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './index.scss';
+import MenuCategories from '../ourMenu';
 
 const ShopList = () => {
     useEffect(() => {
@@ -13,6 +14,7 @@ const ShopList = () => {
     }, []);
 
     return (
+       <>
         <div id='contactus'>
             <div className="container">
                 <div data-aos="fade-down" style={{paddingLeft:'50%',width:'100px'}} className="contactImg">
@@ -34,6 +36,9 @@ const ShopList = () => {
                 </div>
             </div>
         </div>
+        <MenuCategories/>
+        </>
+      
     );
 };
 

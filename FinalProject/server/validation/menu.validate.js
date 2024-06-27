@@ -6,5 +6,7 @@ const MenuValidate = Joi.object({
     image: Joi.string().uri().required(),
     price: Joi.number().required(),
     category: Joi.string().required(),
+    comments: Joi.array().default([]),
+    likes: Joi.array().default([]),
 });
 module.exports=MenuValidate

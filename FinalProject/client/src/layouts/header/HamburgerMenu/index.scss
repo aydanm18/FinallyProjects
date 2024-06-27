@@ -4,8 +4,7 @@
     height: 100vh;
     display: none;
     position: sticky;
-    // top: 62px;
-    // z-index: 999;
+  
 
     .hamburger-content {
         display: flex;
@@ -45,6 +44,33 @@
         }
 
         #pages {
+            font-weight: 500;
+            cursor: pointer;
+
+            .hamburger-pages {
+                background-color: white;
+                display: flex;
+                display: none;
+                flex-direction: column;
+                padding: 10px 30px;
+
+
+                li {
+                    list-style: none;
+                    margin-bottom: 10px;
+
+                    .dropdown_content {
+
+
+                        font-weight: 500;
+                        font-size: 14px;
+                        color: black;
+
+                    }
+                }
+            }
+        }
+        #blog {
             font-weight: 500;
             cursor: pointer;
 

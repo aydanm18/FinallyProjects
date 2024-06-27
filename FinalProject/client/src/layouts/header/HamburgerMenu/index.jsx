@@ -4,11 +4,12 @@ import "./index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { logout } from "../../../services/redux/slices/userSlice";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 
 const HamburgerMenu = ({ setToggle, toggle }) => {
     const [click, setClick] = useState(false);
     const [shopClick, setShopClick] = useState(false);
+    const [blogClick, setBlogClick] = useState(false);
     const [resClick, setResClick] = useState(false);
     const [accountClick, setAccountClick] = useState(false);
     const user = useSelector((state) => state.user);
@@ -26,12 +27,14 @@ const HamburgerMenu = ({ setToggle, toggle }) => {
     const handleRegistrationClick = () => {
         setResClick(!resClick);
     };
-
+    const handleBlogClick = () => {
+        setBlogClick(!blogClick);
+    };
     const handleAccountClick = () => {
         setAccountClick(!accountClick);
     };
 
- 
+
     const handleLogout = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -64,6 +67,38 @@ const HamburgerMenu = ({ setToggle, toggle }) => {
                 >
                     Home
                 </Link>
+                <span className="hamburger_link shop" onClick={handleShopClick}>
+                    Shop
+                    <ul className="hamburger_shop-dropdown" style={shopClick ? { display: "block" } : { display: "none" }}>
+                        <li>
+                            <Link
+                                className="dropdown_content"
+                                to="/shoplist"
+                                onClick={() => setToggle(!toggle)}
+                            >
+                                Shop List
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                className="dropdown_content"
+                                to="/card"
+                                onClick={() => setToggle(!toggle)}
+                            >
+                                Card List
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                className="dropdown_content"
+                                to="/checkout"
+                                onClick={() => setToggle(!toggle)}
+                            >
+                                Checkout
+                            </Link>
+                        </li>
+                    </ul>
+                </span>
                 <span id="pages" onClick={handlePagesClick}>
                     Pages
                     <ul className="hamburger-pages" style={click ? { display: "block" } : { display: "none" }}>
@@ -113,48 +148,34 @@ const HamburgerMenu = ({ setToggle, toggle }) => {
                             </Link>
                         </li>
                     </ul>
+               
                 </span>
-                <span className="hamburger_link shop" onClick={handleShopClick}>
-                    Shop
-                    <ul className="hamburger_shop-dropdown" style={shopClick ? { display: "block" } : { display: "none" }}>
+                <span id="blog" onClick={handleBlogClick}>
+                 Blog
+                    <ul className="hamburger-pages" style={blogClick ? { display: "block" } : { display: "none" }}>
+                      
                         <li>
                             <Link
                                 className="dropdown_content"
-                                to="/shoplist"
+                                to="/blogrigth"
                                 onClick={() => setToggle(!toggle)}
                             >
-                                Shop List
+                               BlogRigth
                             </Link>
                         </li>
                         <li>
                             <Link
                                 className="dropdown_content"
-                                to="/card"
+                                to="/blogleft"
                                 onClick={() => setToggle(!toggle)}
                             >
-                                Card List
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                className="dropdown_content"
-                                to="/checkout"
-                                onClick={() => setToggle(!toggle)}
-                            >
-                                Checkout
+                              BlogLeft
                             </Link>
                         </li>
                     </ul>
+               
                 </span>
-
-                <Link
-                    style={{ color: 'black', fontWeight: 500 }}
-                    className="dropdown_content"
-                    to="/blog"
-                    onClick={() => setToggle(!toggle)}
-                >
-                    Blog
-                </Link>
+               
                 <Link
                     style={{ color: 'black', fontWeight: 500 }}
                     className="dropdown_content"
@@ -202,7 +223,7 @@ const HamburgerMenu = ({ setToggle, toggle }) => {
                                 </Link>
                             </li>
                             <li className="dropdown_content" onClick={handleLogout}>
-                            LogOut
+                                LogOut
                             </li>
                         </ul>
                     </span>

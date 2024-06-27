@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './index.scss';
 import Iframe from '../iframe';
+import Header from '../../layouts/header';
+import Footer from '../../layouts/footer';
 
 const BookNow = () => {
   useEffect(() => {
@@ -12,9 +14,30 @@ const BookNow = () => {
       once: true
     });
   }, []);
+  const [isLoading, setIsLoading] = useState(true); 
 
+  useEffect(() => {
+ 
+    setTimeout(() => {
+      setIsLoading(false); 
+    }, 2000); 
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="container">
+       <div className="loading-spinner">
+       <img
+          src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/preloader.svg"
+          alt="Loading..."
+        />
+       </div>
+      </div>
+    );
+  }
   return (
     <>
+      <Header />
       <div id='contactus'>
         <div className="container">
           <div data-aos="fade-down" style={{ paddingLeft: '50%', width: '100px' }} className="contactImg">
@@ -181,6 +204,7 @@ const BookNow = () => {
         </div>
 
       </div>
+      <Footer />
     </>
   );
 };

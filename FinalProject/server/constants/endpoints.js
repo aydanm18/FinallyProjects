@@ -38,13 +38,6 @@ const endpoints = {
     update: '/teams/:id',
     post: '/teams',
   },
-  // pizzas: {
-  //   getAll: '/pizzas',
-  //   getOne: '/pizzas/:id',
-  //   delete: '/pizzas/:id',
-  //   update: '/pizzas/:id',
-  //   post: '/pizzas',
-  // },
   menues: {
     getAll: '/menues',
     getOne: '/menues/:id',

@@ -1,18 +1,42 @@
 import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './index.scss';
+import Header from '../../layouts/header';
+import Footer from '../../layouts/footer';
 
 const Checkout = () => {
+
+  const [isLoading, setIsLoading] = useState(true); 
+
   useEffect(() => {
+ 
+    setTimeout(() => {
+      setIsLoading(false); 
+    }, 2000); 
     AOS.init({
       duration: 1500,
       once: true
     });
+    
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="container">
+       <div className="loading-spinner">
+       <img
+          src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/preloader.svg"
+          alt="Loading..."
+        />
+       </div>
+      </div>
+    );
+  }
   return (
+ <>
+ <Header/>
     <div id='contactus'>
       <div className="container">
         <div data-aos="fade-down" style={{ paddingLeft: '50%', width: '100px' }} className="contactImg">
@@ -34,6 +58,8 @@ const Checkout = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+ </>
   );
 };
 

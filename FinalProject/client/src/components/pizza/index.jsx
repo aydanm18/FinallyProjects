@@ -4,21 +4,24 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import './index.scss';
 import { Pagination } from 'swiper/modules';
-import { useGetMenusQuery, useGetPizzasQuery } from '../../services/redux/procektApi';
+import { useGetMenusQuery } from '../../services/redux/procektApi';
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const PizzaSection = () => {
-  const { data: menus, refetch } = useGetMenusQuery(); 
+  const { data: menues, refetch } = useGetMenusQuery(); 
   const [category, setCategory] = useState("pizzas");
+
   useEffect(() => {
     AOS.init({
       duration: 1500,
       once: true
     });
   }, []);
+
+  const filteredMenus = menues?.data.filter(menu => menu.category === category);
 
   return (
     <div id='pizzaSection'>
@@ -51,16 +54,15 @@ const PizzaSection = () => {
               slidesPerView: 3,
               spaceBetween: 25,
             },
-
           }}
         >
-          {menus && menus.data.map((menu) => (
+          {filteredMenus && filteredMenus.map((menu) => (
             <SwiperSlide key={menu._id} className='slider'>
               <div className="box">
                 <Link to={`/shopdetail/${menu._id}`}><img src={menu.image} alt={menu.title} /></Link>
 
                 <div className="cardTitle">
-                <Link to={`/shopdetail/${menu._id}`}> <h3 style={{ fontWeight: 600,color:'black' }}>{menu.title}</h3></Link>
+                <Link to={`/shopdetail/${menu._id}`}> <h3 style={{ fontWeight: 600, color: 'black' }}>{menu.title}</h3></Link>
                  
                   <h3 style={{ color: 'rgb(242,46,62)' }}>${menu.price}.00</h3>
                 </div>

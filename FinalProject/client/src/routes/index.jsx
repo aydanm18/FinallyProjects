@@ -2,6 +2,8 @@ import NotFound from "../components/404Page";
 import OurTeam from "../components/OurTeam";
 import AboutUs from "../components/aboutUs";
 import BlogDetail from "../components/blogDetail";
+import BlogLeft from "../components/blogLeft";
+import BlogRigth from "../components/blogRigth";
 import BlogsSection from "../components/blogs";
 import BookNow from "../components/bookNow";
 import Card from "../components/card";
@@ -9,6 +11,7 @@ import Checkout from "../components/chectout";
 import OurMenues from "../components/ourMenues";
 import ShopDetail from "../components/shopDetail";
 import ShopList from "../components/shopList";
+import User from "../components/user";
 import MainRoot from "../pages";
 import Basket from "../pages/basket";
 import Blog from "../pages/blog";
@@ -96,6 +99,18 @@ export const ROUTES = [{
         {
             path: 'register',
             element: <Register />,
+        },
+        {
+            path: 'user',
+            element: <User />,
+        },
+        {
+            path: 'blogleft',
+            element: <BlogLeft />,
+        },
+        {
+            path: 'blogrigth',
+            element: <BlogRigth />,
         },
         {
             path: '*',

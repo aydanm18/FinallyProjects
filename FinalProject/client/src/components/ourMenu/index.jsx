@@ -65,7 +65,7 @@ const MenuCategories = () => {
                 </div>
                 <div data-aos="fade-right" className="row">
                     {filteredMenus.map(menu => (
-                        <div className="col-4 box" key={menu._id} data-aos="fade-up">
+                        <div className="col-4 col-md-6 col-sm-12 col-xs-12 box" key={menu._id} data-aos="fade-up">
                             <Link to={`/shopdetail/${menu._id}`}>
                                 <img src={menu.image} alt={menu.title} />
                             </Link>

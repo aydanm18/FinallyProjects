@@ -14,6 +14,8 @@ import Swal from "sweetalert2";
 import moment from "moment";
 import Button from "@mui/material/Button";
 import { MdDelete } from "react-icons/md";
+import Header from '../../layouts/header';
+import Footer from '../../layouts/footer';
 
 const BlogDetail = () => {
     const { id } = useParams();
@@ -44,6 +46,7 @@ const BlogDetail = () => {
 
     return (
         <>
+           <Header />
             <div id='contactus'>
                 <div className="container">
                     <div data-aos="fade-down" style={{ paddingLeft: '50%', width: '100px' }} className="contactImg">
@@ -249,7 +252,7 @@ const BlogDetail = () => {
 
                 </div>
             </div>
-
+            <Footer />
         </>
     )
 }

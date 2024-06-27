@@ -1,8 +1,19 @@
 import React from 'react'
+import ShopList from '../../components/shopList'
+import Card from '../../components/card'
+import Checkout from '../../components/chectout'
+
+
 
 const Shop = () => {
   return (
-    <div>Shop</div>
+ <>
+
+ <ShopList/>
+ <Card/>
+ <Checkout/>
+
+ </>
   )
 }
 

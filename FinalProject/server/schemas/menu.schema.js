@@ -7,6 +7,12 @@ const MenuSchemas = new mongoose.Schema(
         image: String,
         price: String,
         category: String,
+        comments: Array,
+        likes: {
+            type: Array,
+            default: [],
+          },
+
     },
     { timestamps: true, versionKey: false }
 );

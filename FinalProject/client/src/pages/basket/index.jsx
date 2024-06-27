@@ -1,14 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BasketContext } from '../../context/basketContext';
 import { Table } from 'antd';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import './index.scss';
 import { Link } from 'react-router-dom';
 import { MdDeleteOutline } from "react-icons/md";
+import Header from '../../layouts/header';
+import Footer from '../../layouts/footer';
 
 const Basket = () => {
   const { basket, setBasket } = useContext(BasketContext);
+ 
 
+ 
+
+ 
   const handleIncrement = (record) => {
     const currentBasket = basket.find((x) => x._id === record._id);
     currentBasket.count += 1;
@@ -90,7 +96,9 @@ const Basket = () => {
   };
 
   return (
-    <div style={{ paddingTop: '100px' }} className="basket">
+ <>
+
+    <div style={{ paddingTop: '50px' }} className="basket">
       <div className="container">
         <div className="row">
           <div className="col-8 col-md-12 col-sm-12 col-xs-12">
@@ -121,6 +129,8 @@ const Basket = () => {
         </div>
       </div>
     </div>
+ 
+ </>
   );
 };
 

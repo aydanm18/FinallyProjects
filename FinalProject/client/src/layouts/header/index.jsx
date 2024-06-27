@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './index.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
-import { IoSearchOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import HamburgerMenu from './HamburgerMenu';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,6 +16,7 @@ const Header = () => {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const { basket, clearBasket } = useContext(BasketContext);
+    const navigate=useNavigate()
 
     const listenScrollEvent = () => {
         window.scrollY > 30 ? setScrollBg(true) : setScrollBg(false);
@@ -42,13 +42,14 @@ const Header = () => {
             if (result.isConfirmed) {
                 dispatch(logout());
                 Cookies.remove('token');
-                clearBasket(); // Clear the basket
+                clearBasket(); 
                 Swal.fire({
                     title: "Logged Out!",
                     icon: "success"
                 });
             }
         });
+        navigate('/')
     };
 
     return (
@@ -75,7 +76,14 @@ const Header = () => {
                                     <li><Link className='link' to={'/notfound'}>404Page</Link></li>
                                 </ul>
                             </li>
-                            <li><Link className='links' to={"/blog"}>Blog</Link></li>
+                            <li className='dropdown-content'>Blog
+                                <ul className='dropdown'>
+                                    <li><Link className='link' to={'/blogrigth'}>BlogRigth</Link></li>
+                                    <li><Link className='link' to={'/blogleft'}>BlogLeft</Link></li>
+       
+                                </ul>
+                            </li>
+   
                             <li><Link className='links' to={"/contact"}>Contact</Link></li>
                             {!user.id && (
                                 <li className='dropdown-content'>Registration

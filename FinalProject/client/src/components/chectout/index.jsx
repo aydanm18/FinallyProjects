@@ -16,7 +16,7 @@ const Checkout = () => {
       setIsLoading(false); 
     }, 2000); 
     AOS.init({
-      duration: 1500,
+      duration: 2300,
       once: true
     });
     

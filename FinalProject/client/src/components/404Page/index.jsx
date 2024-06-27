@@ -14,11 +14,11 @@ const NotFound = () => {
 
         setTimeout(() => {
             setIsLoading(false);
-        }, 2000);
+        }, 2300);
         AOS.init({
-                    duration: 1500,
-                    once: true
-                });
+            duration: 1500,
+            once: true
+        });
     }, []);
 
     if (isLoading) {

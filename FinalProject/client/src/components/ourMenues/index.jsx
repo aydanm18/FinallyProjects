@@ -11,19 +11,16 @@ import Footer from '../../layouts/footer';
 
 const OurMenues = () => {
  
+  const [isLoading, setIsLoading] = useState(true); 
+
   useEffect(() => {
     AOS.init({
       duration: 1500,
       once: true
     });
-  }, []);
-  const [isLoading, setIsLoading] = useState(true); 
-
-  useEffect(() => {
- 
     setTimeout(() => {
       setIsLoading(false); 
-    }, 2000); 
+    }, 2300); 
   }, []);
 
   if (isLoading) {

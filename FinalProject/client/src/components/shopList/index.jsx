@@ -14,7 +14,7 @@ const ShopList = () => {
  
     setTimeout(() => {
       setIsLoading(false); 
-    }, 2000); 
+    }, 2300); 
   }, []);
 
   if (isLoading) {

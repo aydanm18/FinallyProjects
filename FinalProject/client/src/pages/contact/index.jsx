@@ -13,7 +13,7 @@ const Contact = () => {
  
     setTimeout(() => {
       setIsLoading(false); 
-    }, 1500); 
+    }, 2300); 
   }, []);
 
   if (isLoading) {

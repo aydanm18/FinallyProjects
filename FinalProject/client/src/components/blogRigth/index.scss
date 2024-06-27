@@ -153,14 +153,14 @@
 
             .box1 {
                 display: flex;
-                gap: 2.5rem;
+                // gap: 2.5rem;
 
 
                 .image {
                     overflow: hidden;
                     border-radius: 50%;
                     margin-bottom: 2rem;
-                    width: 180px;
+                   
 
                     img {
                         height: auto;
@@ -190,8 +190,32 @@
                     font-weight: 500;
                 }
             }
-        }
 
+        }
+        
+      .icon{
+        h2{
+            font-weight: 600;
+                font-size: 1.7rem;
+                padding-top: 4rem; 
+                padding-bottom: 1rem;
+
+        }
+        .icons {
+            display: flex;
+            flex-wrap: wrap;
+          
+            column-gap: 10px;
+            row-gap: 10px;
+            width: 100%;
+
+            li {
+                a {
+                    font-size: 40px;
+                }
+            }
+        }
+      }
     }
 
 

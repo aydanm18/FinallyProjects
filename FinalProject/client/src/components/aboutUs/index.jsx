@@ -20,7 +20,7 @@ const AboutUs = () => {
  
     setTimeout(() => {
       setIsLoading(false); 
-    }, 2000); 
+    }, 2300); 
   }, []);
 
   if (isLoading) {

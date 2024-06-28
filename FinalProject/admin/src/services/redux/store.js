@@ -1,5 +1,5 @@
 
-import userReducer from '../redux/slices/userSlice'
+import userReducer from '../../components/services/redux/slices/userSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { procektApi } from './procektApi'

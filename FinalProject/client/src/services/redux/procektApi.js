@@ -11,10 +11,12 @@ export const procektApi = createApi({
       query: (id) => `menues/${id}`,
     }),
     deleteByIdMenu: builder.mutation({
-      query: (id) => ({
-        url: `menues/${id}`,
-        method: 'DELETE',
-      }),
+      query: (id) => (
+        {
+            url: `menues/${id}`,
+            method: 'DELETE'
+        }
+    ),
     }),
     postByMenu: builder.mutation({
       query: (payload) => ({
@@ -40,14 +42,9 @@ export const procektApi = createApi({
 });
 
 export const {
-  useGetPizzasQuery,
   useGetMenusQuery,
-  useGetByIdOnePizzaQuery,
   useGetByIdOneMenuQuery,
   useDeleteByIdMenuMutation,
-  useDeleteByIdPizzaMutation,
   usePostByMenuMutation,
-  usePostByPizzaMutation,
-  usePatchByPizzaMutation,
   usePatchByMenuMutation,
 } = procektApi;

@@ -46,7 +46,7 @@ const BlogDetail = () => {
 
     return (
         <>
-           <Header />
+            <Header />
             <div id='contactus'>
                 <div className="container">
                     <div data-aos="fade-down" style={{ paddingLeft: '50%', width: '100px' }} className="contactImg">

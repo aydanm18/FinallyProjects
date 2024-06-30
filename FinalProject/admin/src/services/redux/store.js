@@ -1,10 +1,9 @@
 
-import userReducer from '../../components/services/redux/slices/userSlice'
+import userReducer from '../redux/slices/userSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { procektApi } from './procektApi'
-
-export const store = configureStore({
+ const store = configureStore({
   reducer: {
     user: userReducer,
     [procektApi.reducerPath]: procektApi.reducer,
@@ -16,3 +15,4 @@ export const store = configureStore({
 
 
 setupListeners(store.dispatch)
+export default store

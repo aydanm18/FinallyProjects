@@ -2,7 +2,7 @@ import React from 'react'
 
 const AddBlog = () => {
   return (
-    <div>AddBlog</div>
+    <div style={{marginTop:'100px'}}>AddBlog</div>
   )
 }
 

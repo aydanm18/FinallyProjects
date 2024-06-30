@@ -1,3 +1,4 @@
+import Home from "../Home";
 import MainRoot from "../pages";
 import AddBlog from "../pages/addBlog";
 import AddProduct from "../pages/addProduct";
@@ -6,13 +7,11 @@ import Blog from "../pages/blogs";
 import Categories from "../pages/categories";
 import Dashboard from "../pages/dashboard";
 import Help from "../pages/help";
-import Home from "../pages/home";
 import Login from "../pages/login";
 import Orders from "../pages/orders";
 import OurTeam from "../pages/ourTeam";
 import Products from "../pages/products";
 import Reservations from "../pages/reservation";
-import Sidebar from "../pages/sidebar";
 import Users from "../pages/users";
 
 
@@ -71,10 +70,7 @@ export const ROUTES = [{
             path: 'reservations',
             element: <Reservations/>,
         },
-        {
-            path: 'sidebar',
-            element: <Sidebar/>,
-        },
+      
         {
             path: 'users',
             element: <Users/>,

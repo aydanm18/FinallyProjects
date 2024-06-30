@@ -4,7 +4,7 @@ import AddBlog from "../pages/addBlog";
 import AddProduct from "../pages/addProduct";
 import AddTeam from "../pages/addTeam";
 import Blog from "../pages/blogs";
-import Categories from "../pages/categories";
+
 import Dashboard from "../pages/dashboard";
 import Help from "../pages/help";
 import Login from "../pages/login";
@@ -42,10 +42,7 @@ export const ROUTES = [{
             path: 'blogs',
             element: <Blog />,
         },
-        {
-            path: 'categories',
-            element: <Categories />,
-        },
+     
         {
             path: 'dashboard',
             element: <Dashboard/>,

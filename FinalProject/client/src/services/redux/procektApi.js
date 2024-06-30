@@ -1,8 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import Cookies from "js-cookie";
 
+
+const token = Cookies.get("token");
 export const procektApi = createApi({
   reducerPath: 'procektApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/' }),
+  prepareHeaders: (headers) => {
+    const token = getToken();
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`)
+    }
+    return headers;
+  },
   endpoints: (builder) => ({
     getMenus: builder.query({
       query: () => `menues`,
@@ -13,10 +23,10 @@ export const procektApi = createApi({
     deleteByIdMenu: builder.mutation({
       query: (id) => (
         {
-            url: `menues/${id}`,
-            method: 'DELETE'
+          url: `menues/${id}`,
+          method: 'DELETE'
         }
-    ),
+      ),
     }),
     postByMenu: builder.mutation({
       query: (payload) => ({

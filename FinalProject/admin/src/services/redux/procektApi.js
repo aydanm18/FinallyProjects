@@ -3,6 +3,13 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const procektApi = createApi({
   reducerPath: 'procektApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/' }),
+  prepareHeaders: (headers) => {
+    const token = getToken();
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`)
+    }
+    return headers;
+  },
   endpoints: (builder) => ({
     getMenus: builder.query({
       query: () => `menues`,
@@ -13,20 +20,22 @@ export const procektApi = createApi({
     deleteByIdMenu: builder.mutation({
       query: (id) => (
         {
-            url: `menues/${id}`,
-            method: 'DELETE'
+          url: `menues/${id}`,
+          method: 'DELETE'
         }
-    ),
+      ),
     }),
     postByMenu: builder.mutation({
+
       query: (payload) => ({
         url: `menues`,
         method: 'POST',
-        body: payload,
+        body: JSON.stringify(payload),
         headers: {
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json'
+        }
       }),
+
     }),
     patchByMenu: builder.mutation({
       query: ({ id, payload }) => ({

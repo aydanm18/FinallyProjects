@@ -16,7 +16,7 @@ async function getAll(endpoint, token) {
 
 async function getOne(endpoint, id, token) {
   try {
-    const response = await axios.get(BASE_URL + endpoint + `/${id}`,{
+    const response = await axios.get(BASE_URL + endpoint + `/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -27,9 +27,9 @@ async function getOne(endpoint, id, token) {
   }
 }
 
-async function deleteOne(endpoint, id,token) {
+async function deleteOne(endpoint, id, token) {
   try {
-    const response = await axios.delete(BASE_URL + endpoint + `/${id}`,{
+    const response = await axios.delete(BASE_URL + endpoint + `/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -50,8 +50,13 @@ async function put(endpoint, id, payload) {
 }
 
 async function patch(endpoint, id, payload) {
+
   try {
-    const response = await axios.patch(BASE_URL + endpoint + `/${id}`, payload);
+    const response = await axios.patch(BASE_URL + endpoint + `/${id}`, payload, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
     return response;
   } catch (error) {
     return error;
@@ -60,7 +65,11 @@ async function patch(endpoint, id, payload) {
 
 async function post(endpoint, payload) {
   try {
-    const response = await axios.post(BASE_URL + endpoint, payload);
+    const response = await axios.post(BASE_URL + endpoint, payload,{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
     return response.data;
   } catch (error) {
     return error;
@@ -69,12 +78,12 @@ async function post(endpoint, payload) {
 
 
 const controller = {
-    getAll: getAll,
-    getOne: getOne,
-    delete: deleteOne,
-    post: post,
-    put: put,
-    patch: patch
+  getAll: getAll,
+  getOne: getOne,
+  delete: deleteOne,
+  post: post,
+  put: put,
+  patch: patch
 }
 
 export default controller;

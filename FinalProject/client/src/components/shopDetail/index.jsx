@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useContext} from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './index.scss';
@@ -22,6 +22,7 @@ import { Pagination } from 'swiper/modules';
 import Button from "@mui/material/Button";
 import { MdDelete } from "react-icons/md";
 import moment from "moment";
+import { BasketContext } from '../../context/basketContext';
 
 const ShopDetail = () => {
   const [users, setUsers] = useState([]);
@@ -36,8 +37,7 @@ const ShopDetail = () => {
   const [pizzaCommit, setPizzaCommit] = useState('');
   const [comments, setComments] = useState([]);
   const numberOfReviews = comments.length;
-
-
+  const { basket, setBasket } = useContext(BasketContext);
   useEffect(() => {
     AOS.init({ duration: 1500, once: true });
   }, []);
@@ -63,7 +63,19 @@ const ShopDetail = () => {
 
   const handleAddToCart = () => {
     if (!token) return navigate('/login');
-
+   
+      const duplicateBasket = basket.find((x) => x._id === data?.data._id);
+      if (duplicateBasket) {
+        duplicateBasket.count += quantity;
+        setBasket([...basket]);
+        localStorage.setItem('basket', JSON.stringify([...basket]));
+      } else {
+        const newBasket = { ...data?.data, count: quantity };
+        setBasket([...basket, newBasket]);
+        localStorage.setItem('basket', JSON.stringify([...basket, newBasket]));
+    
+    };
+  
     Swal.fire({
       title: 'Added to cart!',
       text: `${quantity} item(s) have been added to your cart.`,

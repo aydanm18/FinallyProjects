@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Table } from "antd";
+import { Table } from "antd";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import controller from '../../services/api/requests';
 import { endpoints } from '../../services/api/constants';
-import { MdDelete } from "react-icons/md";
-import Swal from "sweetalert2";
+
 
 const Users = () => {
 
@@ -54,43 +53,6 @@ const Users = () => {
       title: 'Password',
       dataIndex: 'password',
     },
-  
-    {
-      title: "Delete",
-      render: (record) => {
-        return (
-          <Button
-            onClick={() => {
-              Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
-              }).then((result) => {
-                if (result.isConfirmed) {
-              
-                  setUsers((currentUser)=>{
-                    return currentUser.filter((x)=>x._id!==record._id);
-                  });
-                  controller.delete(endpoints.users, record._id, token);
-                  Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success",
-                  });
-                }
-              });
-            }}
-           style={{color:'red',border:'none',fontSize:18}}
-          >
-         <MdDelete />
-          </Button>
-        );
-      },
-    },
   ];
 
   const onChange = (pagination, filters, sorter, extra) => {
@@ -106,6 +68,11 @@ const Users = () => {
         onChange={onChange}
         showSorterTooltip={{
           target: 'sorter-icon',
+        }}
+        pagination={{
+          defaultPageSize: 3,
+          pageSizeOptions: ["2", "5", "10"],
+          showSizeChanger: true,
         }}
         style={{ paddingTop: '120px' }}
       />

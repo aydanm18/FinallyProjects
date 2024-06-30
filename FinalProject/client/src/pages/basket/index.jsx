@@ -5,15 +5,10 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import './index.scss';
 import { Link } from 'react-router-dom';
 import { MdDeleteOutline } from "react-icons/md";
-import Header from '../../layouts/header';
-import Footer from '../../layouts/footer';
+
 
 const Basket = () => {
   const { basket, setBasket } = useContext(BasketContext);
- 
-
- 
-
  
   const handleIncrement = (record) => {
     const currentBasket = basket.find((x) => x._id === record._id);

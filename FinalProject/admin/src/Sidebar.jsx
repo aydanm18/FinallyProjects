@@ -44,10 +44,6 @@ const Sidebar = ({openSidebarToggle,OpenSidebar}) => {
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/categories'}><BiSolidCategory className='icon' />Categories
-          </Link>
-        </li>
-        <li className='sidebar-list-item'>
           <Link to={'/admin/reservations'}><TbAddressBook className='icon' />Reservations
           </Link>
         </li>

@@ -63,13 +63,13 @@ const Blog = () => {
       dataIndex: 'comments',
       render: (comments) => (
         <div>
-          <strong>Comments ({comments.length})</strong>
+          <span>Comments ({comments.length})</span>
           {comments.map((comment, index) => {
             const user = users.find((user) => user._id === comment.userId);
             return (
               <Tooltip key={index} title={comment.content}>
                 <div>
-                  <strong>{user?.username}</strong> {comment.content.length > 0 ? `${comment.content.substring(0, 0)}` : comment.content}
+                  <span>{user?.username}</span> {comment.content.length > 0 ? `${comment.content.substring(0, 0)}` : comment.content}
                 </div>
               </Tooltip>
             );
@@ -124,6 +124,11 @@ const Blog = () => {
       onChange={onChange}
       showSorterTooltip={{
         target: 'sorter-icon',
+      }}
+      pagination={{
+        defaultPageSize: 3,
+        pageSizeOptions: ["2", "5", "10"],
+        showSizeChanger: true,
       }}
       style={{ paddingTop: '120px' }}
     />

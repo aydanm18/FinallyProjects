@@ -95,6 +95,11 @@ const OurTeam = () => {
     showSorterTooltip={{
       target: 'sorter-icon',
     }}
+    pagination={{
+      defaultPageSize: 3,
+      pageSizeOptions: ["2", "5", "10"],
+      showSizeChanger: true,
+    }}
     style={{ paddingTop: '120px' }}
   />
 

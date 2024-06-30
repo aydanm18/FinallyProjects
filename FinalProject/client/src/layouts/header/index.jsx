@@ -104,7 +104,7 @@ const Header = () => {
                         </ul>
                         <div style={{ display: 'flex', justifyContent: "center", gap: '10px' }} className="responsiv">
                             <div className="basket">
-                                <Link className='links' to={"basket"}>
+                                <Link className='links' to={"/basket"}>
                                     <FiShoppingCart style={{ fontSize: '20px', color: 'black' }} />
                                     <sub>{user.id ? basket.length : 0}</sub>
                                 </Link>

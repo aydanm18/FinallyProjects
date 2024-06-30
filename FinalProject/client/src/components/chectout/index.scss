@@ -1,0 +1,44 @@
+#order {
+    padding-top: 80px;
+    h3 {
+        font-size: 25px;
+        line-height: 35px;
+        margin-bottom: 10px;
+    }
+
+    form {
+        input {
+            margin: 15px 0;
+            font-weight: 400;
+            font-size: 16px;
+            border-radius: 7px;
+            border: 1px solid rgb(217, 217, 217);
+            width: 90%;
+            padding: 10px 20px;
+            outline: none;
+            resize: vertical;
+
+
+            &:focus {
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+        }
+        
+        textarea {
+            margin: 15px 0;
+            font-weight: 400;
+            font-size: 16px;
+            border-radius: 7px;
+            border: 1px solid rgb(217, 217, 217);
+            width: 95%;
+            padding: 10px 20px;
+            outline: none;
+            resize: vertical;
+
+
+            &:focus {
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+        }
+    }
+}

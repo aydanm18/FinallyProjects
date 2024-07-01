@@ -45,5 +45,12 @@ const endpoints = {
     update: '/menues/:id',
     post: '/menues',
   },
+  messages: {
+    getAll: '/messages',
+    getOne: '/messages/:id',
+    delete: '/messages/:id',
+    update: '/messages/:id',
+    post: '/messages',
+  },
 }
 module.exports = endpoints;

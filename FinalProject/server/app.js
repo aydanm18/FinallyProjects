@@ -14,6 +14,7 @@ app.use(route.users)
 app.use(route.orders)
 app.use(route.teams)
 app.use(route.menues)
+app.use(route.messages)
 
 
  

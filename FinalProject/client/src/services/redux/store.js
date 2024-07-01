@@ -3,12 +3,12 @@ import userReducer from '../redux/slices/userSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { procektApi } from './procektApi'
-import  { cartReducer } from '../redux/slices/cardSlice'
+
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    cart: cartReducer,
+    // cart: cartReducer,
     [procektApi.reducerPath]: procektApi.reducer,
   },
 

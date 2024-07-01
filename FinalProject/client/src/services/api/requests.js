@@ -53,9 +53,7 @@ async function patch(endpoint, id, payload) {
 
   try {
     const response = await axios.patch(BASE_URL + endpoint + `/${id}`, payload, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
+     
     })
     return response;
   } catch (error) {
@@ -66,9 +64,7 @@ async function patch(endpoint, id, payload) {
 async function post(endpoint, payload) {
   try {
     const response = await axios.post(BASE_URL + endpoint, payload,{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
+     
     });
     return response.data;
   } catch (error) {

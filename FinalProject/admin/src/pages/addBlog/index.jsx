@@ -30,7 +30,15 @@ const AddBlog = () => {
     },
   });
   return (
-    <div id='addblog'>
+    <div 
+    style={{
+      width: "65%",
+      margin: "150px auto",
+      padding: "20px 27px",
+      boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+      backgroundColor:'white'
+    }}
+    id='addblog'>
       <form onSubmit={formik.handleSubmit}>
         <h1>Add Blog Page</h1>
 
@@ -44,7 +52,7 @@ const AddBlog = () => {
           placeholder='Title'
         /> <br />
         {formik.touched.title && formik.errors.title && (
-          <span style={{ color: "red" }}>{formik.errors.title}</span>
+          <span style={{ color: " rgb(251, 178, 0)" }}>{formik.errors.title}</span>
         )}
       
         <input
@@ -58,7 +66,7 @@ const AddBlog = () => {
         />
    
         {formik.touched.description && formik.errors.description && (
-          <span style={{ color: "red" }}>{formik.errors.description}</span>
+          <span style={{ color: " rgb(251, 178, 0)" }}>{formik.errors.description}</span>
         )}
        
         <input
@@ -70,9 +78,9 @@ const AddBlog = () => {
           onBlur={formik.handleBlur}
           placeholder='ImageUrl'
         />
-        {/* <br /> */}
+   
         {formik.touched.src && formik.errors.src && (
-          <span style={{ color: "red" }}>{formik.errors.src}</span>
+          <span style={{ color: " rgb(251, 178, 0)" }}>{formik.errors.src}</span>
         )}
         <br />
 

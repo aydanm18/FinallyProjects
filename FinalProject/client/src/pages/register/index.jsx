@@ -9,7 +9,7 @@ import User from '../../classes/userClass'
 import Swal from 'sweetalert2'
 import { useSelector } from 'react-redux';
 import { endpoints } from '../../services/api/constants';
-
+import Header from '../../layouts/header';
 const Register = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -71,7 +71,16 @@ const Register = () => {
 
   });
   return (
-    <div id='register'>
+   <>
+   <Header/>
+    <div id='register'
+    style={{
+      width: "60%",
+      margin: "0px auto",
+      boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+    
+    }}
+    >
       <div className="container">
         <div className="register"
         >
@@ -133,11 +142,12 @@ const Register = () => {
             {formik.errors.src && formik.touched.src && <div style={{ color: 'white' }} id="feedback">{formik.errors.src}</div>}
             <Link className='link' to={"/login"}>already have an account?</Link>
             <button style={{ marginBottom: '20px' }} type="submit">Create</button>
-            <button onClick={() => { navigate('/') }} type="submit">Return To Home</button>
+            {/* <button onClick={() => { navigate('/') }} type="submit">Return To Home</button> */}
           </form>
         </div>
       </div>
     </div>
+   </>
   );
 };
 export default Register

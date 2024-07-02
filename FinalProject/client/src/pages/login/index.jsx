@@ -56,7 +56,15 @@ const Login = () => {
 
   });
   return (
-    <div id='login'>
+    <div 
+    style={{
+      width: "65%",
+      margin: "100px auto",
+      padding: "20px 27px",
+      boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+      // backgroundColor:'white'
+    }}
+     id='login'>
       <div className="container">
         <div className="loginTitle">
           <h1>Get in touch</h1>

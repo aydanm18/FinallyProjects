@@ -1,19 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Tooltip, Button } from 'antd';
+import { Table, Tooltip, Button, Input,Select } from 'antd';
 import Cookies from 'js-cookie';
-import { useDeleteByIdMenuMutation, useGetMenusQuery } from '../../services/redux/procektApi';
+import { useDeleteByIdMenuMutation, useGetMenusQuery, usePatchByMenuMutation } from '../../services/redux/procektApi';
 import controller from '../../services/api/requests';
 import { endpoints } from '../../services/api/constants';
 import { useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
+import { Modal } from "antd";
+const { TextArea } = Input;
+import { MdEdit } from "react-icons/md";
+const { Option } = Select;
 const Products = () => {
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [users, setUsers] = useState([]);
   const userRedux = useSelector((state) => state.user);
   const token = Cookies.get('token');
   const { data: menus, refetch } = useGetMenusQuery();
-  const [deleteProduct] = useDeleteByIdMenuMutation()
-  
+  const [deleteProduct] = useDeleteByIdMenuMutation();
+  const [patchProduct] = usePatchByMenuMutation();
+
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk =async () => {
+    const updated = {
+      title: menus?.data.title,
+      description: menus?.data.description,
+      image: menus?.data.image,
+      price: menus?.data.price,
+      category: menus?.data.category
+
+    };
+    const response=await patchProduct()
+    setIsModalOpen(false);
+
+  };
+  const handleCancel = () => {
+
+    setIsModalOpen(false);
+  };
   useEffect(() => {
     controller.getAll(endpoints.users, token).then((res) => {
       setUsers(res.data);
@@ -49,6 +77,11 @@ const Products = () => {
         </Tooltip>
       ),
       sorter: (a, b) => a.description.localeCompare(b.description),
+    },
+    {
+      title: 'Price',
+      dataIndex: 'price',
+      sorter: (a, b) => a.price-b.price,
     },
     {
       title: 'Category',
@@ -107,7 +140,7 @@ const Products = () => {
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Yes, delete it!",
-              }).then(async(result) => {
+              }).then(async (result) => {
                 if (result.isConfirmed) {
                   await deleteProduct(record._id)
                   refetch()
@@ -126,6 +159,22 @@ const Products = () => {
         );
       },
     },
+    {
+      title: "Edit",
+      render: (record) => {
+        return (
+          <Button
+            onClick={() => {
+              showModal();
+
+            }}
+            style={{ border: 'none', color: 'red', fontSize: '18px' }}
+          >
+            <MdEdit />
+          </Button>
+        );
+      },
+    }
   ];
 
   const onChange = (pagination, filters, sorter, extra) => {
@@ -133,20 +182,62 @@ const Products = () => {
   };
 
   return (
-    <Table
-      columns={columns}
-      dataSource={menus?.data}
-      onChange={onChange}
-      showSorterTooltip={{
-        target: 'sorter-icon',
-      }}
-      pagination={{
-        defaultPageSize: 3,
-        pageSizeOptions: ["2", "5", "10"],
-        showSizeChanger: true,
-      }}
-      style={{ paddingTop: '120px' }}
-    />
+    <>
+      <Table
+        columns={columns}
+        dataSource={menus?.data}
+        onChange={onChange}
+        showSorterTooltip={{
+          target: 'sorter-icon',
+        }}
+        pagination={{
+          defaultPageSize: 3,
+          pageSizeOptions: ["2", "5", "10"],
+          showSizeChanger: true,
+        }}
+        style={{ paddingTop: '120px' }}
+      />
+
+      <Modal
+        title="Edit Product Modal"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <form style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <Input
+
+            type="text"
+            placeholder="Title"
+          />
+          <Input
+
+        
+            type="url"
+            placeholder="ImageSrc"
+          />
+          <Input
+
+           
+            type="number"
+            placeholder="Price"
+          />
+           <Select 
+        >
+          <Option value="pizzas">Pizzas</Option>
+          <Option value="slides">Slides</Option>
+          <Option value="offers">Offers</Option>
+          <Option value="pasta">Pastas</Option>
+        </Select>
+          <TextArea
+
+      
+            rows={4}
+            placeholder="Description"
+          />
+        </form>
+      </Modal>
+    </>
   );
 };
 

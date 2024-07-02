@@ -6,13 +6,17 @@ import Swal from "sweetalert2";
 import { Button, Table, Tooltip } from "antd";
 import { MdDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { Modal,Input } from "antd";
+const { TextArea } = Input;
+import { MdEdit } from "react-icons/md";
 
 const Blog = () => {
   const token = Cookies.get('token');
   const [blogs, setBlogs] = useState([]);
   const [users, setUsers] = useState([]);
   const userRedux = useSelector((state) => state.user);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editBlog, setEditBlog] = useState(null);
   useEffect(() => {
     controller.getAll(endpoints.users, token).then((res) => {
       setUsers(res.data);
@@ -24,6 +28,35 @@ const Blog = () => {
       setBlogs([...resp.data]);
     });
   }, [token]);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    const updated = {
+      title: editBlog.title,
+      description: editBlog.description,
+      src: editBlog.src,
+
+    };
+    controller.patch(endpoints.bloks, editBlog._id, updated);
+    setBlogs((currentBlog) => {
+      const idx = currentBlog.findIndex((x) => x._id == editBlog._id);
+      currentBlog.splice(idx, 1, editBlog);
+      return [...currentBlog];
+    });
+    Swal.fire({
+      title: "Blog updated successfully!!",
+      text: "Your file has been deleted.",
+      icon: "success",
+    });
+    setIsModalOpen(false);
+    setEditBlog(null);
+  };
+  const handleCancel = () => {
+    setEditBlog(null);
+    setIsModalOpen(false);
+  };
 
   const columns = [
     {
@@ -111,13 +144,31 @@ const Blog = () => {
         );
       },
     },
+
+    {
+      title: "Edit",
+      render: (record) => {
+        return (
+          <Button
+            onClick={() => {
+              showModal();
+              setEditBlog(record);
+            }}
+            style={{ border: 'none', color: 'red', fontSize: '18px' }}
+          >
+            <MdEdit />
+          </Button>
+        );
+      },
+    }
   ];
 
   const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
   };
-  
+
   return (
+   <>
     <Table
       columns={columns}
       dataSource={blogs}
@@ -132,6 +183,44 @@ const Blog = () => {
       }}
       style={{ paddingTop: '120px' }}
     />
+
+<Modal
+        title="Edit Blog Modal"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <form style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <Input
+            onChange={(e) =>
+              setEditBlog({ ...editBlog, title: e.target.value })
+            }
+            value={editBlog?.title}
+            type="text"
+            placeholder="Title"
+          />
+          <Input
+            onChange={(e) =>
+              setEditBlog({ ...editBlog, src: e.target.value })
+            }
+            value={editBlog?.src}
+            type="url"
+            placeholder="ImageSrc"
+          />
+          <TextArea
+            onChange={(e) =>
+              setEditBlog({
+                ...editBlog,
+                description: e.target.value,
+              })
+            }
+            value={editBlog?.description}
+            rows={4}
+            placeholder="Description"
+          />
+        </form>
+      </Modal>
+   </>
   );
 }
 

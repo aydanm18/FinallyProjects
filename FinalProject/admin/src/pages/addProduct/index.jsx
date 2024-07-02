@@ -32,7 +32,15 @@ const AddProduct = () => {
     },
   });
   return (
-    <div id='addblog'>
+    <div id='addblog'
+    style={{
+      width: "65%",
+      margin: "150px auto",
+      padding: "20px 27px",
+      boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+      backgroundColor:'white'
+    }}
+    >
       <form onSubmit={formik.handleSubmit}>
         <h1>Add Product Page</h1>
         <input
@@ -45,7 +53,7 @@ const AddProduct = () => {
           placeholder='Title'
         /> <br />
         {formik.touched.title && formik.errors.title && (
-          <span style={{ color: "red" }}>{formik.errors.title}</span>
+          <span style={{ color: " rgb(251, 178, 0)" }}>{formik.errors.title}</span>
         )}
         <input
           id="image"
@@ -56,11 +64,11 @@ const AddProduct = () => {
           onBlur={formik.handleBlur}
           placeholder='ImageUrl'
         />
-        {/* <br /> */}
+     
         {formik.touched.image && formik.errors.image && (
-          <span style={{ color: "red" }}>{formik.errors.image}</span>
+          <span style={{ color: " rgb(251, 178, 0)" }}>{formik.errors.image}</span>
         )}
-        {/* <br /> */}
+      
      
         <input
           id="description"
@@ -73,7 +81,7 @@ const AddProduct = () => {
         />
      
         {formik.touched.description && formik.errors.description && (
-          <span style={{ color: "red" }}>{formik.errors.description}</span>
+          <span style={{ color: " rgb(251, 178, 0)" }}>{formik.errors.description}</span>
         )}
     
         <input
@@ -87,7 +95,7 @@ const AddProduct = () => {
         />
  
         {formik.touched.price && formik.errors.price && (
-          <span style={{ color: "red" }}>{formik.errors.price}</span>
+          <span style={{ color: " rgb(251, 178, 0)" }}>{formik.errors.price}</span>
         )}
         <br />
         <select
@@ -101,11 +109,11 @@ const AddProduct = () => {
           <option value="pizzas">Pizzas</option>
           <option value="slides">Slides</option>
           <option value="offers">Offers</option>
-          <option value="pasta">Pasta</option>
+          <option value="pasta">Pastas</option>
         </select>
         <br />
         {formik.touched.category && formik.errors.category && (
-          <span style={{ color: "red" }}>{formik.errors.category}</span>
+          <span style={{ color: " rgb(251, 178, 0)" }}>{formik.errors.category}</span>
         )}
         <br />
         <button type="submit">Submit</button>

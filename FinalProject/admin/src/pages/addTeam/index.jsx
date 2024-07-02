@@ -29,7 +29,15 @@ const AddTeam = () => {
     },
   });
   return (
-    <div id='addblog'>
+    <div
+    style={{
+      width: "65%",
+      margin: "150px auto",
+      padding: "20px 27px",
+      boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
+      backgroundColor:'white'
+    }}
+     id='addblog'>
       <form onSubmit={formik.handleSubmit}>
         <h1>Add Team Page</h1>
         <input
@@ -42,7 +50,7 @@ const AddTeam = () => {
           placeholder='Title'
         /> <br />
         {formik.touched.title && formik.errors.title && (
-          <span style={{ color: "red" }}>{formik.errors.title}</span>
+          <span style={{ color: " rgb(251, 178, 0)" }}>{formik.errors.title}</span>
         )}
         <input
           id="image"
@@ -55,7 +63,7 @@ const AddTeam = () => {
         />
         <br />
         {formik.touched.image && formik.errors.image && (
-          <span style={{ color: "red" }}>{formik.errors.image}</span>
+          <span style={{ color: " rgb(251, 178, 0)" }}>{formik.errors.image}</span>
         )}
   
 
@@ -70,7 +78,7 @@ const AddTeam = () => {
         />
         <br />
         {formik.touched.description && formik.errors.description && (
-          <span style={{ color: "red" }}>{formik.errors.description}</span>
+          <span style={{ color: "rgb(251, 178, 0)" }}>{formik.errors.description}</span>
         )}
         <br />
       

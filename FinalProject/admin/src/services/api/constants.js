@@ -7,5 +7,6 @@ export const endpoints = {
     orders: '/orders',
     teams:'/teams',
     login:'/login',
-    messages:'/messages'
+    messages:'/messages',
+    adminlogin:'/adminlogin'
 };

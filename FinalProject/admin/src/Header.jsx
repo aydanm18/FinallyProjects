@@ -4,9 +4,24 @@ import { FaAlignJustify } from "react-icons/fa";
 import { BsPersonCircle } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import { BsFillEnvelopeFill } from "react-icons/bs";
-
+import Cookies from 'js-cookie';
+import { useState } from 'react';
+import controller from './services/api/requests';
+import { endpoints } from './services/api/constants';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const Header = ({ OpenSidebar }) => {
+    const [user, setUser] = useState({});
+    const token = Cookies.get("token");
+    const userRedux = useSelector((state) => state.admin);
+    useEffect(() => {
+
+        controller.getOne(endpoints.users, userRedux.id, token).then((res) => {
+            setUser(res.data);
+        });
+
+    }, [userRedux, token]);
     return (
         <header>
                 <div className="header">
@@ -17,9 +32,12 @@ const Header = ({ OpenSidebar }) => {
                         <BsSearch className='icon' />
                     </div>
                     <div className="header-rigth">
-                        <BsFillBellFill className='icon' />
-                        <BsFillEnvelopeFill className='icon' />
-                        <BsPersonCircle className='icon' />
+                   
+                        <img  className='header-image'
+                            src={user?.src}
+                            alt={user?.username}
+                            title={user?.username}
+                        />
                     </div>
                 </div>
         </header>

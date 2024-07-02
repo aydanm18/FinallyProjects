@@ -15,7 +15,7 @@ const Products = () => {
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [users, setUsers] = useState([]);
-  const userRedux = useSelector((state) => state.user);
+  const userRedux = useSelector((state) => state.admin);
   const token = Cookies.get('token');
   const { data: menus, refetch } = useGetMenusQuery();
   const [deleteProduct] = useDeleteByIdMenuMutation();

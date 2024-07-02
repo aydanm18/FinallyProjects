@@ -131,9 +131,9 @@ const OurTeam = () => {
               showModal();
               setEditTeam(record);
             }}
-          style={{border:'none',color:'red',fontSize:'18px'}}
+            style={{ border: 'none', color: 'red', fontSize: '18px' }}
           >
-           <MdEdit />
+            <MdEdit />
           </Button>
         );
       },

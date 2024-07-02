@@ -6,6 +6,7 @@ const endpoints = {
     update: '/users/:id',
     post: '/users',
     login: '/login',
+    adminlogin: '/adminlogin',
     verify: '/verify/:token',
 
 

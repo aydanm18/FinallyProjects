@@ -11,7 +11,7 @@ user_router.delete(endpoints.users.delete, user_controller.delete);
 user_router.patch(endpoints.users.update, user_controller.update);
 user_router.post(endpoints.users.post,upload.single('src'), user_controller.register);
 user_router.post(endpoints.users.login, user_controller.user_login);
-user_router.post(endpoints.users.login, user_controller.admin_login);
+user_router.post(endpoints.users.adminlogin, user_controller.admin_login);
 user_router.get(endpoints.users.verify, user_controller.verify);
 
 module.exports = user_router;

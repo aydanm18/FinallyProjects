@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdSpaceDashboard } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { HiMiniUsers } from "react-icons/hi2";
@@ -11,9 +11,39 @@ import { TbAddressBook } from "react-icons/tb";
 import { BiSolidCategory } from "react-icons/bi";
 import { RiShoppingBag4Fill } from "react-icons/ri";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { logout } from '../../admin/src/services/redux/slices/userSlice';
+import Cookies from "js-cookie";
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 
 const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
+  const userRedux = useSelector((state) => state.admin);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log out!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(logout());
+        Cookies.remove('token');
+
+        Swal.fire({
+          title: "Logged Out!",
+          icon: "success"
+        });
+      }
+    });
+    navigate('/login')
+  };
   return (
     <aside id='sidebar' className={openSidebarToggle ? "sidebar-responsive" : ""}>
       <div className='sidebar-title'>
@@ -24,56 +54,61 @@ const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
       </div>
       <ul className='sidebar-list'>
         <li className='sidebar-list-item'>
-          <Link to={'/admin'}> <MdSpaceDashboard className='icon' />Dashboard
+          <Link to={'/'}> <MdSpaceDashboard className='icon' />Dashboard
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/users'}><HiMiniUsers className='icon' />Users
+          <Link to={'/users'}><HiMiniUsers className='icon' />Users
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/ourteam'}><FaUsers className='icon' />OurTeam
+          <Link to={'/ourteam'}><FaUsers className='icon' />OurTeam
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/blogs'}><HiNewspaper className='icon' />Blogs
+          <Link to={'/blogs'}><HiNewspaper className='icon' />Blogs
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/products'}><GiShop className='icon' />Products
+          <Link to={'/products'}><GiShop className='icon' />Products
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/reservations'}><TbAddressBook className='icon' />Reservations
+          <Link to={'/reservations'}><TbAddressBook className='icon' />Reservations
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/orders'}><TiArrowForward className='icon' />Orders
+          <Link to={'/orders'}><TiArrowForward className='icon' />Orders
           </Link>
         </li>
 
 
         <li className='sidebar-list-item'>
-          <Link to={'/admin/addblog'}><HiNewspaper className='icon' />Add Blog
+          <Link to={'/addblog'}><HiNewspaper className='icon' />Add Blog
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/addproduct'}><RiShoppingBag4Fill className='icon' />Add Product
+          <Link to={'/addproduct'}><RiShoppingBag4Fill className='icon' />Add Product
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/addteam'}><FaUsers className='icon' />Add Team
+          <Link to={'/addteam'}><FaUsers className='icon' />Add Team
           </Link>
         </li>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/help'}><IoHelpCircleSharp className='icon' />Help
+          <Link to={'/help'}><IoHelpCircleSharp className='icon' />Help
           </Link>
         </li>
 
         <li className='dropdown-content'><FaUsers className='icon' />Setting
           <ul className='dropdown'>
-            <li><Link className='link' to={'/admin/login'}>Login</Link></li>
-            <li><Link className='link' to={'/admin/logout'}>Log Out</Link></li>
+            {!userRedux.id && (
+              <li><Link className='link' to={'/login'}>Login</Link></li>
+            )}
+             {userRedux.id && (
+              <li style={{ color: 'red' }} onClick={handleLogout} >Log Out</li>
+            )}
+           
           </ul>
         </li>
 

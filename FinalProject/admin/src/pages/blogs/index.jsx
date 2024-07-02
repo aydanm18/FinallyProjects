@@ -14,7 +14,7 @@ const Blog = () => {
   const token = Cookies.get('token');
   const [blogs, setBlogs] = useState([]);
   const [users, setUsers] = useState([]);
-  const userRedux = useSelector((state) => state.user);
+  const userRedux = useSelector((state) => state.admin);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editBlog, setEditBlog] = useState(null);
   useEffect(() => {

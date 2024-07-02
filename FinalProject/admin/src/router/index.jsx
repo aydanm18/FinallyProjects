@@ -7,7 +7,7 @@ import Blog from "../pages/blogs";
 
 import Dashboard from "../pages/dashboard";
 import Help from "../pages/help";
-import Login from "../pages/login";
+import Login from "../layouts/login";
 import Orders from "../pages/orders";
 import OurTeam from "../pages/ourTeam";
 import Products from "../pages/products";
@@ -18,7 +18,7 @@ import Users from "../pages/users";
 
 
 export const ROUTES = [{
-    path: '/admin',
+    path: '/',
     element: <MainRoot />,
     children: [
         {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table,Button } from "antd";
+import { Table, Button } from "antd";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import controller from '../../services/api/requests';
@@ -10,7 +10,7 @@ const Users = () => {
 
   const [users, setUsers] = useState([])
   const token = Cookies.get("token");
-  const userRedux = useSelector((state) => state.user);
+  const userRedux = useSelector((state) => state.admin);
   useEffect(() => {
     controller.getAll(endpoints.users, userRedux.id, token).then((res) => {
       setUsers(res.data);
@@ -18,7 +18,7 @@ const Users = () => {
 
   }, [userRedux, token]);
 
- 
+
   const columns = [
     {
       title: 'Image',

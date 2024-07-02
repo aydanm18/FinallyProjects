@@ -5,7 +5,7 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 import { procektApi } from './procektApi'
  const store = configureStore({
   reducer: {
-    user: userReducer,
+    admin: userReducer,
     [procektApi.reducerPath]: procektApi.reducer,
   },
 

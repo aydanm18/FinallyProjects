@@ -2,18 +2,24 @@ import React from 'react';
 import { useFormik } from 'formik';
 import loginValidation from '../../validation/loginValidate';
 import './index.scss'
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import controller from '../../services/api/requests';
 import { endpoints } from '../../services/api/constants';
 import { useSelector, useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
 import Cookies from "js-cookie";
 import { login } from '../../services/redux/slices/userSlice';
+import { useEffect } from 'react';
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  const userRedux = useSelector((state) => state.admin);
+  useEffect(() => {
+    if (userRedux.id) {
+      navigate("/");
+    }
+  }, [navigate, userRedux]);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -21,8 +27,8 @@ const Login = () => {
     },
     validationSchema: loginValidation,
     onSubmit: async ({ email, password }, actions) => {
-      const response = await controller.post(endpoints.login, { email, password });
-      if (response) {
+      const response = await controller.post(endpoints.adminlogin, { email, password });
+      if (response.auth) {
         dispatch(login(response.user))
         Cookies.set('token', response.token, { expires: 1, secure: true });
         Swal.fire({
@@ -33,7 +39,7 @@ const Login = () => {
           timer: 1000
         }).then(() => {
           actions.resetForm();
-          navigate('/admin')
+          navigate('/')
         })
       }
       else {

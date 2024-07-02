@@ -15,7 +15,7 @@ const Header = () => {
     const [toggle, setToggle] = useState(false);
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
-    const { basket, clearBasket } = useContext(BasketContext);
+    const { basket } = useContext(BasketContext);
     const navigate=useNavigate()
 
     const listenScrollEvent = () => {
@@ -42,7 +42,7 @@ const Header = () => {
             if (result.isConfirmed) {
                 dispatch(logout());
                 Cookies.remove('token');
-                clearBasket(); 
+               
                 Swal.fire({
                     title: "Logged Out!",
                     icon: "success"

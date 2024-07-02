@@ -23,7 +23,7 @@ export const ROUTES = [{
     children: [
         {
             index: true,
-            element: <Home />,
+            element: <Dashboard />,
 
         },
         {
@@ -43,10 +43,6 @@ export const ROUTES = [{
             element: <Blog />,
         },
      
-        {
-            path: 'dashboard',
-            element: <Dashboard/>,
-        },
         {
             path: 'help',
             element: <Help/>,

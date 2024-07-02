@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
 import { useSelector } from 'react-redux';
 import { endpoints } from '../../services/api/constants';
 import Header from '../../layouts/header';
+import Footer from '../../layouts/footer';
 const Register = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -74,21 +75,17 @@ const Register = () => {
    <>
    <Header/>
     <div id='register'
-    style={{
-      width: "60%",
-      margin: "0px auto",
-      boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
-    
-    }}
+   
     >
       <div className="container">
         <div className="register"
         >
-          <div className="registerTitle">
-            <h1>Get in touch</h1>
-          </div>
+           <div className="loginTitle">
+        <h1>Get in touch</h1>
+      </div>
           <form encType="multipart/form-data"
             onSubmit={formik.handleSubmit}>
+                <p>Log Out with your Pizzon account</p>
             <input
               id="username"
               name="username"
@@ -98,7 +95,7 @@ const Register = () => {
               onBlur={formik.handleBlur}
               placeholder='User Name'
             />
-            {formik.errors.username && formik.touched.username && <div style={{ color: 'white' }} id="feedback">{formik.errors.username}</div>}
+            {formik.errors.username && formik.touched.username && <div style={{ color: 'rgb(251, 178, 0)' }} id="feedback">{formik.errors.username}</div>}
             <input
               id="email"
               name="email"
@@ -108,7 +105,7 @@ const Register = () => {
               onBlur={formik.handleBlur}
               placeholder='Email'
             />
-            {formik.errors.email && formik.touched.email && <div style={{ color: 'white' }} id="feedback">{formik.errors.email}</div>}
+            {formik.errors.email && formik.touched.email && <div style={{ color: 'rgb(251, 178, 0)' }} id="feedback">{formik.errors.email}</div>}
             <input
               id="password"
               name="password"
@@ -118,7 +115,7 @@ const Register = () => {
               onBlur={formik.handleBlur}
               placeholder='Password'
             />
-            {formik.errors.password && formik.touched.password && <div style={{ color: 'white' }} id="feedback">{formik.errors.password}</div>}
+            {formik.errors.password && formik.touched.password && <div style={{ color: 'rgb(251, 178, 0)' }} id="feedback">{formik.errors.password}</div>}
 
             <input
               id="repeat_password"
@@ -129,7 +126,7 @@ const Register = () => {
               onBlur={formik.handleBlur}
               placeholder='Confirm Password'
             />
-            {formik.errors.repeat_password && formik.touched.repeat_password && <div style={{ color: 'white' }} id="feedback">{formik.errors.repeat_password}</div>}
+            {formik.errors.repeat_password && formik.touched.repeat_password && <div style={{ color: 'rgb(251, 178, 0)' }} id="feedback">{formik.errors.repeat_password}</div>}
 
             <input
               id="src"
@@ -139,14 +136,15 @@ const Register = () => {
               onBlur={formik.handleBlur}
               placeholder='Profile Image'
             />
-            {formik.errors.src && formik.touched.src && <div style={{ color: 'white' }} id="feedback">{formik.errors.src}</div>}
-            <Link className='link' to={"/login"}>already have an account?</Link>
-            <button style={{ marginBottom: '20px' }} type="submit">Create</button>
-            {/* <button onClick={() => { navigate('/') }} type="submit">Return To Home</button> */}
+            {formik.errors.src && formik.touched.src && <div style={{ color: 'rgb(251, 178, 0)' }} id="feedback">{formik.errors.src}</div>}
+            <Link style={{color:' rgb(251, 178, 0)',paddingTop:'15px'}} to={"/login"}>already have an account?</Link>
+            <button style={{ marginBottom: '20px' }} type="submit">Log Out</button>
+
           </form>
         </div>
       </div>
     </div>
+    <Footer/>
    </>
   );
 };

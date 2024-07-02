@@ -9,6 +9,8 @@ import controller from '../../services/api/requests';
 import { endpoints } from '../../services/api/constants';
 import Swal from 'sweetalert2'
 import Cookies from "js-cookie";
+import Footer from '../../layouts/footer';
+import Header from '../../layouts/header';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -56,46 +58,44 @@ const Login = () => {
 
   });
   return (
-    <div 
-    style={{
-      width: "65%",
-      margin: "100px auto",
-      padding: "20px 27px",
-      boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
-      // backgroundColor:'white'
-    }}
-     id='login'>
-      <div className="container">
-        <div className="loginTitle">
-          <h1>Get in touch</h1>
-        </div>
-        <form onSubmit={formik.handleSubmit}>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            onBlur={formik.handleBlur}
-            placeholder='Email'
-          />
-          {formik.errors.email && formik.touched.email && <div style={{ color: 'white' }} id="feedback">{formik.errors.email}</div>}
-          <input
-            id="password"
-            name="password"
-            type="password"
-            onChange={formik.handleChange}
-            value={formik.values.password}
-            onBlur={formik.handleBlur}
-            placeholder='Password'
-          />
-          {formik.errors.password && formik.touched.password && <div style={{ color: 'white' }} id="feedback">{formik.errors.password}</div>}
-          <Link className='link' to={"/register"}>don&apos;t have an account?</Link>
-          <button style={{ marginBottom: '20px' }} type="submit">Create</button>
-          <button onClick={() => { navigate('/') }} type="submit">Return To Home</button>
-        </form>
+  <>
+  <Header/>
+    <div id='login'>
+
+    <div className="container">
+      <div className="loginTitle">
+        <h1>Get in touch</h1>
       </div>
+      <form onSubmit={formik.handleSubmit}>
+      <p>Log in with your Pizzon account</p>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+          onBlur={formik.handleBlur}
+          placeholder='Email'
+        />
+        {formik.errors.email && formik.touched.email && <div style={{ color: ' rgb(251, 178, 0)' }} id="feedback">{formik.errors.email}</div>}
+        <input
+          id="password"
+          name="password"
+          type="password"
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          onBlur={formik.handleBlur}
+          placeholder='Password'
+        />
+        {formik.errors.password && formik.touched.password && <div style={{ color: ' rgb(251, 178, 0)' }} id="feedback">{formik.errors.password}</div>}
+        <Link style={{color:' rgb(251, 178, 0)',paddingTop:'15px'}} className='link' to={"/register"}>don&apos;t have an account?</Link>
+        <button style={{ marginBottom: '20px' }} type="submit">Log in</button>
+       
+      </form>
     </div>
+  </div>
+  <Footer/>
+  </>
   );
 };
 export default Login

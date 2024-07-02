@@ -13,7 +13,7 @@ import { RiShoppingBag4Fill } from "react-icons/ri";
 import { MdOutlineShoppingCart } from "react-icons/md";
 
 
-const Sidebar = ({openSidebarToggle,OpenSidebar}) => {
+const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
   return (
     <aside id='sidebar' className={openSidebarToggle ? "sidebar-responsive" : ""}>
       <div className='sidebar-title'>
@@ -24,7 +24,7 @@ const Sidebar = ({openSidebarToggle,OpenSidebar}) => {
       </div>
       <ul className='sidebar-list'>
         <li className='sidebar-list-item'>
-          <Link to={'/admin/dashboard'}> <MdSpaceDashboard className='icon' />Dashboard
+          <Link to={'/admin'}> <MdSpaceDashboard className='icon' />Dashboard
           </Link>
         </li>
         <li className='sidebar-list-item'>
@@ -69,10 +69,17 @@ const Sidebar = ({openSidebarToggle,OpenSidebar}) => {
           <Link to={'/admin/help'}><IoHelpCircleSharp className='icon' />Help
           </Link>
         </li>
-        <li className='sidebar-list-item'>
-          <Link ><FaUsers className='icon' />Setting
-          </Link>
+
+        <li className='dropdown-content'><FaUsers className='icon' />Setting
+          <ul className='dropdown'>
+            <li><Link className='link' to={'/admin/login'}>Login</Link></li>
+            <li><Link className='link' to={'/admin/logout'}>Log Out</Link></li>
+          </ul>
         </li>
+
+
+
+
       </ul>
     </aside>
   )

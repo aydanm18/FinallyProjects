@@ -165,6 +165,35 @@ const user_controller = {
             })
         }
     },
+    admin_login: async (req, res) => {
+        const { email, password } = req.body;
+        const user = await UserModel.findOne({ email: email, password: password, role: 'admin' });
+        if (user) {
+            console.log(user);
+            // const decryptedPass = await bcrypt.compare(password, user.password);
+            // if (decryptedPass) {
+
+            const token = jwt.sign({ id: user._id, password: user.password, role: user.role }, process.env.PRIVATE_TOKEN_KEY, { expiresIn: '1d' })
+            res.send({
+                message: 'successfully signed in',
+                user: user,
+                token: token
+            })
+
+            // }
+            // else {
+            //     res.send({
+            //         message: 'email or password is incorrent ',
+            //     })
+            // }
+        }
+        else {
+            res.send({
+                message: 'no such user',
+
+            })
+        }
+    },
     verify: async (req, res) => {
         const { token } = req.params;
         try {

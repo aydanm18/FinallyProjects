@@ -1,64 +1,65 @@
+
 #login {
-    background-color: rgb(251, 178, 0);
-    // padding-top: 150px;
-    padding-bottom: 50px;
-    // height: 100vh;
+    padding-top: 150px;
+    margin-bottom: 2.5rem;
+   
 
     .loginTitle {
         h1 {
             text-align: center;
-            padding-bottom: 40px;
-            color: white;
+            padding-bottom: 20px;
+            color: rgb(251, 178, 0);
         }
     }
-    .link {
-        padding-bottom: 20px;
-        color: white;
-        font-size: 16px;
-
-    }
     form {
+
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+        width: 60%;
+        margin: 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
 
-        button {
-            max-width: 300px;
-            padding: 0.5rem 3rem;
-            border-radius: 40px;
-            background-color: white;
+        p {
             color: rgb(251, 178, 0);
-            font-size: 1.3rem;
-            font-weight: 600;
-            border: none;
-            transition: all 0.3s linear;
-
-            @media (max-width: 992px) {
-                padding: 0.8rem 2rem;
-                font-size: 1.2rem;
-            }
-
-            @media (max-width: 576px) {
-                padding: 0.7rem 1.8rem;
-                font-size: 1rem;
-            }
+            padding-top: 1rem;
+            text-align: center;
+          
         }
 
         input {
-            margin: 15px 0;
+            background-color: rgb(245, 245, 245);
+            margin-top: 2rem;
+            width: 70%;
             font-weight: 400;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid rgb(217, 217, 217);
+            font-size: 15px;
+            border-radius: 8px;
+            border: none;
             width: 50%;
-            padding: 10px 20px;
+            padding: 20px 20px;
             outline: none;
             resize: vertical;
 
             &:focus {
-                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                border: 1px solid rgba(128, 128, 128, 0.267);
             }
         }
+
+        button {
+            margin: 1.5rem 0;
+            padding: 0.6rem 3rem;
+            border-radius: 8px;
+            color: white;
+            background-color: rgb(251, 178, 0);
+            font-size: 1.3rem;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s linear;
+            width: 50%;
+           
+        }
+
     }
+
 }

@@ -7,7 +7,8 @@ const ReservationSchema = new mongoose.Schema({
     email: { type: String, required: true },
     date: { type: String, required: true },
     time: { type: String, required: true },
-    guest: { type: Number, required: true }
+    guest: { type: Number, required: true },
+    status: { type: String, enum: ['pending', 'accepted', 'rejected'], default: 'pending' }
 }, { timestamps: true, versionKey: false });
 
 module.exports = ReservationSchema

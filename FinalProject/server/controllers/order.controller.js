@@ -1,5 +1,5 @@
 const OrderModel=require('../models/order.model')
-
+const sendVerifyEmailOrder = require('../helpers/sendMailOrder');
 const order_controller={
     getAll: async (req, res) => {
         const orders = await OrderModel.find()
@@ -64,21 +64,25 @@ const order_controller={
         }
     },
     update: async (req, res) => {
-        const { id } = req.params
+        const { id } = req.params;
+        const { status } = req.body; 
+      
         try {
-            await OrderModel.findByIdAndUpdate(id, req.body);
-            const updated = await OrderModel.findById(id)
-            res.send({
-                message: 'updated',
-                response: updated,
-            })
+          const updatedOrder = await OrderModel.findByIdAndUpdate(id, req.body, { new: true });
+          const message = status === 'accepted' ? `Hello ,\n\nYour order has been Accepted.\n\nThank you for shopping with us.` : 'Your order has been Rejected.';
+          sendVerifyEmailOrder(updatedOrder.email, message);
+      
+          res.send({
+            message: 'updated',
+            response: updatedOrder
+          });
         } catch (error) {
-            res.status(500).send({
-                message: error,
-                error: true
-            })
+          res.status(500).send({
+            message: error.message,
+            error: true
+          });
         }
-    },
+      },
     post: async (req, res) => {
 
         const newOrder = new OrderModel(req.body)

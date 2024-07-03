@@ -1,5 +1,5 @@
 const ReservationModel = require('../models/reservation.model')
-
+const sendVerifyEmailReservartion = require('../helpers/sendMailReservation');
 const reservation_controller = {
     getAll: async (req, res) => {
         try {
@@ -38,13 +38,22 @@ const reservation_controller = {
     },
     update: async (req, res) => {
         const { id } = req.params;
+        const { status } = req.body;
         try {
-            await ReservationModel.findByIdAndUpdate(id, req.body);
-            const updatedReservation = await ReservationModel.findById(id);
-            res.send({ message: 'updated', response: updatedReservation });
+            const updatedReservation = await ReservationModel.findByIdAndUpdate(id, req.body, { new: true });
+            const message = status === 'accepted' ? `Hello ,\n\nYour Reservation has been Accepted.\n\nThank you for contacting us.` : 'Your Reservation has been Rejected.Thank you again for considering us';
+            sendVerifyEmailReservartion(updatedReservation.email, message);
+
+            res.send({
+                message: 'updated',
+                response: updatedReservation
+            });
         } catch (error) {
-            res.status(500).send({ message: error.message, error: true });
-        }
+            res.status(500).send({
+              message: error.message,
+              error: true
+            });
+          }
     },
     post: async (req, res) => {
         try {

@@ -49,9 +49,13 @@ async function put(endpoint, id, payload) {
   }
 }
 
-async function patch(endpoint, id, payload) {
+async function patch(endpoint, id, payload, token) {
   try {
-    const response = await axios.patch(BASE_URL + endpoint + `/${id}`, payload);
+    const response = await axios.patch(BASE_URL + endpoint + `/${id}`, payload, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
     return response;
   } catch (error) {
     return error;

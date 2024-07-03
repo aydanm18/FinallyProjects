@@ -11,39 +11,14 @@ import { TbAddressBook } from "react-icons/tb";
 import { BiSolidCategory } from "react-icons/bi";
 import { RiShoppingBag4Fill } from "react-icons/ri";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { logout } from '../../admin/src/services/redux/slices/userSlice';
-import Cookies from "js-cookie";
-import { useDispatch, useSelector } from 'react-redux';
-import Swal from 'sweetalert2';
+
+
 
 
 const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
-  const userRedux = useSelector((state) => state.admin);
-  const dispatch = useDispatch();
-  const navigate = useNavigate()
 
-  const handleLogout = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, log out!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(logout());
-        Cookies.remove('token');
 
-        Swal.fire({
-          title: "Logged Out!",
-          icon: "success"
-        });
-      }
-    });
-    navigate('/login')
-  };
+ 
   return (
     <aside id='sidebar' className={openSidebarToggle ? "sidebar-responsive" : ""}>
       <div className='sidebar-title'>
@@ -100,21 +75,7 @@ const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
           </Link>
         </li>
 
-        <li className='dropdown-content'><FaUsers className='icon' />Setting
-          <ul className='dropdown'>
-            {!userRedux.id && (
-              <li><Link className='link' to={'/login'}>Login</Link></li>
-            )}
-             {userRedux.id && (
-              <li style={{ color: 'red' }} onClick={handleLogout} >Log Out</li>
-            )}
-           
-          </ul>
-        </li>
-
-
-
-
+      
       </ul>
     </aside>
   )

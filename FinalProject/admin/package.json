@@ -10,6 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@fontsource/roboto": "^5.0.13",
+    "@mui/icons-material": "^5.15.21",
+    "@mui/material": "^5.15.21",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@reduxjs/toolkit": "^2.2.5",
     "antd": "^5.18.3",
     "axios": "^1.7.2",
@@ -24,6 +30,7 @@
     "recharts": "^2.12.7",
     "sass": "^1.77.6",
     "scss": "^0.2.4",
+    "styled-components": "^6.1.11",
     "sweetalert2": "^11.12.1",
     "yup": "^1.4.0"
   },

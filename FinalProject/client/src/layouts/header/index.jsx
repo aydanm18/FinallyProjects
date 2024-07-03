@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import HamburgerMenu from './HamburgerMenu';
+import BasketMenu from './BasketMenu'; // Import the BasketMenu component
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { logout } from '../../services/redux/slices/userSlice';
@@ -13,10 +14,11 @@ import { BasketContext } from '../../context/basketContext';
 const Header = () => {
     const [scrollBg, setScrollBg] = useState(false);
     const [toggle, setToggle] = useState(false);
+    const [showBasket, setShowBasket] = useState(false); // State for basket menu visibility
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const { basket } = useContext(BasketContext);
-    const navigate=useNavigate()
+    const navigate = useNavigate();
 
     const listenScrollEvent = () => {
         window.scrollY > 30 ? setScrollBg(true) : setScrollBg(false);
@@ -42,14 +44,14 @@ const Header = () => {
             if (result.isConfirmed) {
                 dispatch(logout());
                 Cookies.remove('token');
-               
+
                 Swal.fire({
                     title: "Logged Out!",
                     icon: "success"
                 });
+                navigate('/');
             }
         });
-        navigate('/')
     };
 
     return (
@@ -80,10 +82,8 @@ const Header = () => {
                                 <ul className='dropdown'>
                                     <li><Link className='link' to={'/blogrigth'}>BlogRigth</Link></li>
                                     <li><Link className='link' to={'/blogleft'}>BlogLeft</Link></li>
-       
                                 </ul>
                             </li>
-   
                             <li><Link className='links' to={"/contact"}>Contact</Link></li>
                             {!user.id && (
                                 <li className='dropdown-content'>Registration
@@ -104,10 +104,10 @@ const Header = () => {
                         </ul>
                         <div style={{ display: 'flex', justifyContent: "center", gap: '10px' }} className="responsiv">
                             <div className="basket">
-                                <Link className='links' to={"/basket"}>
+                                <button onClick={() => setShowBasket(!showBasket)} className='links'>
                                     <FiShoppingCart style={{ fontSize: '20px', color: 'black' }} />
                                     <sub>{user.id ? basket.length : 0}</sub>
-                                </Link>
+                                </button>
                             </div>
                             <div className="nav-hamburger" onClick={() => setToggle(!toggle)}>
                                 <RxHamburgerMenu />
@@ -116,6 +116,7 @@ const Header = () => {
                     </div>
                 </nav>
                 <HamburgerMenu setToggle={setToggle} toggle={toggle} />
+                <BasketMenu setShowBasket={setShowBasket} basket={basket} showBasket={showBasket} /> 
             </div>
         </header>
     );

@@ -11,6 +11,7 @@ import { Modal } from "antd";
 const { TextArea } = Input;
 import { MdEdit } from "react-icons/md";
 const { Option } = Select;
+import { Link } from 'react-router-dom';
 const Products = () => {
   
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -174,7 +175,9 @@ const Products = () => {
           </Button>
         );
       },
-    }
+    
+    },
+   
   ];
 
   const onChange = (pagination, filters, sorter, extra) => {

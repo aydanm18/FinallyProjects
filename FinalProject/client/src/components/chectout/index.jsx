@@ -71,13 +71,15 @@ const Checkout = () => {
       }
 
       const orderDetails = {
+        formFields,
         userId,
         username,
         email,
         totalPrice: calculateTotal(),
-        items: basket.map((item) => ({ itemId: item._id, itemName: item.title, count: item.count })),
-      };
+        items: basket.map((item) => ({ itemId: item._id, itemName: item.title, count: item.count, itemImg: item.image })),
 
+      };
+      console.log(orderDetails);
       const response = await controller.post(endpoints.orders, orderDetails);
       console.log(response);
 
@@ -104,7 +106,7 @@ const Checkout = () => {
         timer: 1500,
       });
 
-      navigate('/'); 
+      navigate('/');
     } catch (error) {
       console.error("Error placing order:", error);
       Swal.fire({
@@ -296,6 +298,7 @@ const Checkout = () => {
                       value={formFields.message}
                       onChange={handleInputChange}
                       placeholder="Write Message"
+                      required
                     ></textarea>
                   </div>
 

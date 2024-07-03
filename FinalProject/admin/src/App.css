@@ -58,7 +58,7 @@ body {
     box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
     position: fixed;
     z-index: 999;
-    width: 80%;
+    width: 78.8%;
     background-color: white;
 }
 
@@ -66,12 +66,71 @@ body {
     display: none;
 }
 
-.header-image{
+.header-rigth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+h5 {
+    color: black;
+
+}
+
+.header-image {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
     overflow: hidden;
+}
+
+.dropdown-content {
+    margin-left: 10px;
+    position: relative;
+    font-weight: 500;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    list-style: none;
+    margin-right: 60px;
+
+
+
+    .dropdown {
+        background-color: white;
+
+        position: absolute;
+        top: 33px;
+        left: 20;
+        border-radius: 10px;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+    }
+
+    &:hover .dropdown {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    li  {
+        color: white;
+        font-size: 17px;
+        font-weight: 600;
+        transition: all 0.4s ease;
+        color: rgb(251, 178, 0);
+        list-style: none;
+        text-decoration: none;
+    }
+
 }
 
 #sidebar {
@@ -121,49 +180,7 @@ body {
     cursor: pointer;
 }
 
-.dropdown-content {
-    margin-left: 20px;
-    position: relative;
-    font-weight: 500;
-    font-size: 18px;
-    cursor: pointer;
-    transition: all 0.4s ease;
 
-
-
-    .dropdown {
-        background-color: white;
-
-        position: absolute;
-        top: 33px;
-        left: 20;
-        border-radius: 10px;
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        visibility: hidden;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.4s ease;
-    }
-
-    &:hover .dropdown {
-        visibility: visible;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    li .link {
-        color: white;
-        font-size: 17px;
-        font-weight: 600;
-        transition: all 0.4s ease;
-        color: rgb(251, 178, 0);
-        list-style: none;
-        text-decoration: none;
-    }
-}
 
 .sidebar-list-item>a {
     text-decoration: none;

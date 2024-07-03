@@ -62,7 +62,7 @@ const ShopDetail = () => {
   }, [data?.data.comments, users]);
 
   const handleAddToCart = () => {
-    if (!token) return navigate('/login');
+    if (!user.id) return navigate('/login');
    
       const duplicateBasket = basket.find((x) => x._id === data?.data._id);
       if (duplicateBasket) {
@@ -193,9 +193,7 @@ const ShopDetail = () => {
                   />
 
                   <button onClick={handleAddToCart}>
-                  
-                      <Link className='links' to={'/basket'}>ADD TO CART</Link>
-                  
+                        <Link className='links' to={'/card'}>ADD TO CART</Link>
                   </button>
                 </div>
                 <button onClick={handleLikeToggle}>

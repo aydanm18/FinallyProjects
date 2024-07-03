@@ -5,7 +5,8 @@ import { endpoints } from '../../services/api/constants';
 import Cookies from 'js-cookie';
 import { Button, Table, Select } from "antd";
 import { MdDelete } from "react-icons/md";
-
+import { Link } from 'react-router-dom';
+import InfoIcon from '@mui/icons-material/Info';
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const token = Cookies.get('token');
@@ -63,7 +64,7 @@ const Orders = () => {
         <ul style={{ listStyle: 'none' }}>
           {items.map((item, index) => (
             <li key={index}>
-              {item.itemName} - Quantity: {item.count}
+            <img width={50} src={item.itemImg} alt={item.itemName} />{item.itemName} - Quantity: {item.count}
             </li>
           ))}
         </ul>
@@ -91,7 +92,7 @@ const Orders = () => {
       ),
     },
     {
-      title: 'Actions',
+      title: 'Delete',
       render: (record) => (
         <div>
           <Button
@@ -134,6 +135,19 @@ const Orders = () => {
           </Button>
         </div>
       ),
+    },
+    {
+      title: "Detail",
+      render: (record) => {
+        return (
+          <Button
+            style={{ border: 'none', color: 'red', fontSize: '18px' }}
+          ><Link to={`/orders/${record._id}`}>  <InfoIcon fontSize='20'/></Link>
+      
+          </Button>
+        );
+      },
+    
     },
   ];
 

@@ -9,7 +9,7 @@ import { MdDeleteOutline } from "react-icons/md";
 
 const Basket = () => {
   const { basket, setBasket } = useContext(BasketContext);
- 
+
   const handleIncrement = (record) => {
     const currentBasket = basket.find((x) => x._id === record._id);
     currentBasket.count += 1;
@@ -91,41 +91,41 @@ const Basket = () => {
   };
 
   return (
- <>
+    <>
 
-    <div style={{ paddingTop: '50px' }} className="basket">
-      <div className="container">
-        <div className="row">
-          <div className="col-8 col-md-12 col-sm-12 col-xs-12">
-            <Table
-              style={{ paddingTop: '100px' }}
-              columns={columns}
-              dataSource={basket}
-              rowKey={(record) => record._id}
-              pagination={false}
-            />
-          </div>
-          <div style={{ marginTop: '120px', marginBottom: '50px' }} className="col-4 col-md-12 col-sm-12 col-xs-12 box">
-            <h3>Cart Total</h3>
-            <table>
-              <tbody>
-                <tr>
-                  <td style={{ paddingTop: '30px', paddingRight: '35px' }}>Item(s) Subtotal</td>
-                  <td style={{ paddingTop: '30px' }}>${calculateSubtotal().toFixed(2)}</td>
-                </tr>
-                <tr>
-                  <td style={{ paddingTop: '20px', paddingRight: '35px' }}>Order Total</td>
-                  <td style={{ paddingTop: '20px' }}>${calculateOrderTotal().toFixed(2)}</td>
-                </tr>
-              </tbody>
-            </table>
-            <button><Link className='links' to={'/checkout'}>PROCEED TO CHECKOUT</Link></button>
+      <div style={{ paddingTop: '50px' }} className="basket">
+        <div className="container">
+          <div className="row">
+            <div className="col-8 col-md-12 col-sm-12 col-xs-12">
+              <Table
+                style={{ paddingTop: '100px' }}
+                columns={columns}
+                dataSource={basket}
+                rowKey={(record) => record._id}
+                pagination={false}
+              />
+            </div>
+            <div style={{ marginTop: '120px', marginBottom: '50px' }} className="col-4 col-md-12 col-sm-12 col-xs-12 box">
+              <h3>Cart Total</h3>
+              <table>
+                <tbody>
+                  <tr>
+                    <td style={{ paddingTop: '30px', paddingRight: '35px' }}>Item(s) Subtotal</td>
+                    <td style={{ paddingTop: '30px' }}>${calculateSubtotal().toFixed(2)}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ paddingTop: '20px', paddingRight: '35px' }}>Order Total</td>
+                    <td style={{ paddingTop: '20px' }}>${calculateOrderTotal().toFixed(2)}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button><Link className='links' to={'/checkout'}>PROCEED TO CHECKOUT</Link></button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
- 
- </>
+
+    </>
   );
 };
 

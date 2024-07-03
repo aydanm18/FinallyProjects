@@ -56,6 +56,7 @@ const Login = () => {
   return (
     <>
       <div id='adminlogin'>
+        <h1>Admin Log In</h1>
         <form
           onSubmit={formik.handleSubmit}>
           <p>Log in with your Pizzon account</p>

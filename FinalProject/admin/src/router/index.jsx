@@ -1,13 +1,12 @@
-import Home from "../Home";
+
 import MainRoot from "../pages";
 import AddBlog from "../pages/addBlog";
 import AddProduct from "../pages/addProduct";
 import AddTeam from "../pages/addTeam";
 import Blog from "../pages/blogs";
-
 import Dashboard from "../pages/dashboard";
 import Help from "../pages/help";
-import Login from "../layouts/login";
+import Login from "../pages/login";
 import Orders from "../pages/orders";
 import OurTeam from "../pages/ourTeam";
 import Products from "../pages/products";

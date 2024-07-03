@@ -193,11 +193,9 @@ const ShopDetail = () => {
                   />
 
                   <button onClick={handleAddToCart}>
-                    {token ? (
+                  
                       <Link className='links' to={'/basket'}>ADD TO CART</Link>
-                    ) : (
-                      'ADD TO CART'
-                    )}
+                  
                   </button>
                 </div>
                 <button onClick={handleLikeToggle}>

@@ -80,8 +80,9 @@ const Checkout = () => {
 
       };
       console.log(orderDetails);
-      const response = await controller.post(endpoints.orders, orderDetails);
-      console.log(response);
+      navigate('/mycard')
+      // const response = await controller.post(endpoints.orders, orderDetails);
+      // console.log(response);
 
       setFormFields({
         firstname: '',
@@ -98,15 +99,15 @@ const Checkout = () => {
       });
       setBasket([]);
 
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Order placed successfully!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      // Swal.fire({
+      //   position: "top-end",
+      //   icon: "success",
+      //   title: "Order placed successfully!",
+      //   showConfirmButton: false,
+      //   timer: 1500,
+      // });
 
-      navigate('/');
+      // navigate('/');
     } catch (error) {
       console.error("Error placing order:", error);
       Swal.fire({
@@ -335,6 +336,30 @@ const Checkout = () => {
                   <p>${calculateTotal()}.00</p>
                 </div>
               </div>
+              <div className="payment-options">
+                <h4>
+                  Payment Method
+                </h4>
+                <label>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="bank"
+                    onChange={handleInputChange}
+                  />
+                  Direct Bank Transfer
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="cash"
+                    onChange={handleInputChange}
+                  />
+                  Cash on Delivery
+                </label>
+              </div>
+
             </div>
           </div>
         </div>

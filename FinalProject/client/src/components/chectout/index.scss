@@ -27,9 +27,11 @@
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             }
         }
-h3{
-    padding: 1rem 0;
-}
+
+        h3 {
+            padding: 1rem 0;
+        }
+
         textarea {
             margin: 15px 0;
             font-weight: 400;
@@ -193,5 +195,45 @@ h3{
                 }
             }
         }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            h4 {
+                padding-top: 2rem;
+                padding-bottom: 1rem;
+                font-size: 30px;
+                color: black;
+                font-weight: 500;
+
+                line-height: 25px;
+            }
+
+            label {
+                font-size: 20px;
+                font-weight: 500;
+                color: rgba(94, 93, 93, 0.774);
+            }
+
+            input[type="radio"] {
+                appearance: none;
+                width: 17px;
+                height: 17px;
+                border: 2px solid #f2b200;
+                border-radius: 50%; 
+                outline: none;
+                cursor: pointer;
+                margin-right: 10px;
+
+                &:checked {
+                    
+                    background-color: #f2b200; 
+                    
+                }
+            
+        }
+    }
     }
 }

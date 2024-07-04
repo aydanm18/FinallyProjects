@@ -5,7 +5,7 @@ import './index.scss';
 import controller from '../../services/api/requests';
 import { endpoints } from '../../services/api/constants';
 import Cookies from 'js-cookie';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'; 
 import { useSelector } from 'react-redux';
 
 const Reservation = () => {
@@ -22,7 +22,7 @@ const Reservation = () => {
     })
     useEffect(() => {
         AOS.init({
-            duration: 1500,
+            duration: 5500,
             once: true
         });
     }, []);
@@ -183,17 +183,11 @@ const Reservation = () => {
                         </form>
                     </div>
                     <div className="col-6 col-md-6 col-sm-12 col-xs-12 images">
-                        <div data-aos="zoom-in-left" className="res_image">
+              <div  data-aos="fade-left" className="res_image">
+                <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/book-img.jpg" />
+              </div>
 
-                            <div className="leaf">
-                                <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/leaf-1.png" alt="" />
-                                <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/leaf-2.png" alt="" />
-                                <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/leaf-3.png" alt="" />
-                            </div>
-                            <img className='imageres' src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/reservation-pizza.png" />
-                        </div>
-
-                    </div>
+            </div>
                 </div>
             </div>
 

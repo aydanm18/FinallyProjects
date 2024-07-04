@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Tooltip, Button, Input,Select } from 'antd';
+import { Table, Tooltip, Button, Input, Select } from 'antd';
 import Cookies from 'js-cookie';
 import { useDeleteByIdMenuMutation, useGetMenusQuery, usePatchByMenuMutation } from '../../services/redux/procektApi';
 import controller from '../../services/api/requests';
@@ -12,42 +12,53 @@ const { TextArea } = Input;
 import { MdEdit } from "react-icons/md";
 const { Option } = Select;
 import { Link } from 'react-router-dom';
+
 const Products = () => {
-  
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [users, setUsers] = useState([]);
+  const [editProduct, setEditProduct] = useState(null);
   const userRedux = useSelector((state) => state.admin);
   const token = Cookies.get('token');
   const { data: menus, refetch } = useGetMenusQuery();
   const [deleteProduct] = useDeleteByIdMenuMutation();
   const [patchProduct] = usePatchByMenuMutation();
 
-
-  const showModal = () => {
+  const showModal = (product) => {
+    setEditProduct(product);
     setIsModalOpen(true);
   };
-  const handleOk =async () => {
+
+  const handleOk = async () => {
     const updated = {
-      title: menus?.data.title,
-      description: menus?.data.description,
-      image: menus?.data.image,
-      price: menus?.data.price,
-      category: menus?.data.category
-
+      title: editProduct.title,
+      description: editProduct.description,
+      image: editProduct.image,
+      price: editProduct.price,
+      category: editProduct.category
     };
-    const response=await patchProduct()
+    await patchProduct({ id: editProduct._id, payload: updated });
     setIsModalOpen(false);
-
+    setEditProduct(null);
+    Swal.fire({
+      title: "Product updated successfully!!",
+      text: "Your file has been deleted.",
+      icon: "success",
+    });
+    refetch();
   };
+
   const handleCancel = () => {
-
     setIsModalOpen(false);
+    setEditProduct(null);
   };
+
   useEffect(() => {
     controller.getAll(endpoints.users, token).then((res) => {
       setUsers(res.data);
     });
   }, [token]);
+
   const columns = [
     {
       title: 'Image',
@@ -82,7 +93,7 @@ const Products = () => {
     {
       title: 'Price',
       dataIndex: 'price',
-      sorter: (a, b) => a.price-b.price,
+      sorter: (a, b) => a.price - b.price,
     },
     {
       title: 'Category',
@@ -143,8 +154,8 @@ const Products = () => {
                 confirmButtonText: "Yes, delete it!",
               }).then(async (result) => {
                 if (result.isConfirmed) {
-                  await deleteProduct(record._id)
-                  refetch()
+                  await deleteProduct(record._id);
+                  refetch();
                   Swal.fire({
                     title: "Deleted!",
                     text: "Your file has been deleted.",
@@ -165,19 +176,14 @@ const Products = () => {
       render: (record) => {
         return (
           <Button
-            onClick={() => {
-              showModal();
-
-            }}
+            onClick={() => showModal(record)}
             style={{ border: 'none', color: 'red', fontSize: '18px' }}
           >
             <MdEdit />
           </Button>
         );
       },
-    
     },
-   
   ];
 
   const onChange = (pagination, filters, sorter, extra) => {
@@ -209,32 +215,35 @@ const Products = () => {
       >
         <form style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <Input
-
+            onChange={(e) => setEditProduct({ ...editProduct, title: e.target.value })}
+            value={editProduct?.title}
             type="text"
             placeholder="Title"
           />
           <Input
-
-        
+            onChange={(e) => setEditProduct({ ...editProduct, image: e.target.value })}
+            value={editProduct?.image}
             type="url"
             placeholder="ImageSrc"
           />
           <Input
-
-           
+            onChange={(e) => setEditProduct({ ...editProduct, price: e.target.value })}
+            value={editProduct?.price}
             type="number"
             placeholder="Price"
           />
-           <Select 
-        >
-          <Option value="pizzas">Pizzas</Option>
-          <Option value="slides">Slides</Option>
-          <Option value="offers">Offers</Option>
-          <Option value="pasta">Pastas</Option>
-        </Select>
+          <Select
+            onChange={(value) => setEditProduct({ ...editProduct, category: value })}
+            value={editProduct?.category}
+          >
+            <Option value="pizzas">Pizzas</Option>
+            <Option value="slides">Slides</Option>
+            <Option value="offers">Offers</Option>
+            <Option value="pasta">Pastas</Option>
+          </Select>
           <TextArea
-
-      
+            onChange={(e) => setEditProduct({ ...editProduct, description: e.target.value })}
+            value={editProduct?.description}
             rows={4}
             placeholder="Description"
           />

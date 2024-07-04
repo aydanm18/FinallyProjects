@@ -6,6 +6,7 @@ import './index.scss';
 import Iframe from '../iframe';
 import Header from '../../layouts/header';
 import Footer from '../../layouts/footer';
+import Reservation from '../reservation';
 
 const BookNow = () => {
   const [isLoading, setIsLoading] = useState(true); 
@@ -111,96 +112,7 @@ const BookNow = () => {
       </div>
 
       <Iframe />
-
-      <div id='reservation'>
-        <div className="container">
-
-          <div className="row">
-            <div className="col-6 col-md-6 col-sm-12 col-xs-12 images">
-              <div  data-aos="fade-down" className="res_image">
-                <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/book-img.jpg" />
-              </div>
-
-            </div>
-            <div data-aos="fade-up" className="col-6 col-md-6 col-sm-12 col-xs-12 forms">
-
-              <form>
-                <div className="res_title">
-                  <div className="xet">
-                    <h5>Reservation</h5>
-                    <div></div>
-                  </div>
-                  <h2 style={{marginBottom:0}}>Book A Table Now!</h2>
-                </div>
-                <div className="row">
-
-                  <div style={{padding:0}} className="col-6 col-md-6 col-sm-12 col-xs-12">
-
-                    <div className="input">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Name*"
-                      />
-                    </div>
-
-
-                    <div className="input">
-                      <input
-                        type="tel"
-                        name="phone"
-                        placeholder="Phone*"
-                      />
-                    </div>
-
-
-                    <div className="input">
-                      <input
-                        type="text"
-                        name="date"
-                        placeholder='Date*'
-                      />
-                    </div>
-                  </div>
-                  <div style={{padding:0}} className="col-6 col-md-6 col-sm-12 col-xs-12">
-                    <div className="input">
-                      <input
-                        type="email"
-                        name="email"
-                        placeholder="Email*"
-                      />
-                    </div>
-
-                    <div className="input">
-                      <input
-                        type="text"
-                        name="time"
-                        placeholder='Time*'
-                      />
-                    </div>
-
-                    <div className="input">
-                      <input
-                        type="number"
-                        name="guest"
-                        placeholder="Guest*"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{padding:0}} className="col-12 col-md-12 col-sm-12 col-xs-12">
-                  <div className="res_button">
-                    <button type="submit">BOOK NOW</button>
-                  </div>
-                </div>
-
-              </form>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <Reservation/>
       <Footer />
     </>
   );

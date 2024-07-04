@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './index.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import HamburgerMenu from './HamburgerMenu';
-import BasketMenu from './BasketMenu'; // Import the BasketMenu component
+import BasketMenu from './BasketMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { logout } from '../../services/redux/slices/userSlice';
@@ -14,11 +14,12 @@ import { BasketContext } from '../../context/basketContext';
 const Header = () => {
     const [scrollBg, setScrollBg] = useState(false);
     const [toggle, setToggle] = useState(false);
-    const [showBasket, setShowBasket] = useState(false); // State for basket menu visibility
+    const [showBasket, setShowBasket] = useState(false);
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const { basket } = useContext(BasketContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const listenScrollEvent = () => {
         window.scrollY > 30 ? setScrollBg(true) : setScrollBg(false);
@@ -54,6 +55,28 @@ const Header = () => {
         });
     };
 
+
+    const isActiveShop = location.pathname.includes('/shoplist') ||
+        location.pathname.includes('/card') ||
+        location.pathname.includes('/checkout');
+
+
+    const isActivePages = location.pathname.includes('/aboutus') ||
+        location.pathname.includes('/ourmenues') ||
+        location.pathname.includes('/ourteam') ||
+        location.pathname.includes('/booknow') ||
+        location.pathname.includes('/notfound');
+
+
+    const isActiveBlog = location.pathname.includes('/blogrigth') ||
+        location.pathname.includes('/blogleft');
+    const isActiveAccound = location.pathname.includes('/user') ||
+        location.pathname.includes('/mycard');
+    const isActiveRegister = location.pathname.includes('/login') ||
+        location.pathname.includes('/regsiter')
+
+
+
     return (
         <header className={scrollBg ? 'scrolled' : ''}>
             <div className="container">
@@ -61,42 +84,48 @@ const Header = () => {
                     <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/logo.png" width={60} alt="Logo" />
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: "center", gap: '15px' }} className="div">
                         <ul>
-                            <li><Link className='links' to={"/"}>Home</Link></li>
-                            <li className='dropdown-content'>Shop
+                            <li><NavLink className='links' to="/" activeClassName="active">HOME</NavLink></li>
+                            <li className={`dropdown-content ${isActiveShop ? 'active' : ''}`}>
+                                SHOP
                                 <ul className='dropdown'>
-                                    <li><Link className='link' to={'/shoplist'}>Shop List</Link></li>
-                                    <li><Link className='link' to={'/card'}>Card List</Link></li>
-                                    <li><Link className='link' to={'/checkout'}>Checkout</Link></li>
+                                    <li><NavLink className='link' to="/shoplist" >ShopList</NavLink></li>
+                                    <li><NavLink className='link' to="/card" >CardList</NavLink></li>
+                                    <li><NavLink className='link' to="/checkout" >Checkout</NavLink></li>
                                 </ul>
                             </li>
-                            <li className='dropdown-content'>Pages
+                            <li className={`dropdown-content ${isActivePages ? 'active' : ''}`}>
+                                PAGES
                                 <ul className='dropdown'>
-                                    <li><Link className='link' to={'/aboutus'}>AboutUs</Link></li>
-                                    <li><Link className='link' to={'/ourmenues'}>OurMenu</Link></li>
-                                    <li><Link className='link' to={'/ourteam'}>OurTeam</Link></li>
-                                    <li><Link className='link' to={'/booknow'}>BookNow</Link></li>
-                                    <li><Link className='link' to={'/notfound'}>404Page</Link></li>
+                                    <li><NavLink className='link' to="/aboutus" activeClassName="active">AboutUs</NavLink></li>
+                                    <li><NavLink className='link' to="/ourmenues" activeClassName="active">OurMenu</NavLink></li>
+                                    <li><NavLink className='link' to="/ourteam" activeClassName="active">OurTeam</NavLink></li>
+                                    <li><NavLink className='link' to="/booknow" activeClassName="active">BookNow</NavLink></li>
+                                    <li><NavLink className='link' to="/notfound" activeClassName="active">404Page</NavLink></li>
                                 </ul>
                             </li>
-                            <li className='dropdown-content'>Blog
+                            <li className={`dropdown-content ${isActiveBlog ? 'active' : ''}`}>
+                                BLOG
                                 <ul className='dropdown'>
-                                    <li><Link className='link' to={'/blogrigth'}>BlogRigth</Link></li>
-                                    <li><Link className='link' to={'/blogleft'}>BlogLeft</Link></li>
+                                    <li><NavLink className='link' to="/blogrigth" activeClassName="active">BlogRight</NavLink></li>
+                                    <li><NavLink className='link' to="/blogleft" activeClassName="active">BlogLeft</NavLink></li>
                                 </ul>
                             </li>
-                            <li><Link className='links' to={"/contact"}>Contact</Link></li>
+                            <li><NavLink className='links' to="/contact" activeClassName="active">CONTACT</NavLink></li>
                             {!user.id && (
-                                <li className='dropdown-content'>Registration
+                                <li className={`dropdown-content ${isActiveRegister ? 'active' : ''}`}>
+                                    REGISTRATION
                                     <ul className='dropdown'>
-                                        <li><Link className='link' to={'/login'}>Login</Link></li>
-                                        <li><Link className='link' to={'/register'}>Register</Link></li>
+                                        <li><NavLink className='link' to="/login" activeClassName="active">Login</NavLink></li>
+                                        <li><NavLink className='link' to="/register" activeClassName="active">Register</NavLink></li>
                                     </ul>
                                 </li>
                             )}
                             {user.id && (
-                                <li className='dropdown-content'>Account
+                                <li className={`dropdown-content ${isActiveAccound ? 'active' : ''}`}>
+                                    ACCOUNT
                                     <ul className='dropdown'>
-                                        <li><Link className='link' to={'/user'}>User</Link></li>
+                                        <li><NavLink className='link' to="/user" activeClassName="active">User</NavLink></li>
+                                        <li><NavLink className='link' to="/mycard" activeClassName="active">MyCard</NavLink></li>
                                         <li onClick={handleLogout}>LogOut</li>
                                     </ul>
                                 </li>
@@ -116,7 +145,7 @@ const Header = () => {
                     </div>
                 </nav>
                 <HamburgerMenu setToggle={setToggle} toggle={toggle} />
-                <BasketMenu setShowBasket={setShowBasket} basket={basket} showBasket={showBasket} /> 
+                <BasketMenu setShowBasket={setShowBasket} basket={basket} showBasket={showBasket} />
             </div>
         </header>
     );

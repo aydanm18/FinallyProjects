@@ -8,6 +8,7 @@ import BlogsSection from "../components/blogs";
 import BookNow from "../components/bookNow";
 import Card from "../components/card";
 import Checkout from "../components/chectout";
+import MyCard from "../components/myCard";
 import OurMenues from "../components/ourMenues";
 import ShopDetail from "../components/shopDetail";
 import ShopList from "../components/shopList";
@@ -111,6 +112,10 @@ export const ROUTES = [{
         {
             path: 'blogrigth',
             element: <BlogRigth />,
+        },
+        {
+            path: 'mycard',
+            element: <MyCard />,
         },
         {
             path: '*',

@@ -9,17 +9,24 @@ header {
         background-color: white;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
+
     .links.active {
-        color: red; 
+        color: rgb(242, 46, 62);
     }
+
     nav {
         display: flex;
         justify-content: space-between;
         padding: 16px;
 
+        .active {
+            color: red;
+        }
+
         ul {
+         
             display: flex;
-            align-items: center;
+            // align-items: center;
             gap: 30px;
 
             &.active {
@@ -53,6 +60,7 @@ header {
             }
 
             .dropdown-content {
+            
                 position: relative;
                 font-weight: 600;
                 font-size: 18px;
@@ -64,12 +72,13 @@ header {
                 }
 
                 .dropdown {
+                    
                     background-color: rgb(251, 178, 0);
                     position: absolute;
                     top: 63px;
                     left: 0;
                     border-radius: 10px;
-                    padding: 2.3rem;
+                    padding: 2rem 2rem;
                     display: flex;
                     flex-direction: column;
                     gap: 20px;
@@ -80,12 +89,15 @@ header {
                 }
 
                 &:hover .dropdown {
+
                     visibility: visible;
                     opacity: 1;
                     transform: translateY(0);
                 }
 
                 li .link {
+                    text-align: left;
+              
                     color: white;
                     font-size: 15px;
                     transition: all 0.4s ease;
@@ -102,8 +114,9 @@ header {
 
     .basket {
         .links {
-        border: none;
-        background-color: white;
+            border: none;
+            background-color: white;
+
             sub {
                 background-color: red;
                 padding: 0px 3px;

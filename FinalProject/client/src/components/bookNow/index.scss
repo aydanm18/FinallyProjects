@@ -13,21 +13,3 @@
     }
 }
 
-#reservation {
-    .images {
-        .res_image {
-            object-fit: cover;
-            border-radius: 40px;
-            overflow: hidden;
-            img {
-                height: auto;
-                max-width: 100%;
-                transition: .4s;
-                &:hover {
-                    transform: scale(1.1);
-                }
-            }
-
-        }
-    }
-}

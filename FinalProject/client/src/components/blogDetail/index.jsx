@@ -25,6 +25,10 @@ const BlogDetail = () => {
     const [commit, setCommit] = useState('');
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
+    const [formFields, setFormFields] = useState({
+
+        message: '',
+    });
 
     useEffect(() => {
         if (!user.id) {
@@ -74,7 +78,7 @@ const BlogDetail = () => {
                     <div className="blogsectiontitle">
 
                         <div className="xets">
-                            <h5>07Mar2022</h5>
+                            <h5>03 July 2024</h5>
                             <div></div>
                         </div>
                         <h1>{blog.title}</h1>
@@ -236,10 +240,15 @@ const BlogDetail = () => {
                             <div style={{ padding: 0 }} className="col-12 col-md-12 col-sm-12">
 
                                 <div >
-                                    <textarea onChange={(e) => {
-                                        setCommit(e.target.value);
-
-                                    }} required name="" id="" rows="6" placeholder="Your Message"></textarea>
+                                    <textarea
+                                        onChange={(e) => setCommit(e.target.value)}
+                                        value={commit}
+                                        required
+                                        name=""
+                                        id=""
+                                        rows="6"
+                                        placeholder="Your Message"
+                                    ></textarea>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import React, { useEffect, useState ,useContext} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './index.scss';
@@ -63,19 +63,19 @@ const ShopDetail = () => {
 
   const handleAddToCart = () => {
     if (!user.id) return navigate('/login');
-   
-      const duplicateBasket = basket.find((x) => x._id === data?.data._id);
-      if (duplicateBasket) {
-        duplicateBasket.count += quantity;
-        setBasket([...basket]);
-        localStorage.setItem('basket', JSON.stringify([...basket]));
-      } else {
-        const newBasket = { ...data?.data, count: quantity };
-        setBasket([...basket, newBasket]);
-        localStorage.setItem('basket', JSON.stringify([...basket, newBasket]));
-    
+
+    const duplicateBasket = basket.find((x) => x._id === data?.data._id);
+    if (duplicateBasket) {
+      duplicateBasket.count += quantity;
+      setBasket([...basket]);
+      localStorage.setItem('basket', JSON.stringify([...basket]));
+    } else {
+      const newBasket = { ...data?.data, count: quantity };
+      setBasket([...basket, newBasket]);
+      localStorage.setItem('basket', JSON.stringify([...basket, newBasket]));
+
     };
-  
+
     Swal.fire({
       title: 'Added to cart!',
       text: `${quantity} item(s) have been added to your cart.`,
@@ -174,10 +174,10 @@ const ShopDetail = () => {
       <div id='detailSection'>
         <div className="container">
           <div className="row">
-            <div className="col-6 col-md-12 col-sm-12 col-xs-12 box1">
+            <div data-aos="flip-left" className="col-6 col-md-12 col-sm-12 col-xs-12 box1">
               <img src={data?.data.image} alt={data?.data.title} />
             </div>
-            <div className="col-6 col-md-12 col-sm-12 col-xs-12 box2">
+            <div data-aos="flip-down" className="col-6 col-md-12 col-sm-12 col-xs-12 box2">
               <h1>{data?.data.title}</h1>
               <h3 style={{ color: 'rgb(242,46,62)' }}>${data?.data.price}.00</h3>
               <p>{data?.data.description}</p>
@@ -193,7 +193,7 @@ const ShopDetail = () => {
                   />
 
                   <button onClick={handleAddToCart}>
-                        <Link className='links' to={'/card'}>ADD TO CART</Link>
+                    <Link className='links' to={'/card'}>ADD TO CART</Link>
                   </button>
                 </div>
                 <button onClick={handleLikeToggle}>
@@ -211,7 +211,7 @@ const ShopDetail = () => {
 
       <PizzaSection />
 
-      <div id='review'>
+      <div data-aos="fade-left" id='review'>
         <div className="container">
           <div className="comments">
             <div className="res_title">
@@ -327,11 +327,15 @@ const ShopDetail = () => {
           </p>
           <form onSubmit={handleSubmitComment}>
             <div className="row">
-              <div style={{ padding: 0 }} className="col-12 col-md-12 col-sm-12">
-                <div>
-                  <textarea onChange={(e) => setPizzaCommit(e.target.value)} required name="" id="" rows="6" placeholder="Your Message"></textarea>
-                </div>
-              </div>
+              <textarea
+                onChange={(e) => setPizzaCommit(e.target.value)}
+                value={pizzaCommit}
+                required
+                name=""
+                id=""
+                rows="6"
+                placeholder="Your Message"
+              ></textarea>
             </div>
             <div style={{ padding: 0 }} className="col-12 col-md-12 col-sm-12 col-xs-12">
               <div className="com_button">

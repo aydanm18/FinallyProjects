@@ -78,7 +78,7 @@ const BlogDetail = () => {
                     <div className="blogsectiontitle">
 
                         <div className="xets">
-                            <h5>03 July 2024</h5>
+                        <h5>{moment(blog.createdAt).format('DD MMMM YYYY')}</h5>
                             <div></div>
                         </div>
                         <h1>{blog.title}</h1>

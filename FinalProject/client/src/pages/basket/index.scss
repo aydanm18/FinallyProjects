@@ -1,42 +1,63 @@
 .basket {
-  
-    .quantity-control {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .table1 {
+        max-width: 100%;
+        overflow-x: auto;
 
-        p {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 10px;
-        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-bottom: 1px solid #ddd;
 
-        .arrow-icon {
-            cursor: pointer;
-            font-size: 25px;
-            padding: 5px;
-            border-radius: 50%;
-            transition: all 0.4s linear;
+            th, td {
+                padding: 8px;
+                text-align: left;
+            }
 
-            &:hover {
-                color: rgb(251, 178, 0);
+            th {
+                font-size: 18px;
+                font-weight: 500;
+                color: black;
+            }
+
+            td {
+                border-top: 1px solid #ddd;
+            }
+            .quantity-control {
+                display: flex;
+                align-items: center;
+                transition: all 0.4s linear;
+    
+                span {
+                    margin: 0 10px;
+                }
+    
+                button {
+                    border: none;
+                    background-color: white;
+    
+                    .arrow-icon {
+                        cursor: pointer;
+                        font-size: 25px;
+    
+                        &:hover {
+                            color: rgb(251, 178, 0);
+                        }
+                    }
+                }
+            }
+    
+            button {
+                border: none;
+                background-color: white;
+                font-size: 20px;
+                transition: all 0.4s linear;
+    
+                &:hover {
+                    color: rgb(251, 178, 0);
+                }
             }
         }
-    }
 
-    .button {
-        border: none;
-        background-color: white;
-        font-size: 20px;
-        transition: all 0.4s linear;
-
-        &:hover {
-            color: rgb(251, 178, 0);
-        }
     }
 
     .box {
@@ -61,8 +82,7 @@
             tr {
                 margin-top: 1rem;
 
-                th,
-                td {
+                th, td {
                     padding-top: 10px;
                 }
             }
@@ -93,55 +113,5 @@
         }
     }
 
-    @media (max-width: 535px) {
-        .container {
-            padding: 0 10px;
-        }
-
-        .row {
-            flex-direction: column;
-
-            .col-8,
-            .col-4 {
-                width: 100%;
-            }
-
-            .col-4 {
-                margin-top: 20px;
-            }
-        }
-
-        .quantity-control p {
-            font-size: 14px;
-            padding: 5px;
-        }
-
-        .arrow-icon {
-            font-size: 20px;
-            padding: 3px;
-        }
-
-        .box {
-            padding: 10px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .box {
-            padding: 15px;
-
-            h3 {
-                font-size: 20px;
-            }
-
-            table {
-                font-size: 14px;
-            }
-
-            button {
-                font-size: 12px;
-                padding: 0.4rem;
-            }
-        }
-    }
+  
 }

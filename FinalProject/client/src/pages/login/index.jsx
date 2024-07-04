@@ -58,44 +58,45 @@ const Login = () => {
 
   });
   return (
-  <>
-  <Header/>
-    <div id='login'>
+    <>
+      <Header />
+      <div id='login'>
 
-    <div className="container">
-      <div className="loginTitle">
-        <h1>Get in touch</h1>
-      </div>
-      <form onSubmit={formik.handleSubmit}>
-      <p>Log in with your Pizzon account</p>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          onChange={formik.handleChange}
-          value={formik.values.email}
-          onBlur={formik.handleBlur}
-          placeholder='Email'
-        />
-        {formik.errors.email && formik.touched.email && <div style={{ color: ' rgb(251, 178, 0)' }} id="feedback">{formik.errors.email}</div>}
-        <input
-          id="password"
-          name="password"
-          type="password"
-          onChange={formik.handleChange}
-          value={formik.values.password}
-          onBlur={formik.handleBlur}
-          placeholder='Password'
-        />
-        {formik.errors.password && formik.touched.password && <div style={{ color: ' rgb(251, 178, 0)' }} id="feedback">{formik.errors.password}</div>}
-        <Link style={{color:' rgb(251, 178, 0)',paddingTop:'15px'}} className='link' to={"/register"}>don&apos;t have an account?</Link>
-        <button style={{ marginBottom: '20px' }} type="submit">Log in</button>
+        <div className="container">
+          <div className="loginTitle">
+            <h1>Get in touch</h1>
        
-      </form>
-    </div>
-  </div>
-  <Footer/>
-  </>
+          </div>
+          <form onSubmit={formik.handleSubmit}>
+            <p>Log in with your Pizzon account</p>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              onBlur={formik.handleBlur}
+              placeholder='Email'
+            />
+            {formik.errors.email && formik.touched.email && <div style={{ color: ' rgb(251, 178, 0)' }} id="feedback">{formik.errors.email}</div>}
+            <input
+              id="password"
+              name="password"
+              type="password"
+              onChange={formik.handleChange}
+              value={formik.values.password}
+              onBlur={formik.handleBlur}
+              placeholder='Password'
+            />
+            {formik.errors.password && formik.touched.password && <div style={{ color: ' rgb(251, 178, 0)' }} id="feedback">{formik.errors.password}</div>}
+            <Link style={{ color: ' rgb(251, 178, 0)', paddingTop: '15px' }} className='link' to={"/register"}>don&apos;t have an account?</Link>
+            <button style={{ marginBottom: '20px' }} type="submit">Log in</button>
+
+          </form>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 };
 export default Login

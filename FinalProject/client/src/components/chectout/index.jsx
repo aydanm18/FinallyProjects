@@ -12,35 +12,19 @@ import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 import { useSelector } from 'react-redux';
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import axios from 'axios';
+import { Elements } from '@stripe/react-stripe-js';
+import CheckoutForm from '../checkForm';
+import { BASE_URL } from '../../services/api/constants';
+
 
 const stripePromise = loadStripe('pk_test_51PYoRwL6alLKvkqmb2DoYlIfYYAFX5xRWINAs4bh3UiNcTwpeVgZt4rlSG1UnAU3UoTEWK5LBN5ijweDsXY3lVJv00bCn92hts');
 
-const CheckoutForm = ({ handleSubmit }) => {
-  const stripe = useStripe();
-  const elements = useElements();
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <CardElement />
-      <div className="checkoutBtn">
-        <button type="submit" disabled={!stripe || loading}>
-          {loading ? 'Processing...' : 'Place Order'}
-        </button>
-      </div>
-      {error && <div className="error">{error}</div>}
-    </form>
-  );
-};
-
 const Checkout = () => {
-  const navigate = useNavigate();
-  const { basket, setBasket } = useContext(BasketContext);
   const user = useSelector((state) => state.user);
+  const { basket, setBasket } = useContext(BasketContext);
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [formFields, setFormFields] = useState({
     firstname: '',
     lastname: '',
@@ -53,9 +37,9 @@ const Checkout = () => {
     apartment: '',
     town: '',
     message: '',
+    paymentMethod: 'stripe',
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+
   const token = Cookies.get('token');
 
   useEffect(() => {
@@ -71,7 +55,13 @@ const Checkout = () => {
   }, [token]);
 
   useEffect(() => {
-    AOS.init({ duration: 1000 });  // Initialize AOS animation library
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2300);
+    AOS.init({
+      duration: 2300,
+      once: true,
+    });
   }, []);
 
   const handleInputChange = (e) => {
@@ -82,93 +72,64 @@ const Checkout = () => {
     }));
   };
 
-  const isFormComplete = () => {
-    const requiredFields = [
-      'firstname', 'lastname', 'phoneno', 'email', 'streetnum',
-      'zip', 'country', 'town', 'message'
-    ];
-    return requiredFields.every(field => formFields[field]);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!isFormComplete()) {
-      Swal.fire({
-        position: 'top-end',
-        icon: 'warning',
-        title: 'Please fill all required fields!',
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      return;
-    }
-
-    setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:8080/create-payment-intent', { amount: calculateTotal() * 100 });
-      const { clientSecret } = response.data;
+      const userId = user.id;
+      const username = `${formFields.firstname} ${formFields.lastname}`;
+      const email = formFields.email;
 
-      const result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
-      });
+      if (!userId) {
+        throw new Error('User ID is missing.');
+      }
 
-      if (result.error) {
-        setError(result.error.message);
+      const orderDetails = {
+        formFields,
+        userId,
+        username,
+        email,
+        totalPrice: calculateTotal(),
+        items: basket.map((item) => ({
+          itemId: item._id,
+          itemName: item.title,
+          count: item.count,
+          itemImg: item.image,
+        })),
+      };
+      console.log(orderDetails);
+      
+      if (formFields.paymentMethod === 'stripe') {
+        await makePayment();
+      } else {
         Swal.fire({
           position: 'top-end',
-          icon: 'error',
-          title: 'Payment failed!',
+          icon: 'success',
+          title: 'Order placed successfully!',
           showConfirmButton: false,
           timer: 1500,
         });
-      } else {
-        if (result.paymentIntent.status === 'succeeded') {
-          const userId = user.id;
-          const username = `${formFields.firstname} ${formFields.lastname}`;
-          const email = formFields.email;
-
-          const orderDetails = {
-            formFields,
-            userId,
-            username,
-            email,
-            totalPrice: calculateTotal(),
-            items: basket.map((item) => ({ itemId: item._id, itemName: item.title, count: item.count, itemImg: item.image })),
-          };
-
-          await axios.post('http://localhost:8080/create-order', orderDetails);
-
-          setFormFields({
-            firstname: '',
-            lastname: '',
-            companyname: '',
-            phoneno: '',
-            email: '',
-            streetnum: '',
-            zip: '',
-            country: '',
-            apartment: '',
-            town: '',
-            message: '',
-          });
-          setBasket([]);
-
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Order placed successfully!',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-
-          navigate('/');
-        }
+        navigate('/');
       }
+
+      setFormFields({
+        firstname: '',
+        lastname: '',
+        companyname: '',
+        phoneno: '',
+        email: '',
+        streetnum: '',
+        zip: '',
+        country: '',
+        apartment: '',
+        town: '',
+        message: '',
+        paymentMethod: 'stripe',
+      });
+      setBasket([]);
+
     } catch (error) {
-      setError(error.message);
+      console.error('Error placing order:', error);
       Swal.fire({
         position: 'top-end',
         icon: 'error',
@@ -176,8 +137,47 @@ const Checkout = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+    }
+  };
+
+  const makePayment = async () => {
+    setIsLoading(true);
+    const stripe = await stripePromise;
+    try {
+      const response = await fetch(`${BASE_URL}/create-checkout-session`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ menues: basket }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error response:', errorData);
+        throw new Error(`Network response was not ok: ${errorData.message}`);
+      }
+
+      const session = await response.json();
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (result.error) {
+        console.error('Stripe error:', result.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Payment failed!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -186,10 +186,21 @@ const Checkout = () => {
   };
 
   const calculateTotal = () => {
-    const subtotal = calculateSubtotal();
-    const tax = subtotal * 0.1;  // Assume a 10% tax rate
-    return subtotal + tax;
+    return calculateSubtotal();
   };
+
+  if (isLoading) {
+    return (
+      <div className="container">
+        <div className="loading-spinner">
+          <img
+            src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/preloader.svg"
+            alt="Loading..."
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -198,6 +209,7 @@ const Checkout = () => {
         <div className="container">
           <div
             data-aos="fade-down"
+            style={{ paddingLeft: '50%', width: '100px' }}
             className="contactImg"
           >
             <img
@@ -222,6 +234,7 @@ const Checkout = () => {
           <div
             data-aos="fade-up"
             className="contactImg"
+            style={{ paddingLeft: '70%', width: '100px' }}
           >
             <img
               src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/tamato.png"
@@ -234,141 +247,183 @@ const Checkout = () => {
         <div className="container">
           <h3>Billing Details</h3>
           <div className="row">
-            <div className="col-8 col-md-6 col-sm-12 col-xs-12">
-              <Elements stripe={stripePromise}>
-                <CheckoutForm handleSubmit={handleSubmit} />
-              </Elements>
-              <div className="row">
-                <div className="col-6 col-md-6 col-sm-12 col-xs-12">
-                  <div className="input">
-                    <input
-                      type="text"
-                      name="firstname"
-                      value={formFields.firstname}
-                      onChange={handleInputChange}
-                      placeholder="First Name*"
-                      required
-                    />
+            <div style={{ padding: 0 }} className="col-8 col-md-6 col-sm-12 col-xs-12">
+              <form onSubmit={handleSubmit}>
+                <div className="row">
+                  <div style={{ padding: 0 }} className="col-6 col-md-6 col-sm-12 col-xs-12">
+                    <div className="input">
+                      <input
+                        type="text"
+                        name="firstname"
+                        value={formFields.firstname}
+                        onChange={handleInputChange}
+                        placeholder="First Name*"
+                        required
+                      />
+                    </div>
+                    <div className="input">
+                      <input
+                        type="text"
+                        name="companyname"
+                        value={formFields.companyname}
+                        onChange={handleInputChange}
+                        placeholder="Company Name"
+                      />
+                    </div>
+                    <div className="input">
+                      <input
+                        type="tel"
+                        name="phoneno"
+                        value={formFields.phoneno}
+                        onChange={handleInputChange}
+                        placeholder="Phone No*"
+                        required
+                      />
+                    </div>
+                    <div className="input">
+                      <input
+                        type="text"
+                        name="streetnum"
+                        value={formFields.streetnum}
+                        onChange={handleInputChange}
+                        placeholder="House number and street name*"
+                        required
+                      />
+                    </div>
+                    <div className="input">
+                      <input
+                        type="text"
+                        name="zip"
+                        value={formFields.zip}
+                        onChange={handleInputChange}
+                        placeholder="Postcode/ZIP"
+                      />
+                    </div>
+                    <div className="input">
+                      <input
+                        type="text"
+                        name="apartment"
+                        value={formFields.apartment}
+                        onChange={handleInputChange}
+                        placeholder="Apartment, Suite, Unit, etc."
+                      />
+                    </div>
                   </div>
-                  <div className="input">
-                    <input
-                      type="text"
-                      name="companyname"
-                      value={formFields.companyname}
-                      onChange={handleInputChange}
-                      placeholder="Company Name"
-                    />
+                  <div style={{ padding: 0 }} className="col-6 col-md-6 col-sm-12 col-xs-12">
+                    <div className="input">
+                      <input
+                        type="text"
+                        name="lastname"
+                        value={formFields.lastname}
+                        onChange={handleInputChange}
+                        placeholder="Last Name*"
+                        required
+                      />
+                    </div>
+                    <div className="input">
+                      <input
+                        type="email"
+                        name="email"
+                        value={formFields.email}
+                        onChange={handleInputChange}
+                        placeholder="Email*"
+                        required
+                      />
+                    </div>
+                    <div className="input">
+                      <input
+                        type="text"
+                        name="country"
+                        value={formFields.country}
+                        onChange={handleInputChange}
+                        placeholder="Country*"
+                        required
+                      />
+                    </div>
+                    <div className="input">
+                      <input
+                        type="text"
+                        name="town"
+                        value={formFields.town}
+                        onChange={handleInputChange}
+                        placeholder="Town/City*"
+                        required
+                      />
+                    </div>
+                    <div className="input">
+                      <textarea
+                        name="message"
+                        value={formFields.message}
+                        onChange={handleInputChange}
+                        placeholder="Order notes"
+                      ></textarea>
+                    </div>
                   </div>
-                  <div className="input">
-                    <input
-                      type="tel"
-                      name="phoneno"
-                      value={formFields.phoneno}
-                      onChange={handleInputChange}
-                      placeholder="Phone No*"
-                      required
-                    />
-                  </div>
-                  <div className="input">
-                    <input
-                      type="text"
-                      name="streetnum"
-                      value={formFields.streetnum}
-                      onChange={handleInputChange}
-                      placeholder="House number and street name*"
-                      required
-                    />
-                  </div>
-                  <div className="input">
-                    <input
-                      type="text"
-                      name="zip"
-                      value={formFields.zip}
-                      onChange={handleInputChange}
-                      placeholder="Postcode/Zip*"
-                      required
-                    />
+                  <div className="col-12 col-md-12 col-sm-12 col-xs-12">
+                    <div className="order-payment">
+                      <h3>Your Order</h3>
+                      <table className="order-table">
+                        <thead>
+                          <tr>
+                            <th>Product</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {basket.map((item) => (
+                            <tr key={item._id}>
+                              <td>
+                                {item.title} <strong>x {item.count}</strong>
+                              </td>
+                              <td>${item.price * item.count}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <th>Subtotal</th>
+                            <td>${calculateSubtotal()}</td>
+                          </tr>
+                          <tr>
+                            <th>Total</th>
+                            <td>${calculateTotal()}</td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                      <div className="payment-options">
+                        <label>
+                          <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="stripe"
+                            checked={formFields.paymentMethod === 'stripe'}
+                            onChange={handleInputChange}
+                          />
+                          Stripe
+                        </label>
+                        <label>
+                          <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="cash"
+                            checked={formFields.paymentMethod === 'cash'}
+                            onChange={handleInputChange}
+                          />
+                          Cash on Delivery
+                        </label>
+                      </div>
+                      {formFields.paymentMethod === 'stripe' && (
+                        <Elements stripe={stripePromise}>
+                          <CheckoutForm />
+                        </Elements>
+                      )}
+                    </div>
+                    <button type="submit" className="btn btn-primary">
+                      Place Order
+                    </button>
                   </div>
                 </div>
-                <div className="col-6 col-md-6 col-sm-12 col-xs-12">
-                  <div className="input">
-                    <input
-                      type="text"
-                      name="lastname"
-                      value={formFields.lastname}
-                      onChange={handleInputChange}
-                      placeholder="Last Name*"
-                      required
-                    />
-                  </div>
-                  <div className="input">
-                    <input
-                      type="email"
-                      name="email"
-                      value={formFields.email}
-                      onChange={handleInputChange}
-                      placeholder="Email*"
-                      required
-                    />
-                  </div>
-                  <div className="input">
-                    <input
-                      type="text"
-                      name="country"
-                      value={formFields.country}
-                      onChange={handleInputChange}
-                      placeholder="Country*"
-                      required
-                    />
-                  </div>
-                  <div className="input">
-                    <input
-                      type="text"
-                      name="apartment"
-                      value={formFields.apartment}
-                      onChange={handleInputChange}
-                      placeholder="Apartment, suite, unit etc."
-                    />
-                  </div>
-                  <div className="input">
-                    <input
-                      type="text"
-                      name="town"
-                      value={formFields.town}
-                      onChange={handleInputChange}
-                      placeholder="Town/City*"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="textarea">
-                  <textarea
-                    cols="30"
-                    rows="5"
-                    name="message"
-                    value={formFields.message}
-                    onChange={handleInputChange}
-                    placeholder="Order notes (optional)"
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-            <div className="col-4 col-md-6 col-sm-12 col-xs-12">
-              <div className="orders">
-                <h4>Your Order</h4>
-                <ul>
-                  {basket.map((item) => (
-                    <li key={item._id}>
-                      {item.title} x {item.count} <span>${item.price * item.count}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="order-total">
-                  <p>Subtotal <span>${calculateSubtotal().toFixed(2)}</span></p>
-                  <p>Tax (10%) <span>${(calculateSubtotal() * 0.1).toFixed(2)}</span></p>
-                  <p>Total <span>${calculateTotal().toFixed(2)}</span></p>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -379,4 +434,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-  

@@ -32,16 +32,17 @@
             padding: 1rem 0;
         }
 
+       .order-button{
         textarea {
             margin: 15px 0;
             font-weight: 400;
             font-size: 16px;
             border-radius: 7px;
             border: 1px solid rgb(217, 217, 217);
-            width: 95%;
+     
             padding: 10px 20px;
             outline: none;
-            resize: vertical;
+            // resize: vertical;
 
 
             &:focus {
@@ -74,6 +75,7 @@
                 font-size: 1rem;
             }
         }
+       }
 
 
     }

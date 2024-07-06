@@ -17,7 +17,7 @@ const Header = () => {
     const [showBasket, setShowBasket] = useState(false);
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
-    const { basket } = useContext(BasketContext);
+    const { basket,setBasket } = useContext(BasketContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -31,7 +31,12 @@ const Header = () => {
             window.removeEventListener("scroll", listenScrollEvent);
         };
     }, []);
-
+    useEffect(() => {
+        if (!user.id) {
+            setBasket([]);
+            localStorage.setItem('basket', JSON.stringify([]));
+        }
+    }, [user.id, setBasket]);
     const handleLogout = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -133,9 +138,11 @@ const Header = () => {
                         </ul>
                         <div style={{ display: 'flex', justifyContent: "center", gap: '10px' }} className="responsiv">
                             <div className="basket">
-                                <button onClick={() => setShowBasket(!showBasket)} className='links'>
+                                <button onClick={() => setShowBasket(!showBasket)} 
+                               
+                                 className='links'>
                                     <FiShoppingCart style={{ fontSize: '20px', color: 'black' }} />
-                                    <sub>{user.id ? basket.length : 0}</sub>
+                                    <sub>{basket.length}</sub>
                                 </button>
                             </div>
                             <div className="nav-hamburger" onClick={() => setToggle(!toggle)}>

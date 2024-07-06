@@ -6,12 +6,14 @@ import BlogLeft from "../components/blogLeft";
 import BlogRigth from "../components/blogRigth";
 import BlogsSection from "../components/blogs";
 import BookNow from "../components/bookNow";
+import Cancel from "../components/cancel";
 import Card from "../components/card";
 import Checkout from "../components/chectout";
 import MyCard from "../components/myCard";
 import OurMenues from "../components/ourMenues";
 import ShopDetail from "../components/shopDetail";
 import ShopList from "../components/shopList";
+import Success from "../components/succes";
 import User from "../components/user";
 import MainRoot from "../pages";
 import Basket from "../pages/basket";
@@ -116,6 +118,14 @@ export const ROUTES = [{
         {
             path: 'mycard',
             element: <MyCard />,
+        },
+        {
+            path: 'success',
+            element: <Success />,
+        },
+        {
+            path: 'cancel',
+            element: <Cancel />,
         },
         {
             path: '*',

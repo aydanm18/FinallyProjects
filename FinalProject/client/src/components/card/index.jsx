@@ -1,14 +1,21 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './index.scss';
+import { useSelector } from 'react-redux';
 import Basket from '../../pages/basket';
 import Header from '../../layouts/header';
 import Footer from '../../layouts/footer';
 
 const Card = () => {
-
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.user);
+    useEffect(() => {
+        if (!user.id) {
+          navigate("/login");
+        }
+      }, [navigate, user]);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
 

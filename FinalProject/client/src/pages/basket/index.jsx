@@ -1,12 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BasketContext } from '../../context/basketContext';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdDeleteOutline } from "react-icons/md";
+import { useSelector } from 'react-redux';
 import './index.scss';
 
 const Basket = () => {
+  const user = useSelector((state) => state.user);
+
   const { basket, setBasket } = useContext(BasketContext);
+  useEffect(() => {
+    if (!user.id) {
+        setBasket([]);
+        localStorage.setItem('basket', JSON.stringify([]));
+    }
+}, [user.id, setBasket]);
 
   const handleIncrement = (record) => {
     const currentBasket = basket.find((x) => x._id === record._id);

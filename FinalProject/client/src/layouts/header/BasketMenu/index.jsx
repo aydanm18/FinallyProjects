@@ -1,13 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './index.scss';
 import { BasketContext } from '../../../context/basketContext';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdDeleteOutline } from "react-icons/md";
+import { useSelector } from 'react-redux';
 
 const BasketMenu = ({ setShowBasket, showBasket }) => {
     const { basket, setBasket } = useContext(BasketContext);
+    const user = useSelector((state) => state.user);
     const navigate = useNavigate();
+    
+   
+    useEffect(() => {
+        if (!user.id) {
+            setBasket([]);
+            localStorage.setItem('basket', JSON.stringify([]));
+        }
+    }, [user.id, setBasket]);
 
     const handleIncrement = (recordId) => {
         const updatedBasket = basket.map(item => 
@@ -30,7 +40,9 @@ const BasketMenu = ({ setShowBasket, showBasket }) => {
         setBasket(updatedBasket);
         localStorage.setItem('basket', JSON.stringify(updatedBasket));
     };
+
     const subtotal = basket.reduce((total, item) => total + item.price * item.count, 0);
+
     return (
         <div className={`basket-menu ${showBasket ? 'open' : ''}`}>
             <div className="basketTitle">
@@ -68,8 +80,8 @@ const BasketMenu = ({ setShowBasket, showBasket }) => {
             )}
             <div className="buttons">
                 <div className="buttontitle">
-                <h4>Subtotal</h4>
-                <p>${subtotal.toFixed(2)}</p>
+                    <h4>Subtotal</h4>
+                    <p>${subtotal.toFixed(2)}</p>
                 </div>
                 <p>Taxes and shipping calculated at checkout</p>
                 <button style={{backgroundColor:'rgb(251,178,0)'}} onClick={() => {

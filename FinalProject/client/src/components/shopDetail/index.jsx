@@ -112,6 +112,7 @@ const ShopDetail = () => {
 
 
   const handleSubmitComment = async (e) => {
+    if (!user.id) return navigate('/login');
     e.preventDefault();
     if (!pizzaCommit || !ratingValue) {
       Swal.fire({
@@ -326,6 +327,7 @@ const ShopDetail = () => {
             />
           </p>
           <form onSubmit={handleSubmitComment}>
+
             <div className="row">
               <textarea
                 onChange={(e) => setPizzaCommit(e.target.value)}

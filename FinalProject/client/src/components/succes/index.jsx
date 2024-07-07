@@ -17,7 +17,7 @@ const Success = () => {
         });
     }, [navigate]);
 
-    return <div>Payment successful! Redirecting...</div>;
+    return <div style={{textAlign:'center',marginTop:'250px',fontSize:'2rem',color:'green',fontWeight:700}}>Payment successful! Redirecting...</div>;
 };
 
 export default Success;

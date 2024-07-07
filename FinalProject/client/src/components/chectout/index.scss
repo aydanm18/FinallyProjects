@@ -32,7 +32,7 @@
             padding: 1rem 0;
         }
 
-       .order-button{
+   
         textarea {
             margin: 15px 0;
             font-weight: 400;
@@ -52,11 +52,11 @@
 
         button {
             max-width: 300px;
-            padding: 1rem 2.4rem;
+            padding: 0.5rem 1rem;
             border-radius: 40px;
             background-color: rgb(251, 178, 0);
             color: white;
-            font-size: 1.3rem;
+            font-size: 1rem;
             font-weight: 600;
             border: none;
             transition: all 0.3s linear;
@@ -75,16 +75,17 @@
                 font-size: 1rem;
             }
         }
-       }
+       
 
 
     }
 
     .box {
+
         p {
             font-size: 20px;
-            line-height: 15px;
-            padding-bottom: 1.5rem;
+                line-height: 15px;
+                padding-bottom: 1.5rem;
         }
 
         h3 {
@@ -198,45 +199,31 @@
             }
         }
 
-        .payment-options {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-
-            h4 {
-                padding-top: 2rem;
-                padding-bottom: 1rem;
-                font-size: 30px;
-                color: black;
-                font-weight: 500;
-
-                line-height: 25px;
-            }
-
-            label {
-                font-size: 20px;
-                font-weight: 500;
-                color: rgba(94, 93, 93, 0.774);
-            }
-
-            input[type="radio"] {
-                appearance: none;
-                width: 17px;
-                height: 17px;
-                border: 2px solid #f2b200;
-                border-radius: 50%; 
-                outline: none;
-                cursor: pointer;
-                margin-right: 10px;
-
-                &:checked {
-                    
-                    background-color: #f2b200; 
-                    
-                }
-            
-        }
+   .form-group{
+    label{
+        font-size: 20px;
+        color: #777777;
+        font-weight: 500;
+        line-height: 25px;
     }
+    select{
+        margin-left: 1.5rem;
+        color: rgb(109, 108, 108);
+        font-weight: 400;
+        font-size: 16px;
+        border-radius: 50px;
+        border: 1px solid rgb(217, 217, 217);
+        outline: none;
+        padding: 15px;
+        margin-bottom: 2rem;
+        margin-top: 0.5rem;
+
+        &:focus {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+     
+    }
+   }
     }
 }
 @media (max-width: 759px) {

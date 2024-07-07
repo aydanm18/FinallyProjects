@@ -203,7 +203,7 @@ const user_controller = {
             const validToken = jwt.verify(token, process.env.PRIVATE_TOKEN_KEY);
             if (validToken) {
                 await UserModel.findByIdAndUpdate(validToken.id, { isVerified: true });
-                res.redirect("http://localhost:5173/login");
+                res.redirect("http://localhost:5174/login");
             } else {
                 res.send({
                     message: "invalid token",

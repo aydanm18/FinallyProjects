@@ -110,7 +110,6 @@ const ShopDetail = () => {
     }
   };
 
-
   const handleSubmitComment = async (e) => {
     if (!user.id) return navigate('/login');
     e.preventDefault();
@@ -165,13 +164,28 @@ const ShopDetail = () => {
     );
   }
 
-
-
-
   return (
     <>
       <Header />
-
+      <div id='contactus'>
+        <div className="container">
+          <div data-aos="fade-down" style={{ paddingLeft: '50%', width: '100px' }} className="contactImg">
+            <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/onion.png" alt="Onion" />
+          </div>
+          <div className="contactus">
+            <div data-aos="fade-right" className="contact-title">
+              <h1>Shop Detail</h1>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </div>
+            <div className="contact-links">
+              <span><Link className='links' to={'/'}>Home / </Link>Shop Detail</span>
+            </div>
+          </div>
+          <div data-aos="fade-up" className="contactImg" style={{ paddingLeft: '70%', width: '100px' }}>
+            <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/tamato.png" alt="Tomato" />
+          </div>
+        </div>
+      </div>
       <div id='detailSection'>
         <div className="container">
           <div className="row">
@@ -192,16 +206,21 @@ const ShopDetail = () => {
                     onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
                     min={1}
                   />
-
                   <button onClick={handleAddToCart}>
                     <Link className='links' to={'/card'}>ADD TO CART</Link>
                   </button>
                 </div>
                 <button onClick={handleLikeToggle}>
                   {data?.data.likes.some((x) => x.userId === user.id) ? (
-                    <FavoriteIcon style={{ color: 'red' }} />
+                    <>
+                      <FavoriteIcon style={{ color: 'red' }} />
+                      <span className="likes-count">{data?.data.likes.length}</span>
+                    </>
                   ) : (
-                    <FavoriteBorderIcon style={{ color: 'red' }} />
+                    <>
+                      <FavoriteBorderIcon style={{ color: 'red' }} />
+                      <span className="likes-count">{data?.data.likes.length}</span>
+                    </>
                   )}
                 </button>
               </div>
@@ -327,14 +346,11 @@ const ShopDetail = () => {
             />
           </p>
           <form onSubmit={handleSubmitComment}>
-
             <div className="row">
               <textarea
                 onChange={(e) => setPizzaCommit(e.target.value)}
                 value={pizzaCommit}
                 required
-                name=""
-                id=""
                 rows="6"
                 placeholder="Your Message"
               ></textarea>

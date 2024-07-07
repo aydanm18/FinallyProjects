@@ -10,8 +10,6 @@ import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 import { useSelector } from 'react-redux';
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import CheckoutForm from '../checkForm';
 import { BASE_URL } from '../../services/api/constants';
 
 const stripePromise = loadStripe('pk_test_51PYoRwL6alLKvkqmb2DoYlIfYYAFX5xRWINAs4bh3UiNcTwpeVgZt4rlSG1UnAU3UoTEWK5LBN5ijweDsXY3lVJv00bCn92hts');
@@ -91,7 +89,6 @@ const Checkout = () => {
 
       if (formFields.paymentMethod === 'stripe') {
         await makePayment(orderDetails);
-        setBasket([]);
       } else {
         await placeOrder(orderDetails);
         Swal.fire({
@@ -118,7 +115,6 @@ const Checkout = () => {
         message: '',
         paymentMethod: 'stripe',
       });
-     
 
     } catch (error) {
       console.error('Error placing order:', error);
@@ -144,30 +140,28 @@ const Checkout = () => {
         },
         body: JSON.stringify(orderDetails),
       });
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Error response:', errorData);
         throw new Error(`Network response was not ok: ${errorData.message}`);
       }
-  
+
       const session = await response.json();
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
       });
-  
+
       if (result.error) {
         console.error('Stripe error:', result.error);
         throw new Error(result.error.message);
       }
-  
-      // Clear localStorage
+
+      
       localStorage.removeItem('basket');
-  
-      // Clear basket context
       setBasket([]);
-  
-      // Show success message
+
+   
       Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -175,8 +169,8 @@ const Checkout = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-  
-      // Navigate to home page or any other page after successful payment
+
+     
       navigate('/');
     } catch (error) {
       console.error('Error:', error);
@@ -192,7 +186,6 @@ const Checkout = () => {
       setIsLoading(false);
     }
   };
-  
 
   const placeOrder = async (orderDetails) => {
     try {
@@ -213,6 +206,24 @@ const Checkout = () => {
 
       const data = await response.json();
       console.log('Order placed:', data);
+
+
+      localStorage.removeItem('basket');
+
+
+      setBasket([]);
+
+  
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Order placed successfully!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      
+      navigate('/');
     } catch (error) {
       console.error('Error:', error);
       Swal.fire({
@@ -249,26 +260,27 @@ const Checkout = () => {
   return (
     <>
       <Header />
-      <div id="contactus">
-        <div className="container">
-          <div
-            data-aos="fade-down"
-            style={{ paddingLeft: '50%', width: '100px' }}
-            className="contactImg"
-          >
-            <img
-              src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/onion.png"
-              alt="Onion"
-            />
-          </div>
-          <div className="contactus">
-            <div data-aos="fade-right" className="contact-title">
-              <h1>Checkout</h1>
-              <p>Lorem Ipsum is simply dummy text of the printing</p>
+      <div id='contactus'>
+                <div className="container">
+                    <div data-aos="fade-down" style={{ paddingLeft: '50%', width: '100px' }} className="contactImg">
+                        <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/onion.png" alt="Onion" />
+
+                    </div>
+                    <div className="contactus">
+                        <div data-aos="fade-right" className="contact-title">
+                            <h1>Checkout</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        </div>
+                        <div className="contact-links">
+                            <span><Link className='links' to={'/'}>Home / </Link>Checkout</span>
+                        </div>
+                    </div>
+
+                    <div data-aos="fade-up" className="contactImg" style={{ paddingLeft: '70%', width: '100px' }}>
+                        <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/tamato.png" alt="Tomato" />
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
       <section id="order">
         <div className="container">
           <form onSubmit={handleSubmit}>
@@ -416,6 +428,7 @@ const Checkout = () => {
                     name="paymentMethod"
                     value={formFields.paymentMethod}
                     onChange={handleInputChange}
+                    disabled={basket.length === 0}
                   >
                     <option value="stripe">Stripe</option>
                     <option value="other">Other</option>
@@ -435,9 +448,10 @@ const Checkout = () => {
 
                 <div data-aos="fade-up" className="col-lg-12 col-md-12 col-12">
                   <div className="btn-order">
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn btn-primary" disabled={basket.length === 0}>
                       Place Order
                     </button>
+                   
                   </div>
                 </div>
               </div>

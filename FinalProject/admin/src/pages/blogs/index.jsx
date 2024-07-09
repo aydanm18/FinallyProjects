@@ -63,7 +63,7 @@ const Blog = () => {
       title: 'Image',
       dataIndex: 'src',
       render: (src) => {
-        return <img src={src} width={"80px"} height={80} style={{ objectFit: 'cover' }} alt="Blog" />
+        return <img src={src} width={80} height={80} style={{ objectFit: 'cover' }} alt="Blog" />
       }
     },
     {

@@ -80,16 +80,16 @@ const BlogDetail = () => {
                     <div className="blogsectiontitle">
 
                         <div className="xets">
-                        <h5>{moment(blog.createdAt).format('DD MMMM YYYY')}</h5>
+                       
                             <div></div>
                         </div>
-                        <h1>{blog.title}</h1>
+                        <h1>{blog?.title}</h1>
                     </div>
                     <div className="blogimg">
-                        <img src={blog.src} />
+                        <img src={blog?.src} />
                     </div>
                     <div className="blogDes">
-                        <p>{blog.description}</p>
+                        <p>{blog?.description}</p>
                         <h4>Aliquet Tempus Tempor Gravida</h4>
                         <p>Cubilia laoreet augue egestas cursus magna nihil impedit ligula risus. Mauris donec ociis et magnis sapien etiam sapien rutrum tempor mullam blandit tempor sapien and gravida Maecenas gravida porttitor nunc, quis vehicula magna luctus tempor. Quisque laoreet turpis urna augue, viverra a augue eget, dictum tempor diam.</p>
                         <div className="img">
@@ -143,7 +143,7 @@ const BlogDetail = () => {
                 <div className="container">
                     <h2>{blog?.comments?.length} Comments</h2><br />
                     <div className="comments">
-                        {blog.comments && users && blog.comments.toReversed().map((commet, idx) => {
+                        {blog?.comments && users && blog.comments.toReversed().map((commet, idx) => {
                             const currentUser = users.find((x) => x._id === commet.userId);
                             return (
                                 <div key={idx} className="comment-card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

@@ -8,9 +8,8 @@ import { IoHelpCircleSharp } from "react-icons/io5";
 import { GiShop } from "react-icons/gi";
 import { TiArrowForward } from "react-icons/ti";
 import { TbAddressBook } from "react-icons/tb";
-import { BiSolidCategory } from "react-icons/bi";
 import { RiShoppingBag4Fill } from "react-icons/ri";
-import { MdOutlineShoppingCart } from "react-icons/md";
+
 
 
 
@@ -21,7 +20,7 @@ const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
     <aside id='sidebar' className={openSidebarToggle ? "sidebar-responsive" : ""}>
       <div className='sidebar-title'>
         <div className='sidebar-brand'>
-        <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/logo.png" alt="" />
+        <img className='imgg' src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/logo.png" alt="" />
         </div>
         <span onClick={OpenSidebar} className='icon close-icon'>X</span>
       </div>

@@ -17,15 +17,22 @@ const User = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({});
     const [orders, setOrders] = useState([]);
-
+    const [filteredOrders, setFilteredOrders] = useState([]);
+    const [filter, setFilter] = useState('All');
+    const [searchTerm, setSearchTerm] = useState('');
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     useEffect(() => {
         const fetchUserData = async () => {
             try {
                 const userResponse = await controller.getOne(endpoints.users, userRedux.id, token);
                 setUser(userResponse.data);
 
-                const ordersResponse = await controller.getAll(endpoints.orders, userRedux.id, token);
-                setOrders(ordersResponse.data);
+                const ordersResponse = await controller.getAll(endpoints.orders, token);
+                const userOrders = ordersResponse.data.filter(order => order.userId === userRedux.id);
+                setOrders(userOrders);
+                setFilteredOrders(userOrders);
             } catch (error) {
                 console.error(error);
             }
@@ -33,6 +40,17 @@ const User = () => {
 
         fetchUserData();
     }, [userRedux.id, token]);
+
+    useEffect(() => {
+        let filtered = orders;
+        if (filter !== 'All') {
+            filtered = filtered.filter(order => order.status === filter.toLowerCase());
+        }
+        if (searchTerm) {
+            filtered = filtered.filter(order => order.items.some(item => item.itemName.toLowerCase().includes(searchTerm.toLowerCase())));
+        }
+        setFilteredOrders(filtered);
+    }, [filter, searchTerm, orders]);
 
     return (
         <>
@@ -54,13 +72,27 @@ const User = () => {
                                 <b>Email: </b> {user?.email}
                             </p>
                             <p>
-                                <b>Account created at: </b> {user?.createdAt}
+                                <b>Account created at: </b> {new Date(user?.createdAt).toLocaleDateString()}
                             </p>
                         </div>
                     </div>
 
                     <div className="order">
-                        <h3>Your Order's</h3>
+                        <h3>Your Orders</h3>
+                        <div className="seach-select">
+                            <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+                                <option value="All">All</option>
+                                <option value="Accepted">Accepted</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                            <input
+                                type="text"
+                                placeholder="Search by title"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                        </div>
                         <Swiper
                             slidesPerView={3}
                             spaceBetween={50}
@@ -82,22 +114,22 @@ const User = () => {
                                 },
                             }}
                         >
-                            {orders && orders.length > 0 ? (
-                                orders.map((order) => (
+                            {filteredOrders && filteredOrders.length > 0 ? (
+                                filteredOrders.map((order) => (
                                     <SwiperSlide key={order._id} className="order-card">
                                         <div className="order-items">
-                                           
+                                            <p><b>Status:</b> {order.status}</p>
                                             {order.items && order.items.length > 0 ? (
                                                 order.items.map((item) => (
                                                     <div key={item.itemId} className="order-item">
                                                         <div className="image">
                                                             <img src={item.itemImg} alt={item.itemName} width={100} height={100} />
                                                         </div>
-                                                        <p>Order ID: {order._id}</p>
-                                                        <p>Order Date: {new Date(order.createdAt).toLocaleDateString()}</p>
-                                                        <p>Total Price: ${order.totalPrice}</p>
-                                                        <p>Product: {item.itemName}</p>
-                                                        <p>Quantity: {item.count}</p>
+                                                        <p><b>Order ID:</b> {order._id}</p>
+                                                        <p><b>Order Date:</b> {new Date(order.createdAt).toLocaleDateString()}</p>
+                                                        <p><b>Total Price:</b> ${order.totalPrice.toFixed(2)}</p>
+                                                        <p><b>Product:</b> {item.itemName}</p>
+                                                        <p><b>Quantity:</b> {item.count}</p>
                                                     </div>
                                                 ))
                                             ) : (

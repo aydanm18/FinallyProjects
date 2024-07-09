@@ -10,7 +10,10 @@ import Reservation from '../reservation';
 
 const BookNow = () => {
   const [isLoading, setIsLoading] = useState(true); 
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   useEffect(() => {
     AOS.init({
       duration: 1500,

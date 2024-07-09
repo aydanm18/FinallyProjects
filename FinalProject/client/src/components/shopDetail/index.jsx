@@ -41,7 +41,9 @@ const ShopDetail = () => {
   useEffect(() => {
     AOS.init({ duration: 1500, once: true });
   }, []);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     controller.getAll(endpoints.users, token).then((res) => {
       setUsers(res.data);

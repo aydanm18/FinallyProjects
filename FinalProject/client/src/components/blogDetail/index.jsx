@@ -35,7 +35,9 @@ const BlogDetail = () => {
             navigate("/login");
         }
     }, [user, navigate]);
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     useEffect(() => {
         controller.getOne(endpoints.bloks, id, token).then((resp) => {
             setBlog(resp.data);

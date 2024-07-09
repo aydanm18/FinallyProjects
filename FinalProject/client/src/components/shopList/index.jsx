@@ -9,7 +9,9 @@ import Footer from '../../layouts/footer';
 
 const ShopList = () => {
     const [isLoading, setIsLoading] = useState(true); 
-
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   useEffect(() => {
  
     setTimeout(() => {

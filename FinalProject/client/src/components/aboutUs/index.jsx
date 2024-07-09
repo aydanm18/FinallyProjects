@@ -15,7 +15,9 @@ const AboutUs = () => {
       once: true
     });
   }, []);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
  
     setTimeout(() => {

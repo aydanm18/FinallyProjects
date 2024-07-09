@@ -1,4 +1,5 @@
 #account {
+    padding-bottom: 100px;
     .about {
         padding-top: 135px;
         padding-bottom: 100px;
@@ -66,6 +67,47 @@
             transition: transform 0.4s ease;
         }
 
+        .seach-select {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            select {
+        
+                color: rgb(109, 108, 108);
+                font-weight: 400;
+                font-size: 16px;
+                border-radius: 50px;
+                border: 1px solid rgb(217, 217, 217);
+                outline: none;
+                padding: 15px;
+                margin-bottom: 2rem;
+                margin-top: 0.5rem;
+
+                &:focus {
+                    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                }
+
+            }
+
+            input {
+
+                font-weight: 400;
+                font-size: 16px;
+                border-radius: 30px;
+                border: 1px solid rgb(217, 217, 217);
+                width: 25%;
+                height: 50px;
+                outline: none;
+                padding-left: 20px;
+
+                &:focus {
+                    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                }
+
+            }
+        }
+
         .image {
             display: flex;
             align-items: center;
@@ -79,9 +121,10 @@
         .order-item {
             padding: 15px 0;
             font-size: 13px;
-            p{
+
+            p {
                 margin-top: 5px;
-              
+
 
             }
         }

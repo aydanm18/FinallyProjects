@@ -75,8 +75,8 @@ const Header = () => {
 
     const isActiveBlog = location.pathname.includes('/blogrigth') ||
         location.pathname.includes('/blogleft');
-    const isActiveAccound = location.pathname.includes('/user') ||
-        location.pathname.includes('/mycard');
+    const isActiveAccound = location.pathname.includes('/user') 
+
     const isActiveRegister = location.pathname.includes('/login') ||
         location.pathname.includes('/regsiter')
 
@@ -130,7 +130,7 @@ const Header = () => {
                                     ACCOUNT
                                     <ul className='dropdown'>
                                         <li><NavLink className='link' to="/user" activeClassName="active">User</NavLink></li>
-                                        <li><NavLink className='link' to="/mycard" activeClassName="active">MyCard</NavLink></li>
+
                                         <li onClick={handleLogout}>LogOut</li>
                                     </ul>
                                 </li>

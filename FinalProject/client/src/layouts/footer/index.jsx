@@ -6,9 +6,14 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FaPinterestSquare } from "react-icons/fa";
 import { FaSquareTwitter } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 const Footer = () => {
+  const navigate=useNavigate()
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     AOS.init({
       duration: 1500,
@@ -26,7 +31,7 @@ const Footer = () => {
             <li>Blog</li>
             <li>About Us</li>
             <li>Menu</li>
-            <li>Menu</li>
+            <li>Contact Us</li>
           </ul>
         </div>
         <div className="col-3 col-md-6 col-sm-12 col-xs-12 footer-top">
@@ -59,7 +64,12 @@ const Footer = () => {
             </a></li>
           </ul>
           <p>Signup and get exclusive offers and coupon codes</p>
-          <button>Sign In</button>
+       {!user.id &&(
+           <button > <Link className='links' to={'/register'}>SIGN UP</Link> </button>
+       )}
+         {user.id &&(
+           <button > <Link className='links' to={'/'}>Sign UP</Link> </button>
+       )}
         </div>
       </div>
       <div className="footer-middle">

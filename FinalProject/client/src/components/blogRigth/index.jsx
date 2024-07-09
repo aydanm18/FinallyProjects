@@ -13,7 +13,9 @@ import { FaSquareTwitter } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
 const BlogRigth = () => {
   const [isLoading, setIsLoading] = useState(true); 
- 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     AOS.init({

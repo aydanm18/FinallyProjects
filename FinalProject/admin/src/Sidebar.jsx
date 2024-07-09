@@ -17,13 +17,11 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 
 const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
 
-
- 
   return (
     <aside id='sidebar' className={openSidebarToggle ? "sidebar-responsive" : ""}>
       <div className='sidebar-title'>
         <div className='sidebar-brand'>
-          <MdOutlineShoppingCart />SHOP
+        <img src="https://themes.templatescoder.com/pizzon/html/demo/1-2/01-Modern/images/logo.png" alt="" />
         </div>
         <span onClick={OpenSidebar} className='icon close-icon'>X</span>
       </div>

@@ -17,6 +17,9 @@ const Login = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     if (user.id) {
       navigate("/");
     }

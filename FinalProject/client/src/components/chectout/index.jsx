@@ -35,7 +35,9 @@ const Checkout = () => {
   });
 
   const token = Cookies.get('token');
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     if (!user.id) {
       navigate('/login');
@@ -430,8 +432,8 @@ const Checkout = () => {
                     onChange={handleInputChange}
                     disabled={basket.length === 0}
                   >
-                    <option value="stripe">Stripe</option>
-                    <option value="other">Other</option>
+                    <option value="stripe">Direct bank transfer</option>
+                    <option value="other">Cash on delivery</option>
                   </select>
                 </div>
 

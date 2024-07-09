@@ -18,6 +18,9 @@ const OurTeam = () => {
   const [teams, setTeams] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     controller.getAll(endpoints.teams, token).then((resp) => {
       setTeams([...resp.data]);
     });

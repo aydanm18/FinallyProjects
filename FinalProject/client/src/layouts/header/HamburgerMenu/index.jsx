@@ -223,14 +223,6 @@ const HamburgerMenu = ({ setToggle, toggle }) => {
                                     User
                                 </Link> 
                                 <br /> 
-
-                                <Link
-                                    className="dropdown_content"
-                                    to="/mycard"
-                                    onClick={() => setToggle(!toggle)}
-                                >
-                                   My Card
-                                </Link>
                             </li>
                             <li className="dropdown_content" onClick={handleLogout}>
                                 LogOut

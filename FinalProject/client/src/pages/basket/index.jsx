@@ -11,6 +11,9 @@ const Basket = () => {
 
   const { basket, setBasket } = useContext(BasketContext);
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     if (!user.id) {
         setBasket([]);
         localStorage.setItem('basket', JSON.stringify([]));

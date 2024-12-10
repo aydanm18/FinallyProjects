@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://finallyprojects.fly.dev/';
+export const BASE_URL = 'https://finallyprojects.fly.dev';
 
 export const endpoints = {
     users: '/users',

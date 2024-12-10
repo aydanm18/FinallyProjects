@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const procektApi = createApi({
   reducerPath: 'procektApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://finallyprojects.fly.dev/' }),
   prepareHeaders: (headers) => {
     const token = getToken();
     if (token) {

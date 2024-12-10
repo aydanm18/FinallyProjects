@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 const token = Cookies.get("token");
 export const procektApi = createApi({
   reducerPath: 'procektApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://finallyprojects.fly.dev/' }),
   prepareHeaders: (headers) => {
     const token = getToken();
     if (token) {

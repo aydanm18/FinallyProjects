@@ -7,15 +7,12 @@ const route =require('./routes/index')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const allowedOrigins = [
-    "https://client-code-final.vercel.app/",   // Client frontend URL
-    "https://admin-code-final.vercel.app/"     // Admin frontend URL
-  ];
-  
-  app.use(cors({
-    origin: allowedOrigins,  // Allow both client and admin frontends
-    methods: ["GET", "POST", "PUT", "DELETE"]
-  }));
+const corsOptions = {
+  origin: ['https://admin-code-final.vercel.app','https://client-code-final.vercel.app'], // İcazə verilən frontend domeni
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true, // Əgər cookie və ya digər header-lər göndərilirsə
+};
+app.use(cors(corsOptions));
 
 app.use(route.bloks)
 app.use(route.reservations)
